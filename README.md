@@ -1,6 +1,6 @@
 # dev.andreximenes
 
-Hub editorial de André Ximenes: notas longas, ferramentas web e links curados. Visual tema Almanac (papel frio, acento laranja, tipografia Hanken Grotesk). O site roda em Astro e TypeScript, com React nas ferramentas em `/app/*`, Tailwind CSS v4 com tokens OKLCH, Content Collections em Markdown.
+Hub de André Ximenes: notas longas, ferramentas web e links curados. Visual índice utilitário (papel quente, acento laranja, tipografia Hanken Grotesk). O site roda em Astro e TypeScript, com React nas ferramentas em `/app/*`, Tailwind CSS v4 com tokens OKLCH, Content Collections em Markdown.
 
 **Site:** [https://dev.andreximenes.xyz](https://dev.andreximenes.xyz)
 

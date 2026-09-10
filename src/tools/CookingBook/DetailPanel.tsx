@@ -29,7 +29,7 @@ export function DetailPanel({ recipe, onBack, onCopy, onDuplicate, onEdit, onDel
 					<ArrowLeft className="size-4" />
 					Voltar
 				</button>
-				<div className="flex-1 min-w-[8rem]" />
+				<div className="flex-1 min-w-32" />
 				<button
 					type="button"
 					onClick={() => onCopy(recipe)}
@@ -74,7 +74,7 @@ export function DetailPanel({ recipe, onBack, onCopy, onDuplicate, onEdit, onDel
 							<span className="text-muted/55"> · Criado em {formatDate(recipe.createdAt)}</span>
 						)}
 					</p>
-					<div className="h-px bg-gradient-to-r from-transparent via-[color:var(--color-rule)] to-transparent" />
+					<div className="h-px bg-linear-to-r from-transparent via-rule to-transparent" />
 					<RecipeBody body={recipe.body} />
 				</div>
 			</div>

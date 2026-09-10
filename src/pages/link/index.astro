@@ -1,20 +1,12 @@
 ---
-import { getCollection } from "astro:content";
 import ListingLayout from "@/components/layout/ListingLayout.astro";
 import SEOLayout from "@/components/layout/SEOLayout.astro";
 import { pageTitle } from "@/content/site";
+import { loadPosts } from "@/lib/listing";
 
-const entries = (await getCollection("posts")).map((entry) => entry.data);
-
-const appPosts = entries
-    .filter((p) => p.type == "link")
-    .sort((a, b) => {
-        return b.date.getTime() - a.date.getTime();
-    });
-
-const categoryParam = "link";
+const recentPosts = await loadPosts("link");
 ---
 
 <SEOLayout title={pageTitle("Links")}>
-    <ListingLayout recentPosts={appPosts} activeCategory={categoryParam} />
+	<ListingLayout recentPosts={recentPosts} activeCategory="link" />
 </SEOLayout>

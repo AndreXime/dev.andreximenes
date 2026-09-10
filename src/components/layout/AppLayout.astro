@@ -4,19 +4,19 @@ import { SITE_NAME } from "@/content/site";
 ---
 
 <div class="flex h-dvh flex-col overflow-hidden bg-paper">
-	<header class="shrink-0 border-b-[3px] border-accent bg-accent-bg">
+	<header class="shrink-0 border-b border-rule">
 		<div
 			class="container-page flex items-center justify-between gap-md py-sm"
 		>
 			<a
 				href="/"
-				class="focus-ring inline-flex min-h-11 min-w-0 items-center font-mono text-sm font-semibold text-accent no-underline sm:text-base"
+				class="focus-ring inline-flex min-h-11 min-w-0 items-center font-display text-sm font-semibold tracking-display text-ink no-underline hover:text-accent sm:text-base"
 			>
 				{SITE_NAME}
 			</a>
 			<a
 				href={"/app"}
-				class="focus-ring group ml-auto flex min-h-11 w-fit items-center gap-2 rounded-input border border-rule bg-paper-2 px-3 py-2 text-sm text-muted transition-[border-color,color] duration-150 ease-out hover:border-rule-2 hover:text-ink"
+				class="focus-ring group ml-auto flex min-h-11 w-fit items-center gap-2 text-sm text-muted no-underline transition-colors duration-150 ease-out hover:text-ink"
 			>
 				<ChevronLeft
 					size={16}
@@ -27,9 +27,7 @@ import { SITE_NAME } from "@/content/site";
 		</div>
 	</header>
 	<main class="flex min-h-0 w-full flex-1 flex-col overflow-hidden">
-		<div
-			class="flex min-h-0 flex-1 flex-col"
-		>
+		<div class="flex min-h-0 flex-1 flex-col">
 			<slot />
 		</div>
 	</main>

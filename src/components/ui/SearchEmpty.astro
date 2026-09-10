@@ -1,6 +1,5 @@
 ---
-const emptyClass =
-	"rounded-card border border-dashed border-rule p-2xl text-center text-muted";
+const emptyClass = "py-md text-muted";
 ---
 
 <div id="search-empty" class:list={[emptyClass, "hidden"]}>
@@ -10,7 +9,7 @@ const emptyClass =
 	<button
 		type="button"
 		id="search-clear"
-		class="mt-sm inline-flex min-h-11 cursor-pointer items-center border-0 bg-transparent font-mono text-sm text-accent hover:underline"
+		class="mt-sm inline-flex min-h-11 items-center border-0 bg-transparent p-0 text-sm text-accent hover:underline"
 	>
 		Limpar busca
 	</button>

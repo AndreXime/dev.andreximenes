@@ -586,7 +586,7 @@ export function CanvasStage({ stageRef }: CanvasStageProps) {
 	return (
 		<div
 			ref={containerRef}
-			className="relative flex min-h-[20rem] w-full flex-1 items-center justify-center overflow-hidden rounded-card border border-rule bg-paper-3/40 lg:min-h-0"
+			className="relative flex min-h-80 w-full flex-1 items-center justify-center overflow-hidden rounded-card border border-rule bg-paper-3/40 lg:min-h-0"
 		>
 			<div
 				className="overflow-hidden rounded-sm shadow-sm"

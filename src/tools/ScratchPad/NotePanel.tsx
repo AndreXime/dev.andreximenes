@@ -51,7 +51,7 @@ export function NotePanel({ note, preview, onPreviewChange, onBack, onDelete, on
 					defaultValue={note.title}
 					placeholder={displayTitle(note)}
 					onChange={(e) => updateNote(note.id, { title: e.target.value })}
-					className="flex-1 min-w-[12rem] bg-transparent text-base font-semibold text-ink placeholder:text-muted/50 outline-none border-b border-transparent focus:border-rule pb-1"
+					className="flex-1 min-w-48 bg-transparent text-base font-semibold text-ink placeholder:text-muted/50 outline-none border-b border-transparent focus:border-rule pb-1"
 				/>
 				<div className="flex items-center gap-1 ml-auto">
 					<button
@@ -102,7 +102,7 @@ export function NotePanel({ note, preview, onPreviewChange, onBack, onDelete, on
 						defaultValue={note.body}
 						onChange={(e) => updateNote(note.id, { body: e.target.value })}
 						placeholder="Comece a escrever… Suporta Markdown."
-						className={`${toolTextareaClass} h-full min-h-[16rem] resize-none border-0 bg-transparent`}
+						className={`${toolTextareaClass} h-full min-h-64 resize-none border-0 bg-transparent`}
 					/>
 				)}
 			</div>

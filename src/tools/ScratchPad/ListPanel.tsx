@@ -95,8 +95,8 @@ export function ListPanel({
 									onClick={() => onSelect(note.id)}
 									className={["overflow-hidden", toolListItemClass, active ? toolListItemActiveClass : ""].join(" ")}
 								>
-									<div className="flex gap-0 min-h-[4.25rem]">
-										<div className="relative flex min-h-[4.25rem] w-20 shrink-0 items-center justify-center bg-accent-bg text-accent/50 sm:w-24">
+									<div className="flex gap-0 min-h-17">
+										<div className="relative flex min-h-17 w-20 shrink-0 items-center justify-center bg-accent-bg text-accent/50 sm:w-24">
 											<StickyNote className="size-6" />
 											{note.pinned && <Pin className="absolute right-1.5 top-1.5 size-3 text-accent fill-accent" />}
 										</div>

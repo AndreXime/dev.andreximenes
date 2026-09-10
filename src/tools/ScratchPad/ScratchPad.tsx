@@ -88,7 +88,7 @@ export default function ScratchPad() {
 				onCopy={handleCopy}
 			/>
 		) : screen === "list" ? (
-			<div className="hidden min-h-[20rem] w-full flex-col items-center justify-center gap-md rounded-card border border-dashed border-rule bg-paper-2/30 p-12 lg:flex">
+			<div className="hidden min-h-80 w-full flex-col items-center justify-center gap-md rounded-card border border-dashed border-rule bg-paper-2/30 p-12 lg:flex">
 				<StickyNote className="size-14 shrink-0 text-accent/45" strokeWidth={1.5} />
 				<p className="text-left text-base leading-relaxed text-muted">
 					{notes.length === 0 ? "Comece criando sua primeira nota." : "Selecione uma nota na lista ou crie uma nova."}

@@ -1,0 +1,78 @@
+---
+import { Image } from "astro:assets";
+import type { Post } from "@/content.config";
+import { excerptFromContent } from "@/lib/listing";
+import { getPostMeta } from "@/lib/postMeta";
+import { formatDate } from "@/lib/utils";
+import { ExternalLinkIcon } from "lucide-react";
+
+interface Props {
+	posts: Post[];
+}
+
+const { posts } = Astro.props;
+
+const items = await Promise.all(
+	posts.map(async (post) => ({
+		post,
+		meta: await getPostMeta(post),
+		excerpt: excerptFromContent(post.content),
+	})),
+);
+---
+
+{
+	items.length > 0 ? (
+		<ul class="m-0 list-none divide-y divide-rule p-0">
+			{items.map(({ post, meta, excerpt }) => (
+				<li
+					data-search-text={`${post.title} ${excerpt ?? ""} ${meta.typeLabel}`.toLowerCase()}
+				>
+					<a
+						href={meta.href}
+						class="focus-ring group flex min-h-11 flex-col gap-3xs py-sm no-underline lg:flex-row lg:items-baseline lg:justify-between lg:gap-md"
+						title={post.title}
+						{...(meta.external
+							? {
+									target: "_blank",
+									rel: "noopener noreferrer",
+								}
+							: {})}
+					>
+						<span class="min-w-0">
+							<span class="flex items-center gap-2xs font-medium text-ink wrap-anywhere group-hover:text-accent">
+								{meta.linkFavicon ? (
+									<Image
+										src={meta.linkFavicon}
+										alt=""
+										width={16}
+										height={16}
+										class="size-4 shrink-0 rounded-xs"
+										loading="lazy"
+										decoding="async"
+									/>
+								) : null}
+								<span>{post.title}</span>
+								{meta.external ? (
+									<ExternalLinkIcon className="size-3.5 shrink-0 text-muted" />
+								) : null}
+							</span>
+							{excerpt ? (
+								<span class="mt-3xs line-clamp-2 text-sm leading-normal text-muted wrap-anywhere">
+									{excerpt}
+								</span>
+							) : null}
+						</span>
+						<span class="shrink-0 text-sm text-muted">
+							{meta.typeLabel}
+							{" · "}
+							<time datetime={post.date.toISOString()}>
+								{formatDate(post.date)}
+							</time>
+						</span>
+					</a>
+				</li>
+			))}
+		</ul>
+	) : null
+}

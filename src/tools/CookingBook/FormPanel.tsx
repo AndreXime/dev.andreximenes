@@ -80,7 +80,7 @@ export function FormPanel({
 						placeholder={
 							"Ingredientes, modo de preparo, temperos, tempo no forno…\nEscreva como quiser, sem formato fixo."
 						}
-						className="w-full min-h-[10rem] rounded-lg border border-rule bg-paper px-3 py-2.5 text-sm text-ink placeholder:text-muted/70 focus:outline-none focus:ring-2 focus:ring-accent resize-y leading-relaxed"
+						className="w-full min-h-40 rounded-lg border border-rule bg-paper px-3 py-2.5 text-sm text-ink placeholder:text-muted/70 focus:outline-none focus:ring-2 focus:ring-accent resize-y leading-relaxed"
 					/>
 				</div>
 
@@ -91,7 +91,7 @@ export function FormPanel({
 						"inline-flex w-full items-center justify-center gap-2 rounded-card px-4 py-2.5 text-sm font-semibold transition-[opacity,transform]",
 						canSave
 							? "bg-accent text-accent-ink hover:opacity-90 active:scale-[0.99]"
-							: "bg-[color:var(--color-rule)]/40 text-muted/60 cursor-not-allowed",
+							: "bg-rule/40 text-muted/60 cursor-not-allowed",
 					].join(" ")}
 				>
 					{selectedId ? "Salvar alterações" : "Salvar receita"}

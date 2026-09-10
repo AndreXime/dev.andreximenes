@@ -96,8 +96,8 @@ export function ListPanel({
 									onClick={() => onOpenDetail(recipe.id)}
 									className={["overflow-hidden", toolListItemClass, active ? toolListItemActiveClass : ""].join(" ")}
 								>
-									<div className="flex gap-0 min-h-[4.25rem]">
-										<div className="flex min-h-[4.25rem] w-20 shrink-0 items-center justify-center bg-accent-bg text-accent/50 sm:w-24">
+									<div className="flex gap-0 min-h-17">
+										<div className="flex min-h-17 w-20 shrink-0 items-center justify-center bg-accent-bg text-accent/50 sm:w-24">
 											<ChefHat className="size-6" />
 										</div>
 										<div className="flex flex-col justify-center gap-0.5 min-w-0 flex-1 p-3">

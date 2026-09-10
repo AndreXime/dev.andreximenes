@@ -76,7 +76,7 @@ function Header({ data }: { data: UserData["header"] }) {
 function Intro({ text }: { text: UserData["intro"] }) {
 	return (
 		<section className="mb-3">
-			<h2 className="text-[14px] font-bold uppercase border-b border-black mb-1.5 pb-[2px]">Resumo Profissional</h2>
+			<h2 className="text-[14px] font-bold uppercase border-b border-black mb-1.5 pb-0.5">Resumo Profissional</h2>
 			<p className="text-[12px] leading-normal text-left">
 				<RichText content={text} />
 			</p>
@@ -87,7 +87,7 @@ function Intro({ text }: { text: UserData["intro"] }) {
 function Skills({ skills }: { skills: UserData["skills"] }) {
 	return (
 		<section className="mb-3">
-			<h2 className="text-[14px] font-bold uppercase border-b border-black mb-1.5 pb-[2px]">Habilidades Técnicas</h2>
+			<h2 className="text-[14px] font-bold uppercase border-b border-black mb-1.5 pb-0.5">Habilidades Técnicas</h2>
 			<div className="text-[12px] leading-normal grid grid-cols-1 gap-0.5">
 				{skills.map((skill) => (
 					<div key={skill}>
@@ -102,7 +102,7 @@ function Skills({ skills }: { skills: UserData["skills"] }) {
 function Experience({ experiences }: { experiences: UserData["experience"] }) {
 	return (
 		<section className="mb-3">
-			<h2 className="text-[14px] font-bold uppercase border-b border-black mb-2 pb-[2px]">Experiência Profissional</h2>
+			<h2 className="text-[14px] font-bold uppercase border-b border-black mb-2 pb-0.5">Experiência Profissional</h2>
 
 			{experiences.map((experience) => (
 				<div key={experience.company} className="mb-2 last:mb-0">
@@ -146,7 +146,7 @@ function Experience({ experiences }: { experiences: UserData["experience"] }) {
 function Projects({ projects }: { projects: UserData["projects"] }) {
 	return (
 		<section className="mb-3">
-			<h2 className="text-[14px] font-bold uppercase border-b border-black mb-1.5 pb-[2px]">Projetos Relevantes</h2>
+			<h2 className="text-[14px] font-bold uppercase border-b border-black mb-1.5 pb-0.5">Projetos Relevantes</h2>
 
 			{projects.map((project) => (
 				<div key={project.title} className="mb-3 last:mb-0">
@@ -184,7 +184,7 @@ function Projects({ projects }: { projects: UserData["projects"] }) {
 function Education({ educations }: { educations: UserData["education"] }) {
 	return (
 		<section className="mb-0 pb-0">
-			<h2 className="text-[14px] font-bold uppercase border-b border-black mb-1.5 pb-[2px]">Formação Acadêmica</h2>
+			<h2 className="text-[14px] font-bold uppercase border-b border-black mb-1.5 pb-0.5">Formação Acadêmica</h2>
 			{educations.map((edu) => (
 				<div key={edu.institution} className="mb-4 text-[12px] leading-normal last:mb-0">
 					<div className="flex justify-between items-baseline">

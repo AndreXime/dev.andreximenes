@@ -1,6 +1,5 @@
 ---
 import Nav from "../ui/Nav.astro";
-import Footer from "../ui/Footer.astro";
 
 interface Props {
 	activeCategory: string;
@@ -14,5 +13,4 @@ const { activeCategory } = Astro.props;
 	<main class="flex-1">
 		<slot />
 	</main>
-	<Footer />
 </div>

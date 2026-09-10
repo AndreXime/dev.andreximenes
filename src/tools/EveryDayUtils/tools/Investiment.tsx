@@ -152,7 +152,7 @@ export default function InvestmentCard() {
 
 						{/* Bloco de Reinvestimento */}
 						<div className="bg-[color-mix(in_srgb,var(--color-paper)_50%,#0000)] p-4 rounded-lg border border-rule/50 relative overflow-hidden">
-							<div className="absolute top-0 left-0 h-1 bg-gradient-to-r from-[var(--color-accent)]/50 to-[var(--color-ink-2)]/35 w-full opacity-50"></div>
+							<div className="absolute top-0 left-0 h-1 bg-linear-to-r from-accent/50 to-ink-2/35 w-full opacity-50"></div>
 
 							<h4 className="text-ink-2 font-bold mb-3 flex items-center text-sm">Distribuição da Renda Gerada</h4>
 
@@ -162,7 +162,7 @@ export default function InvestmentCard() {
 									<strong className="text-ink-2 text-lg block">{formatarMoeda(resultado.valorReinvestir)}</strong>
 									<span className=" text-muted/90">{resultado.porcentagemReinvestir.toFixed(1)}% do total</span>
 								</div>
-								<div className="p-3 bg-[color-mix(in_srgb,var(--color-ink)_6%,#0000)] rounded border border-[var(--color-ink)]/10">
+								<div className="p-3 bg-[color-mix(in_srgb,var(--color-ink)_6%,#0000)] rounded border border-ink/10">
 									<span className="block text-ink uppercase font-bold mb-1">Pode Gastar (Livre)</span>
 									<strong className="text-ink-2 text-lg block">{formatarMoeda(resultado.rendaReal)}</strong>
 									<span className=" text-muted/90">{(100 - resultado.porcentagemReinvestir).toFixed(1)}% do total</span>

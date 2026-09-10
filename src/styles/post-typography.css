@@ -29,10 +29,9 @@
 }
 
 .content-container blockquote {
-	border-left: 2px solid var(--color-rule-2);
+	border-left: 2px solid var(--color-rule);
 	padding-left: var(--space-sm);
 	color: var(--color-muted);
-	font-family: var(--font-serif);
 	font-style: italic;
 }
 

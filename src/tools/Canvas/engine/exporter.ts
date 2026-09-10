@@ -18,8 +18,8 @@ export function exportStagePng(stage: Konva.Stage, options: ExportOptions = {}):
 
 	for (let i = 0; i < hideNodes.length; i++) {
 		const node = hideNodes[i];
-		const visible = prevVisible[i];
-		if (node && visible !== undefined) node.visible(visible);
+		const wasVisible = prevVisible[i];
+		if (node && wasVisible !== undefined) node.visible(wasVisible);
 	}
 
 	const link = document.createElement("a");

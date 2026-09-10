@@ -1,12 +1,10 @@
 ---
-import { getCollection } from "astro:content";
 import ListingLayout from "@/components/layout/ListingLayout.astro";
 import SEOLayout from "@/components/layout/SEOLayout.astro";
 import { SITE_NAME } from "@/content/site";
+import { loadPosts } from "@/lib/listing";
 
-const entries = (await getCollection("posts")).map((entry) => entry.data);
-
-const recentPosts = entries.sort((a, b) => b.date.getTime() - a.date.getTime());
+const recentPosts = await loadPosts();
 ---
 
 <SEOLayout title={SITE_NAME}>

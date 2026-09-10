@@ -4,7 +4,7 @@ export const toolInputClass =
 	"w-full min-h-10 rounded-input border border-rule bg-paper px-sm py-2 text-sm text-ink placeholder:text-muted focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:border-accent transition-[border-color,box-shadow]";
 
 export const toolTextareaClass =
-	"w-full min-h-[10rem] resize-y rounded-input border border-rule bg-paper px-sm py-2 text-sm leading-relaxed text-ink-2 placeholder:text-muted focus:outline-none focus-visible:ring-2 focus-visible:ring-accent";
+	"w-full min-h-40 resize-y rounded-input border border-rule bg-paper px-sm py-2 text-sm leading-relaxed text-ink-2 placeholder:text-muted focus:outline-none focus-visible:ring-2 focus-visible:ring-accent";
 
 export const toolCardClass = "rounded-card border border-rule bg-paper-2";
 

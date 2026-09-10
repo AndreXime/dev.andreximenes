@@ -77,7 +77,7 @@ export default function CVBuilderApp() {
 								</div>
 							</div>
 						) : (
-							<div className="pointer-events-auto relative -mt-px flex min-h-[400px] flex-1 flex-col overflow-hidden rounded-b-card rounded-tr-card border border-rule bg-paper-2">
+							<div className="pointer-events-auto relative -mt-px flex min-h-100 flex-1 flex-col overflow-hidden rounded-b-card rounded-tr-card border border-rule bg-paper-2">
 								{activeTab === 1 && <ContextTab />}
 								{activeTab === 2 && <JobTab />}
 								{activeTab === 3 && <PromptTab />}

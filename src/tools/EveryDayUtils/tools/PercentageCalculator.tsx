@@ -43,7 +43,7 @@ const Row = ({ children, result, unit = "" }: { children: React.ReactNode; resul
 	return (
 		<div className="bg-[color-mix(in_srgb,var(--color-paper-2)_88%,#0000)] p-5 rounded-card border border-rule/50 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-4">
 			<div className="text-xl font-light text-ink-2 leading-relaxed w-full text-center sm:text-left">{children}</div>
-			<div className={`flex-shrink-0 w-full sm:w-auto ${resultBox}`}>
+			<div className={`shrink-0 w-full sm:w-auto ${resultBox}`}>
 				<span className="text-xs uppercase tracking-wider text-muted/90 font-semibold text-right w-full block">
 					Resultado
 				</span>

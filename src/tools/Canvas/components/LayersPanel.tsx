@@ -31,7 +31,7 @@ export function LayersPanel() {
 	}
 
 	return (
-		<div className={`${toolPanelClass} flex max-h-[28rem] flex-col gap-2xs overflow-y-auto`}>
+		<div className={`${toolPanelClass} flex max-h-112 flex-col gap-2xs overflow-y-auto`}>
 			{layers.map((el) => {
 				const active = selected.has(el.id);
 				return (

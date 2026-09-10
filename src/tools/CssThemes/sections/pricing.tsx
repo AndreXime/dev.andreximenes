@@ -93,7 +93,7 @@ export function Pricing3() {
 		<section className="bg-ct-background px-6 py-20">
 			<div className="mx-auto max-w-4xl overflow-x-auto">
 				<h2 className="font-ct-heading text-3xl font-bold text-ct-foreground">Compare plans</h2>
-				<table className="mt-8 w-full min-w-[36rem] border-collapse text-left text-sm">
+				<table className="mt-8 w-full min-w-144 border-collapse text-left text-sm">
 					<thead>
 						<tr className="border-b border-ct-border">
 							<th className="py-3 pr-4 font-semibold text-ct-muted-foreground">Feature</th>

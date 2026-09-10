@@ -73,7 +73,7 @@ export function CanvasView() {
 			)}
 
 			<div className="flex min-h-0 flex-1 flex-col gap-md lg:flex-row lg:items-stretch">
-				<div className="flex min-h-[24rem] min-w-0 flex-1 flex-col lg:min-h-0">
+				<div className="flex min-h-96 min-w-0 flex-1 flex-col lg:min-h-0">
 					<CanvasStage stageRef={stageHandleRef} />
 				</div>
 

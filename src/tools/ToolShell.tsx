@@ -35,18 +35,12 @@ export function ToolShell({ title, description, icon, storage, actions, mainClas
 
 	return (
 		<div className="relative flex h-full min-h-0 w-full flex-1 flex-col">
-			<header className="container-page w-full shrink-0 border-b border-b-rule pb-md pt-lg">
+			<header className="container-page w-full shrink-0 border-b border-b-rule pb-md pt-md">
 				<div className="flex w-full flex-col gap-sm lg:flex-row lg:items-start lg:justify-between">
-					<div className="flex min-w-0 flex-1 items-start gap-sm border-l-[3px] border-accent pl-md">
-						{icon && (
-							<div className="shrink-0 rounded-card border border-accent-muted bg-accent-bg p-2.5 text-accent">
-								{icon}
-							</div>
-						)}
+					<div className="flex min-w-0 flex-1 items-start gap-sm">
+						{icon && <div className="shrink-0 pt-3xs text-muted">{icon}</div>}
 						<div className="flex min-w-0 flex-1 flex-col gap-2xs">
-							<h1 className="m-0 font-display text-display-s font-semibold leading-snug tracking-display text-ink">
-								{title}
-							</h1>
+							<h1 className="m-0 font-display text-xl font-semibold leading-snug tracking-display text-ink">{title}</h1>
 							{description && <p className="m-0 leading-normal text-muted">{description}</p>}
 						</div>
 					</div>

@@ -1,28 +1,28 @@
-# Design · Hub de Conteúdo Técnico
+# Design · Hub de conteúdo técnico
 
-Sistema visual locked para o hub de um autor. Páginas de conteúdo leem este arquivo antes de emitir código.
+Sistema visual locked para o hub. Páginas leem este arquivo antes de emitir código.
 
 ## Genre
 
-editorial
+modern-minimal (índice utilitário; não landing Stripe, não editorial)
 
 ## Macrostructure family
 
-- **Hub pages** (home, índices): Ecosystem Index — trilhos de descoberta (recente · notas · ferramentas · links)
-- **Content pages** (artigos): Long Document — coluna única, medida 65ch, tipografia contínua
-- **App pages** (ferramentas): Workbench — chrome mínimo, a ferramenta carrega a página
+- **Hub e listagens** (`/`, `/post`, `/app`, `/link`): Index-First. A lista é a página. Sem hero, sem cards de seção, sem tabela de jornal.
+- **Content pages** (`/post/[slug]`, `/autor`): Long Document. Notas usam `--page-max`; tipografia contínua.
+- **App pages** (`/app/[slug]`): Workbench. Chrome mínimo, a ferramenta carrega a página.
 
 ## Theme
 
-Almanac — papel frio · acento laranja · display geométrico
+Index: papel quente quase branco · acento laranja · display geométrico
 
-- `--color-paper`   oklch(94% 0.008 245)
-- `--color-paper-2` oklch(91% 0.010 245)
-- `--color-paper-3` oklch(86% 0.012 240)
-- `--color-ink`     oklch(16% 0.020 245)
-- `--color-ink-2`   oklch(20% 0.018 245)
-- `--color-muted`   oklch(46% 0.014 245)
-- `--color-rule`    oklch(74% 0.012 240)
+- `--color-paper`   oklch(97% 0.008 50)
+- `--color-paper-2` oklch(94.5% 0.01 50)
+- `--color-paper-3` oklch(91% 0.012 48)
+- `--color-ink`     oklch(18% 0.022 42)
+- `--color-ink-2`   oklch(24% 0.018 42)
+- `--color-muted`   oklch(46% 0.014 42)
+- `--color-rule`    oklch(88% 0.012 50)
 - `--color-accent`  oklch(58% 0.20 42)
 - `--color-focus`   oklch(58% 0.20 42)
 
@@ -30,50 +30,64 @@ Almanac — papel frio · acento laranja · display geométrico
 
 - Display: Hanken Grotesk, weight 600, normal
 - Body: Hanken Grotesk, weight 400
-- Mono: IBM Plex Mono, weight 400 (rótulos, datas, metadados)
+- Mono: IBM Plex Mono, weight 400 (código, não chrome)
 - Display tracking: -0.014em
 - Type scale anchor: `--text-display` = clamp(2.25rem, 3.5vw + 1rem, 3.75rem)
+- Hub e listagens não usam display size. Wordmark em `text-lg`. Títulos de seção em `text-xl` no máximo.
 
 ## Spacing
 
 Escala 4pt nomeada em `src/styles/tokens.css`. Usar `var(--space-*)`, nunca valores crus.
+`--page-max` do hub: 56rem. `--section-gap`: 2.5rem.
 
 ## Motion
 
 - Easings: `--ease-out`, `--ease-in`, `--ease-in-out`
-- Reveal: none (tipografia carrega a página)
+- Reveal: none
 - Reduced-motion: opacity-only, ≤ 150ms
 
 ## Microinteractions stance
 
 - Silent success
 - Hover delay 800ms em tooltips · focus delay 0ms
-- Links tipográficos com sublinhado; botões outlined chip
+- Linha do índice: o título muda para acento no hover. Sem card empilhado.
 
 ## CTA voice
 
-- Primary: outlined chip, cantos `--radius-input`, verbo + seta
-- Secondary: link tipográfico com seta →
+- Primary no hub: a própria linha da lista
+- Apps: botão filled acento, cantos `--radius-input`
+- Secondary: link tipográfico
 
 ## Per-page allowances
 
-- Hub pages: typography only
-- Content pages: typography only
+- Hub e listagens: tipografia + lista. Sem enrichment.
+- Content pages: tipografia only
 - App pages: sem enrichment
 
 ## What pages MUST share
 
-- Masthead N6 (wordmark centrado, linha de edição, dupla regra)
-- Acento laranja ≤ 5% por viewport
+- Wordmark `dev.andreximenes` alinhado à esquerda, tamanho de texto
+- Acento laranja ≤ 5% por viewport (foco, link ativo, hover de título)
 - Hanken Grotesk + IBM Plex Mono
-- Listagens tabulares F3 (data · tipo · título)
-- Footer colophon Ft4 com link RSS
+- Nav compacta (wordmark · seções · busca)
+- Sem footer de site (RSS fica no `<link rel="alternate">` do head)
+- Layout em coluna até `md`; `flex-row` só a partir de `lg`
 
 ## What pages MAY differ on
 
-- Número de trilhos no hub (conforme categorias com conteúdo)
-- Densidade da listagem tabular por categoria
-- Chrome de ferramenta (apenas back link + slot da app)
+- Home é só Recente (mistura ferramentas, notas e links por data)
+- `/post` `/app` `/link` são o mesmo índice, filtrado
+- Chrome de ferramenta (back link + slot da app)
+
+## Nav
+
+Compacta, borda inferior `--color-rule`. Sem masthead, sem small caps, sem regra dupla. Busca com borda `--color-rule`; foco usa acento.
+Até `md`: wordmark + botão de menu + busca; links no drawer lateral.
+A partir de `lg`: wordmark · seções · busca em linha.
+
+## Footer
+
+Nenhum. Índice e conteúdo terminam na lista ou no artigo.
 
 ## Exports
 

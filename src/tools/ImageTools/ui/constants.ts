@@ -13,7 +13,7 @@ export const PROGRESS_BAR_CLASS =
 	"block w-full h-1.5 appearance-none overflow-hidden rounded-full bg-paper [&::-webkit-progress-bar]:rounded-full [&::-webkit-progress-bar]:bg-paper [&::-webkit-progress-value]:rounded-full [&::-webkit-progress-value]:bg-accent transition-all duration-300 [&::-moz-progress-bar]:rounded-full [&::-moz-progress-bar]:bg-accent";
 
 export const PRELOAD_PROGRESS_BAR_CLASS =
-	"block w-full h-1 appearance-none overflow-hidden rounded-full bg-[var(--color-rule)]/30 [&::-webkit-progress-bar]:rounded-full [&::-webkit-progress-bar]:bg-[var(--color-rule)]/30 [&::-webkit-progress-value]:rounded-full [&::-webkit-progress-value]:bg-accent/70 [&::-moz-progress-bar]:rounded-full [&::-moz-progress-bar]:bg-accent/70";
+	"block w-full h-1 appearance-none overflow-hidden rounded-full bg-rule/30 [&::-webkit-progress-bar]:rounded-full [&::-webkit-progress-bar]:bg-rule/30 [&::-webkit-progress-value]:rounded-full [&::-webkit-progress-value]:bg-accent/70 [&::-moz-progress-bar]:rounded-full [&::-moz-progress-bar]:bg-accent/70";
 
 export const STATUS_LABEL: Record<ImageItemStatus, string> = {
 	loading: "Carregando",

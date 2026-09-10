@@ -29,7 +29,7 @@ export function DetailView({ variation }: { variation: SectionVariation }) {
 					{copied ? "HTML copiado" : "Copiar HTML"}
 				</Button>
 			</div>
-			<div ref={previewRef} className="-mx-5 overflow-hidden rounded-ct-lg border border-ct-border sm:-mx-0">
+			<div ref={previewRef} className="-mx-5 overflow-hidden rounded-ct-lg border border-ct-border sm:mx-0">
 				<Component />
 			</div>
 		</div>

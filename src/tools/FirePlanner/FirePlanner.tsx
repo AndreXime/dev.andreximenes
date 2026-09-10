@@ -116,7 +116,7 @@ export default function FirePlanner() {
 				/>
 			</div>
 
-			<div className="h-px w-full bg-gradient-to-r from-transparent via-[color:var(--color-rule)]/70 to-transparent" />
+			<div className="h-px w-full bg-linear-to-r from-transparent via-rule/70 to-transparent" />
 
 			{!resultado ? (
 				<div className="rounded-card border border-rule bg-paper-2 px-4 py-3 text-sm text-muted">
@@ -177,7 +177,7 @@ export default function FirePlanner() {
 
 						{showEvolution && (
 							<div className="border-t border-rule overflow-x-auto">
-								<table className="w-full min-w-[36rem] text-sm">
+								<table className="w-full min-w-144 text-sm">
 									<thead>
 										<tr className="text-left text-[10px] uppercase tracking-[0.12em] text-muted/75 border-b border-rule">
 											<th className="px-4 py-2 font-semibold">Idade</th>
@@ -210,7 +210,7 @@ export default function FirePlanner() {
 														{formatarMoeda(row.patrimonioTotal)}
 													</td>
 													<td className="px-4 py-2">
-														<div className="h-2 rounded-full bg-[color:var(--color-rule)]/50 overflow-hidden">
+														<div className="h-2 rounded-full bg-rule/50 overflow-hidden">
 															<div
 																className="h-full rounded-full bg-accent transition-all"
 																style={{ width: `${progresso}%` }}

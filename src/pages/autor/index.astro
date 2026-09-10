@@ -3,7 +3,6 @@ import SEOLayout from "@/components/layout/SEOLayout.astro";
 import MainLayout from "@/components/layout/MainLayout.astro";
 import { AUTHOR } from "@/content/author";
 import { pageTitle as buildPageTitle, SITE_NAME } from "@/content/site";
-import { kindBadgeClass } from "@/lib/siteUi";
 import { ExternalLinkIcon } from "lucide-react";
 ---
 
@@ -13,94 +12,64 @@ import { ExternalLinkIcon } from "lucide-react";
 >
 	<MainLayout activeCategory="author">
 		<article class="container-page py-lg pb-3xl">
-			<header
-				class="border-b border-b-rule pb-xl pl-md border-l-[3px] border-l-accent [box-shadow:inset_3px_0_0_var(--color-accent)]"
-			>
-				<p
-					class="mb-sm font-mono text-xs tracking-label text-accent uppercase"
-				>
+			<header class="max-w-measure border-b border-rule pb-md">
+				<p class="mb-2xs text-sm text-muted">
 					{AUTHOR.role}
 				</p>
 				<h1
-					class="m-0 font-display text-display-s leading-snug font-semibold tracking-display text-ink"
+					class="m-0 font-display text-xl leading-snug font-semibold tracking-display text-ink"
 				>
 					{AUTHOR.name}
 				</h1>
-				<p class="mt-md text-md leading-[var(--lh-prose)] text-muted">
+				<p class="mt-sm text-md leading-(--lh-prose) text-muted">
 					{AUTHOR.lede}
 				</p>
 			</header>
 
-			<div class="flex flex-col gap-lg pt-xl">
+			<div class="flex max-w-measure flex-col gap-lg pt-lg">
 				{
 					AUTHOR.body.map((paragraph) => (
-						<p class="m-0 text-md leading-[var(--lh-prose)] text-ink-2">
+						<p class="m-0 text-md leading-(--lh-prose) text-ink-2">
 							{paragraph}
 						</p>
 					))
 				}
 
 				<section
-					class="flex flex-col gap-md border-t border-rule pt-md"
+					class="flex flex-col gap-sm border-t border-rule pt-md"
 					aria-labelledby="author-links"
 				>
 					<h2
 						id="author-links"
-						class="m-0 font-display text-xl font-semibold text-accent"
+						class="m-0 text-sm font-medium text-muted"
 					>
 						Onde me encontrar
 					</h2>
-					<div
-						class="overflow-x-auto [-webkit-overflow-scrolling:touch]"
-					>
-						<table class="w-full border-collapse tabular-nums">
-							<thead class="border-b border-rule-2">
-								<tr>
-									<th
-										scope="col"
-										class="px-sm pt-2xs pb-xs text-left font-mono text-xs font-medium tracking-label text-muted uppercase"
+					<ul class="m-0 list-none divide-y divide-rule p-0">
+						{
+							AUTHOR.links.map((link) => (
+								<li>
+									<a
+										href={link.href}
+										class="focus-ring group flex min-h-11 flex-col gap-3xs py-sm no-underline"
+										target="_blank"
+										rel="noopener noreferrer"
 									>
-										Canal
-									</th>
-									<th
-										scope="col"
-										class="px-sm pt-2xs pb-xs text-left font-mono text-xs font-medium tracking-label text-muted uppercase"
-									>
-										Endereço
-									</th>
-								</tr>
-							</thead>
-							<tbody>
-								{
-									AUTHOR.links.map((link) => (
-										<tr class="group hover:bg-accent-bg">
-											<td class="w-26 px-sm py-sm align-middle">
-												<span
-													class={kindBadgeClass.note}
-												>
-													{link.label}
-												</span>
-											</td>
-											<td class="min-w-0 px-sm py-sm align-middle">
-												<a
-													href={link.href}
-													class="focus-ring inline-flex items-center gap-2xs font-medium text-ink no-underline group-hover:text-accent hover:text-accent hover:underline hover:underline-offset-[0.18em]"
-													target="_blank"
-													rel="noopener noreferrer"
-												>
-													<span>{link.host}</span>
-													<ExternalLinkIcon />
-												</a>
-												<p class="mt-3xs font-mono text-xs text-muted">
-													{link.description}
-												</p>
-											</td>
-										</tr>
-									))
-								}
-							</tbody>
-						</table>
-					</div>
+										<span class="flex items-center gap-2xs font-medium text-ink group-hover:text-accent">
+											{link.label}
+											<ExternalLinkIcon className="size-3.5 shrink-0 text-muted" />
+										</span>
+										<span class="text-sm leading-normal text-muted">
+											{link.description}
+										</span>
+										<span class="text-sm text-muted">
+											{link.host}
+										</span>
+									</a>
+								</li>
+							))
+						}
+					</ul>
 				</section>
 			</div>
 		</article>

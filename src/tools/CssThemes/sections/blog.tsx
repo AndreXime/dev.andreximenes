@@ -25,7 +25,7 @@ export function Blog1() {
 							<SectionImage
 								alt={post.title}
 								placeholder={placeholderForIndex(index)}
-								className="aspect-[16/10] rounded-t-lg"
+								className="aspect-16/10 rounded-t-lg"
 							/>
 							<div className="flex flex-1 flex-col p-5">
 								<p className="text-xs text-ct-muted-foreground">
@@ -76,7 +76,7 @@ export function Blog3() {
 				<p className="text-sm font-semibold uppercase tracking-widest text-ct-primary">Journal</p>
 				{featured && (
 					<article className="mt-6 grid grid-cols-1 gap-8 border-b border-ct-border pb-10 lg:grid-cols-2">
-						<SectionImage alt={featured.title} placeholder={1} className="aspect-[4/3] rounded-ct-lg" />
+						<SectionImage alt={featured.title} placeholder={1} className="aspect-4/3 rounded-ct-lg" />
 						<div>
 							<p className="text-xs text-ct-muted-foreground">
 								{featured.date} · {featured.author}
@@ -95,7 +95,7 @@ export function Blog3() {
 							<SectionImage
 								alt={post.title}
 								placeholder={placeholderForIndex(index + 1)}
-								className="mb-4 aspect-[16/10] rounded-ct-lg"
+								className="mb-4 aspect-16/10 rounded-ct-lg"
 							/>
 							<p className="text-xs text-ct-muted-foreground">
 								{post.date} · {post.author}

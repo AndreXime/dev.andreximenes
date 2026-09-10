@@ -178,7 +178,7 @@ export function WorkspacePanel({
 									: "bg-paper-2 border-rule/30 text-ink-2 hover:border-accent/30 hover:text-ink"
 							} disabled:opacity-40 disabled:cursor-not-allowed`}
 						>
-							<Icon className="w-4 h-4 flex-shrink-0" aria-hidden="true" />
+							<Icon className="w-4 h-4 shrink-0" aria-hidden="true" />
 							{op.label}
 						</button>
 					);

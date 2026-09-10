@@ -1,36 +1,30 @@
 const SEARCH_PARAM = "q";
-const RECENT_RAIL_SECTION = 'section[aria-labelledby="rail-Recente"]';
 
 function getSearchInput(): HTMLInputElement | null {
 	return document.getElementById("search") as HTMLInputElement | null;
 }
 
-function getFilterableRows(): NodeListOf<HTMLTableRowElement> {
-	return document.querySelectorAll<HTMLTableRowElement>("tr[data-search-text]");
+function getFilterableItems(): NodeListOf<HTMLElement> {
+	return document.querySelectorAll<HTMLElement>("[data-search-text]");
 }
 
-function hasFilterableRows(): boolean {
-	return getFilterableRows().length > 0;
+function hasFilterableItems(): boolean {
+	return getFilterableItems().length > 0;
 }
 
-function syncRailSections(query: string): void {
-	const recentRail = document.querySelector<HTMLElement>(RECENT_RAIL_SECTION);
-	if (recentRail) recentRail.hidden = query.length > 0;
-
-	const sections = document.querySelectorAll<HTMLElement>('section[aria-labelledby^="rail-"]');
+function syncIndexSections(): void {
+	const sections = document.querySelectorAll<HTMLElement>("section[data-index-section]");
 
 	for (const section of sections) {
-		if (section === recentRail) continue;
+		const items = section.querySelectorAll<HTMLElement>("[data-search-text]");
+		if (items.length === 0) continue;
 
-		const rows = section.querySelectorAll<HTMLTableRowElement>("tr[data-search-text]");
-		if (rows.length === 0) continue;
-
-		let visibleInSection = 0;
-		for (const row of rows) {
-			if (!row.hidden) visibleInSection++;
+		let visibleCount = 0;
+		for (const item of items) {
+			if (!item.hidden) visibleCount++;
 		}
 
-		section.hidden = visibleInSection === 0;
+		section.hidden = visibleCount === 0;
 	}
 }
 
@@ -60,24 +54,24 @@ export function initListingSearch(): void {
 	const emptyTerm = document.getElementById("search-empty-term");
 	const clearBtn = document.getElementById("search-clear");
 
-	const filterRows = (): void => {
-		if (!hasFilterableRows()) return;
+	const filterItems = (): void => {
+		if (!hasFilterableItems()) return;
 
 		const query = searchInput.value.trim().toLowerCase();
-		const rows = getFilterableRows();
-		let visible = 0;
+		const items = getFilterableItems();
+		let visibleCount = 0;
 
-		for (const row of rows) {
-			const text = row.dataset.searchText ?? "";
+		for (const item of items) {
+			const text = item.dataset.searchText ?? "";
 			const match = !query || text.includes(query);
-			row.hidden = !match;
-			if (match) visible++;
+			item.hidden = !match;
+			if (match) visibleCount++;
 		}
 
-		syncRailSections(query);
+		syncIndexSections();
 
 		if (emptyState && emptyTerm) {
-			if (query && visible === 0) {
+			if (query && visibleCount === 0) {
 				emptyState.classList.remove("hidden");
 				emptyTerm.textContent = `"${query}"`;
 			} else {
@@ -89,14 +83,14 @@ export function initListingSearch(): void {
 	const syncFromUrl = (): void => {
 		const query = readQueryFromUrl();
 		if (query) searchInput.value = query;
-		filterRows();
+		filterItems();
 	};
 
-	searchInput.addEventListener("input", filterRows);
+	searchInput.addEventListener("input", filterItems);
 
 	searchInput.addEventListener("keydown", (event) => {
 		if (event.key !== "Enter") return;
-		if (hasFilterableRows()) return;
+		if (hasFilterableItems()) return;
 
 		event.preventDefault();
 		goToHomeWithQuery(searchInput.value.trim());
@@ -105,7 +99,7 @@ export function initListingSearch(): void {
 	if (clearBtn) {
 		clearBtn.addEventListener("click", () => {
 			searchInput.value = "";
-			filterRows();
+			filterItems();
 			clearQueryFromUrl();
 			searchInput.focus();
 		});

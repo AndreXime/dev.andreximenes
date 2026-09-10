@@ -143,7 +143,7 @@ export default function SecurityToolsCard() {
 	};
 
 	// Estilos comuns
-	const checkboxClass = "w-5 h-5 rounded bg-[var(--color-rule)]/60 border border-rule text-accent focus:ring-0";
+	const checkboxClass = "w-5 h-5 rounded bg-rule/60 border border-rule text-accent focus:ring-0";
 
 	return (
 		<div className="space-y-6">
@@ -163,7 +163,7 @@ export default function SecurityToolsCard() {
 			</div>
 
 			{/* --- Área de Configuração (Muda conforme modo) --- */}
-			<div className="min-h-[120px]">
+			<div className="min-h-30">
 				{/* MODO: SENHA */}
 				{mode === "password" && (
 					<div className="space-y-4 animate-in fade-in zoom-in-95 duration-300">
@@ -175,7 +175,7 @@ export default function SecurityToolsCard() {
 								max="64"
 								value={pwLength}
 								onInput={(e) => setPwLength(Number(e.currentTarget.value))}
-								className="w-1/2 h-2 bg-[var(--color-rule)]/50 rounded-lg appearance-none cursor-pointer accent-accent"
+								className="w-1/2 h-2 bg-rule/50 rounded-lg appearance-none cursor-pointer accent-accent"
 							/>
 						</div>
 						<div className="grid grid-cols-2 gap-3">

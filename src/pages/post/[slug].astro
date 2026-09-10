@@ -45,23 +45,21 @@ const htmlContent = marked.parse(post.content || "", { async: false });
 <SEOLayout title={pageTitle(post.title)}>
 	<MainLayout activeCategory="note">
 		<article class="container-page py-lg pb-3xl">
-			<div class="mx-auto w-full">
-				<header
-					class="border-b border-b-rule pb-xl pl-md border-l-[3px] border-l-accent [box-shadow:inset_3px_0_0_var(--color-accent)]"
-				>
+			<div class="w-full">
+				<header class="border-b border-rule pb-md">
 					<a
 						href="/post"
-						class="focus-ring mb-md inline-flex min-h-11 items-center font-mono text-sm text-muted no-underline hover:text-accent"
+						class="focus-ring mb-sm inline-flex min-h-11 items-center text-sm text-muted no-underline hover:text-ink"
 					>
 						← Notas
 					</a>
 					<h1
-						class="m-0 font-display text-display-s leading-snug font-semibold tracking-display text-ink"
+						class="m-0 font-display text-xl leading-snug font-semibold tracking-display text-ink wrap-anywhere"
 					>
 						{post.title}
 					</h1>
 
-					<p class="mt-sm font-mono text-xs text-muted">
+					<p class="mt-2xs text-sm text-muted">
 						<time datetime={post.date.toISOString()}>
 							{formatDate(post.date)}
 						</time>
@@ -71,7 +69,7 @@ const htmlContent = marked.parse(post.content || "", { async: false });
 				{
 					htmlContent ? (
 						<div
-							class="content-container pt-xl"
+							class="content-container pt-md"
 							set:html={htmlContent}
 						/>
 					) : null

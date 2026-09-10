@@ -51,7 +51,7 @@ function TimeField({
 }) {
 	return (
 		<div className={["group/field flex flex-col gap-1.5 min-w-0", className].filter(Boolean).join(" ")}>
-			<div className="flex items-end justify-between gap-1 min-h-[0.875rem]">
+			<div className="flex items-end justify-between gap-1 min-h-3.5">
 				<span className="text-[10px] font-medium uppercase tracking-[0.14em] text-muted group-focus-within/field:opacity-100 transition-colors">
 					{label}
 					{optional && <span className="text-muted/75 font-normal normal-case"> (opcional)</span>}
@@ -68,7 +68,7 @@ function TimeField({
 					type="time"
 					value={value}
 					onChange={(e) => onChange(e.target.value)}
-					className="w-full min-h-[2.5rem] rounded-lg bg-transparent pl-9 pr-2 py-2 text-sm font-medium text-ink tabular-nums tracking-tight focus:outline-none"
+					className="w-full min-h-10 rounded-lg bg-transparent pl-9 pr-2 py-2 text-sm font-medium text-ink tabular-nums tracking-tight focus:outline-none"
 				/>
 			</div>
 		</div>
@@ -267,7 +267,7 @@ function WeekStatCard({
 	readonly title?: string;
 }) {
 	return (
-		<div className="flex-1 min-w-0 sm:flex-initial sm:min-w-[8.5rem] flex flex-col justify-center rounded-card border border-rule/80 bg-paper-2 px-4 py-3 ">
+		<div className="flex-1 min-w-0 sm:flex-initial sm:min-w-34 flex flex-col justify-center rounded-card border border-rule/80 bg-paper-2 px-4 py-3 ">
 			<div className="text-[10px] font-semibold uppercase tracking-[0.15em] text-muted">{label}</div>
 			<div className="text-2xl font-bold tabular-nums text-ink" title={title}>
 				{value}
@@ -305,12 +305,12 @@ function DaySection({
 					"bg-paper-2",
 					"shadow-[0_1px_0_rgba(255,255,255,0.04)] hover:shadow-[0_8px_40px_-12px_rgba(0,0,0,0.55)]",
 					theme.border,
-					hasBlocks ? "min-h-0" : "min-h-[8.5rem]",
+					hasBlocks ? "min-h-0" : "min-h-34",
 				]
 					.filter(Boolean)
 					.join(" ")}
 			>
-				<div aria-hidden className={`absolute inset-x-0 top-0 h-px bg-gradient-to-r ${theme.topGradient}`} />
+				<div aria-hidden className={`absolute inset-x-0 top-0 h-px bg-linear-to-r ${theme.topGradient}`} />
 				<div className="relative p-1">
 					<div className="px-3 pt-3 pb-2">
 						<div className="flex flex-col gap-0.5 min-w-0">
@@ -345,12 +345,12 @@ function DaySection({
 								onClick={() => addWeekBlockToAllDays()}
 								className="flex flex-col items-center justify-center gap-2 rounded-card border border-dashed border-rule/90 bg-paper-2/80 py-7 px-4 text-center transition-all hover:border-accent/35 hover:bg-accent-bg group/empty"
 							>
-								<div className="flex size-11 items-center justify-center rounded-card bg-paper-2 text-muted ring-1 ring-[var(--color-rule)] group-hover/empty:ring-accent/30 group-hover/empty:text-accent/95 transition-all">
+								<div className="flex size-11 items-center justify-center rounded-card bg-paper-2 text-muted ring-1 ring-rule group-hover/empty:ring-accent/30 group-hover/empty:text-accent/95 transition-all">
 									<CalendarRange className="size-5" />
 								</div>
 								<div>
 									<p className="text-sm font-medium text-ink-2">Nada neste dia ainda</p>
-									<p className="text-xs text-muted/90 mt-0.5 max-w-[16rem] mx-auto leading-relaxed">
+									<p className="text-xs text-muted/90 mt-0.5 max-w-64 mx-auto leading-relaxed">
 										Blocos são adicionados à semana inteira. Toque abaixo ou use o botão no topo.
 									</p>
 								</div>
@@ -381,11 +381,11 @@ function DaySection({
 													"relative flex gap-0 overflow-hidden rounded-card border border-rule/80 bg-paper-2/90",
 													" transition-[box-shadow,transform] duration-200",
 													"motion-reduce:transition-none",
-													isHovered ? "ring-1 ring-inset ring-[var(--color-ink)]/5" : "",
+													isHovered ? "ring-1 ring-inset ring-ink/5" : "",
 													!block.saved ? "border-accent/20" : "",
 												].join(" ")}
 											>
-												<div aria-hidden className={`w-1 shrink-0 bg-gradient-to-b ${theme.bar}`} />
+												<div aria-hidden className={`w-1 shrink-0 bg-linear-to-b ${theme.bar}`} />
 												{canReorder && (
 													<div className="flex flex-col border-r border-rule/60 bg-paper-2/60 shrink-0">
 														<button
@@ -397,7 +397,7 @@ function DaySection({
 														>
 															<ChevronUp className="size-4" />
 														</button>
-														<div className="h-px bg-[var(--color-rule)]/80 shrink-0" aria-hidden />
+														<div className="h-px bg-rule/80 shrink-0" aria-hidden />
 														<button
 															type="button"
 															disabled={index === blocks.length - 1}

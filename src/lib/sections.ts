@@ -53,10 +53,6 @@ export const SECTIONS: SectionDefinition[] = [
 
 export const NAV_SECTIONS = SECTIONS.filter((section) => section.category !== "all");
 
-export const CONTENT_SECTIONS = SECTIONS.filter(
-	(section): section is SectionDefinition & { kind: ContentKind } => section.kind !== undefined,
-);
-
 export function getListingTitle(activeCategory: string): string {
 	if (activeCategory === "all") return "Publicações recentes";
 	return SECTIONS.find((section) => section.category === activeCategory)?.title ?? activeCategory;

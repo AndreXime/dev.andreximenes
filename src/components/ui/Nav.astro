@@ -1,87 +1,185 @@
 ---
 import { NAV_SECTIONS } from "@/lib/sections";
 import { navLinkActiveClass, navLinkClass } from "@/lib/siteUi";
-import { SITE_NAME, SITE_TAGLINE } from "@/content/site";
+import { SITE_NAME } from "@/content/site";
 
 interface Props {
 	activeCategory: string;
 }
 
 const { activeCategory } = Astro.props;
+
+const drawerLinkClass =
+	"flex min-h-11 items-center border-b border-rule px-md text-base text-ink no-underline transition-colors duration-150 ease-out hover:text-accent";
 ---
 
-<header class="grid gap-2xs px-gutter pt-md text-center">
-	<p
-		class="m-0 font-serif text-sm tracking-[0.08em] text-muted [font-variant:small-caps]"
+<header class="border-b border-rule">
+	<div
+		class="container-page flex flex-col gap-sm py-md lg:flex-row lg:items-center lg:gap-md"
 	>
-		{SITE_TAGLINE}
-	</p>
-	<p class="m-0">
-		<a
-			href="/"
-			class="font-display text-display font-semibold tracking-display text-accent no-underline [overflow-wrap:anywhere] min-w-0 hover:text-ink"
-		>
-			{SITE_NAME}
-		</a>
-	</p>
-	<div class="mx-auto w-full max-w-[28rem] pt-2xs">
-		<label
-			for="search"
-			class="flex min-h-11 w-full items-center gap-2xs rounded-input border border-accent-muted bg-accent-bg px-sm transition-[border-color] duration-150 ease-out focus-within:border-accent"
-		>
-			<span
-				class="shrink-0 font-mono text-xs tracking-label text-accent uppercase"
+		<div class="flex items-center gap-sm">
+			<a
+				href="/"
+				class="min-w-0 shrink font-display text-lg font-semibold tracking-display text-ink no-underline wrap-anywhere hover:text-accent"
 			>
-				Buscar
-			</span>
+				{SITE_NAME}
+			</a>
+
+			<button
+				type="button"
+				id="nav-drawer-open"
+				class="focus-ring ml-auto inline-flex min-h-11 min-w-11 items-center justify-center rounded-input border border-rule text-ink lg:hidden"
+				aria-expanded="false"
+				aria-controls="nav-drawer"
+			>
+				<span class="sr-only">Abrir menu</span>
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					width="20"
+					height="20"
+					viewBox="0 0 24 24"
+					fill="none"
+					stroke="currentColor"
+					stroke-width="2"
+					stroke-linecap="round"
+					aria-hidden="true"
+				>
+					<path d="M4 6h16M4 12h16M4 18h16"></path>
+				</svg>
+			</button>
+		</div>
+
+		<nav aria-label="Principal" class="ml-auto hidden lg:block">
+			<ul class="m-0 flex list-none flex-wrap gap-x-sm p-0">
+				{
+					NAV_SECTIONS.map((section) => (
+						<li>
+							<a
+								href={section.href}
+								class:list={[
+									navLinkClass,
+									activeCategory === section.category &&
+										navLinkActiveClass,
+								]}
+								aria-current={
+									activeCategory === section.category
+										? "page"
+										: undefined
+								}
+							>
+								{section.navLabel}
+							</a>
+						</li>
+					))
+				}
+			</ul>
+		</nav>
+
+		<label
+			class="flex min-h-11 w-full items-center gap-2xs rounded-input border border-rule bg-paper px-sm transition-[border-color] duration-150 ease-out focus-within:border-accent lg:w-52 lg:shrink-0"
+		>
+			<span class="sr-only">Buscar</span>
+			<svg
+				xmlns="http://www.w3.org/2000/svg"
+				width="16"
+				height="16"
+				viewBox="0 0 24 24"
+				fill="none"
+				stroke="currentColor"
+				stroke-width="2"
+				stroke-linecap="round"
+				class="shrink-0 text-muted"
+				aria-hidden="true"
+			>
+				<circle cx="11" cy="11" r="8"></circle>
+				<path d="m21 21-4.3-4.3"></path>
+			</svg>
 			<input
 				id="search"
 				type="search"
-				placeholder="por títulos ou temas..."
-				class="focus-ring min-w-0 flex-1 border-0 bg-transparent p-0 font-body text-sm text-ink outline-none placeholder:text-muted"
+				placeholder="Buscar títulos e temas"
+				class="min-h-11 min-w-0 flex-1 border-0 bg-transparent p-0 text-sm text-ink outline-none placeholder:text-muted"
 				autocomplete="off"
 				spellcheck="false"
 			/>
 		</label>
 	</div>
-
-	<nav aria-label="Principal">
-		<ul
-			class="m-0 mt-xs flex list-none flex-wrap justify-center gap-sm px-0 lg:gap-x-md"
-		>
-			{
-				NAV_SECTIONS.map((section) => (
-					<li>
-						<a
-							href={section.href}
-							class:list={[
-								navLinkClass,
-								activeCategory === section.category &&
-									navLinkActiveClass,
-							]}
-							aria-current={
-								activeCategory === section.category
-									? "page"
-									: undefined
-							}
-						>
-							{section.navLabel}
-						</a>
-					</li>
-				))
-			}
-		</ul>
-	</nav>
-	<hr
-		class="mt-sm h-1 border-0 border-t border-rule border-b-[3px] border-b-accent"
-		aria-hidden="true"
-	/>
 </header>
+
+<dialog
+	id="nav-drawer"
+	class="m-0 h-dvh max-h-dvh w-full max-w-full border-0 bg-transparent p-0 text-ink backdrop:bg-ink/40"
+	aria-labelledby="nav-drawer-title"
+>
+	<div
+		id="nav-drawer-panel"
+		class="ml-auto flex h-full w-[min(20rem,100%)] flex-col bg-paper"
+	>
+		<div
+			class="flex items-center justify-between gap-sm border-b border-rule px-md py-md"
+		>
+			<p
+				id="nav-drawer-title"
+				class="m-0 font-display text-base font-semibold text-ink"
+			>
+				Menu
+			</p>
+			<button
+				type="button"
+				id="nav-drawer-close"
+				class="focus-ring inline-flex min-h-11 min-w-11 items-center justify-center rounded-input border border-rule text-ink"
+			>
+				<span class="sr-only">Fechar menu</span>
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					width="20"
+					height="20"
+					viewBox="0 0 24 24"
+					fill="none"
+					stroke="currentColor"
+					stroke-width="2"
+					stroke-linecap="round"
+					aria-hidden="true"
+				>
+					<path d="M18 6 6 18M6 6l12 12"></path>
+				</svg>
+			</button>
+		</div>
+
+		<nav aria-label="Seções" class="flex-1 overflow-y-auto">
+			<ul class="m-0 list-none p-0">
+				{
+					NAV_SECTIONS.map((section) => (
+						<li>
+							<a
+								href={section.href}
+								class:list={[
+									drawerLinkClass,
+									activeCategory === section.category &&
+										"font-medium text-accent",
+								]}
+								aria-current={
+									activeCategory === section.category
+										? "page"
+										: undefined
+								}
+							>
+								{section.navLabel}
+							</a>
+						</li>
+					))
+				}
+			</ul>
+		</nav>
+	</div>
+</dialog>
 
 <script>
 	import { initListingSearch } from "@/lib/client/listingSearch";
+	import { initNavDrawer } from "@/lib/client/navDrawer";
 	import { initNavPrefetch } from "@/lib/client/navPrefetch";
 
 	initListingSearch();
+	initNavDrawer();
 	initNavPrefetch();
 </script>

@@ -3,11 +3,10 @@ import type { Post } from "@/content.config";
 import {
 	getListingTitle,
 	getSectionDescription,
-	CONTENT_SECTIONS,
 	type SectionCategory,
 } from "@/lib/sections";
-import { accentRailClass } from "@/lib/siteUi";
-import ContentTable from "../ui/ContentTable.astro";
+import { SITE_TAGLINE } from "@/content/site";
+import IndexList from "../ui/IndexList.astro";
 import SearchEmpty from "../ui/SearchEmpty.astro";
 import MainLayout from "./MainLayout.astro";
 
@@ -21,68 +20,46 @@ const { recentPosts, activeCategory } = Astro.props;
 const showEmpty = recentPosts.length === 0;
 const listingTitle = getListingTitle(activeCategory);
 const isHome = activeCategory === "all";
-const homeRecentPosts = isHome ? recentPosts.slice(0, 12) : [];
-
-const emptyClass =
-	"rounded-card border border-dashed border-rule p-2xl text-center text-muted";
-const categoryCardClass =
-	"focus-ring flex min-h-11 flex-col gap-3xs rounded-card border border-accent-muted border-t-[3px] border-t-accent bg-accent-bg p-md no-underline transition-[border-color,background-color] duration-150 ease-out hover:border-accent";
+const homeFeed = isHome ? recentPosts.slice(0, 12) : [];
 ---
 
 <MainLayout activeCategory={activeCategory}>
-	<div class="container-page flex flex-col gap-section py-lg pb-3xl">
+	<div class="container-page flex flex-col gap-xl py-lg pb-3xl">
 		{
 			isHome ? (
 				<>
-					<nav aria-label="Seções">
-						<ul class="m-0 grid list-none grid-cols-1 gap-sm p-0 lg:grid-cols-3">
-							{CONTENT_SECTIONS.map((section) => (
-								<li>
-									<a
-										href={section.href}
-										class={categoryCardClass}
-									>
-										<span class="font-display text-lg font-semibold text-accent">
-											{section.title}
-										</span>
-										<span class="text-sm leading-normal text-ink">
-											{section.description}
-										</span>
-									</a>
-								</li>
-							))}
-						</ul>
-					</nav>
+					<p class="m-0 max-w-measure text-md leading-normal text-muted">
+						{SITE_TAGLINE}
+					</p>
 
-					{homeRecentPosts.length ? (
+					{homeFeed.length ? (
 						<section
-							class="flex flex-col gap-md"
+							class="flex flex-col gap-sm"
+							data-index-section
 							aria-labelledby="rail-recente"
 						>
 							<h2
 								id="rail-recente"
-								class="m-0 font-display text-xl font-semibold text-accent"
+								class="m-0 text-sm font-medium text-muted"
 							>
 								Recente
 							</h2>
-							<ContentTable posts={homeRecentPosts} />
+							<IndexList posts={homeFeed} />
 						</section>
 					) : (
-						<div class={emptyClass}>
-							<p>Por enquanto não há publicações.</p>
-						</div>
+						<p class="m-0 text-muted">Por enquanto não há publicações.</p>
 					)}
 				</>
 			) : (
-				<section aria-labelledby="listing">
-					<header class={`flex flex-col gap-sm ${accentRailClass}`}>
+				<section data-index-section aria-labelledby="listing">
+					<header class="flex max-w-measure flex-col gap-2xs">
 						<h1
 							id="listing"
-							class="m-0 font-display text-display-s leading-snug font-semibold text-accent"
+							class="m-0 font-display text-xl font-semibold leading-snug tracking-display text-ink"
 						>
 							{listingTitle}
 						</h1>
-						<p class="m-0 text-md leading-[var(--lh-prose)] text-muted">
+						<p class="m-0 text-md leading-normal text-muted">
 							{getSectionDescription(
 								activeCategory as SectionCategory,
 							)}
@@ -90,8 +67,8 @@ const categoryCardClass =
 					</header>
 
 					{recentPosts.length ? (
-						<div class="mt-lg">
-							<ContentTable posts={recentPosts} />
+						<div class="mt-md">
+							<IndexList posts={recentPosts} />
 						</div>
 					) : null}
 				</section>
@@ -100,9 +77,9 @@ const categoryCardClass =
 
 		{
 			showEmpty && !isHome ? (
-				<div class={emptyClass}>
-					<p>Nenhum item publicado nesta seção ainda.</p>
-				</div>
+				<p class="m-0 text-muted">
+					Nenhum item publicado nesta seção ainda.
+				</p>
 			) : null
 		}
 

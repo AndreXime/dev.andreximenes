@@ -1,35 +1,36 @@
-/* Hallmark · genre: editorial · theme: Almanac · design-system: design.md
+/* Hallmark · genre: modern-minimal · macrostructure: Index-First · theme: Index · design-system: design.md
  * paper-band: light · display-style: geometric-sans · accent-hue: warm
- * designed-as-app
+ * nav: compact index · footer: none · designed-as-app
+ * Hallmark · pre-emit critique: P4 H5 E4 S4 R5 V4
  */
 
 :root {
 	/* Surfaces */
-	--color-paper: oklch(94% 0.008 245);
-	--color-paper-2: oklch(91% 0.01 245);
-	--color-paper-3: oklch(86% 0.012 240);
-	--color-ink: oklch(16% 0.02 245);
-	--color-ink-2: oklch(20% 0.018 245);
-	--color-muted: oklch(46% 0.014 245);
-	--color-rule: oklch(74% 0.012 240);
-	--color-rule-2: oklch(38% 0.018 240);
+	--color-paper: oklch(97% 0.008 50);
+	--color-paper-2: oklch(94.5% 0.01 50);
+	--color-paper-3: oklch(91% 0.012 48);
+	--color-ink: oklch(18% 0.022 42);
+	--color-ink-2: oklch(24% 0.018 42);
+	--color-muted: oklch(46% 0.014 42);
+	--color-rule: oklch(88% 0.012 50);
+	--color-rule-2: oklch(42% 0.018 42);
 	--color-accent: oklch(58% 0.2 42);
 	--color-accent-ink: oklch(98% 0.01 42);
 	--color-focus: oklch(58% 0.2 42);
-	--color-accent-bg: oklch(96% 0.035 42);
+	--color-accent-bg: oklch(95% 0.03 42);
 	--color-accent-weak: oklch(52% 0.16 42);
-	--color-accent-muted: oklch(76% 0.12 42);
+	--color-accent-muted: oklch(78% 0.1 42);
 
 	/* Code */
-	--color-code-bg: var(--color-accent-bg);
-	--color-code-border: var(--color-accent-muted);
+	--color-code-bg: var(--color-paper-2);
+	--color-code-border: var(--color-rule);
 	--color-code-fg: var(--color-accent);
 
 	/* Typography */
 	--font-display: "Hanken Grotesk", ui-sans-serif, sans-serif;
 	--font-body: "Hanken Grotesk", ui-sans-serif, sans-serif;
 	--font-mono: "IBM Plex Mono", ui-monospace, monospace;
-	--font-serif: "Newsreader", ui-serif, Georgia, serif;
+	--font-serif: var(--font-body);
 
 	--text-xs: 0.6875rem;
 	--text-sm: 0.8125rem;
@@ -48,7 +49,7 @@
 	--lh-normal: 1.5;
 	--lh-prose: 1.65;
 	--measure: 65ch;
-	--page-max: 84rem;
+	--page-max: 56rem;
 	--page-gutter: clamp(1rem, 4vw, 2rem);
 
 	/* Spacing (4pt) */
@@ -62,7 +63,7 @@
 	--space-2xl: 4.5rem;
 	--space-3xl: 7rem;
 
-	--section-gap: 5.5rem;
+	--section-gap: 2.5rem;
 
 	/* Rules & radius */
 	--rule-hair: 1px;
