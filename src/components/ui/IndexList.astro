@@ -1,7 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import type { Post } from "@/content.config";
-import { excerptFromContent } from "@/lib/listing";
+import { listingDescription } from "@/lib/listing";
 import { getPostMeta } from "@/lib/postMeta";
 import { formatDate } from "@/lib/utils";
 import { ExternalLinkIcon } from "lucide-react";
@@ -16,7 +16,7 @@ const items = await Promise.all(
 	posts.map(async (post) => ({
 		post,
 		meta: await getPostMeta(post),
-		excerpt: excerptFromContent(post.content),
+		excerpt: listingDescription(post),
 	})),
 );
 ---

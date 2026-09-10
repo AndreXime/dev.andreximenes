@@ -22,6 +22,7 @@ A URL pública fica `/app/<slug>/`. O `slug` vem do frontmatter do post; o `targ
 | `target` (frontmatter) | Igual ao nome do componente | `MeuPlanner` |
 | `slug` | kebab-case, português | `meu-planner` |
 | `title` | Nome público | `Meu planner` |
+| `description` | Uma frase para a listagem | `Planeja X no navegador.` |
 | `toolId` (se houver storage) | snake_case | `meu_planner` |
 | Storage key | `<toolId>:<recurso>_v1` | `meu_planner:state_v1` |
 
@@ -145,10 +146,13 @@ Arquivo: `src/content/posts/tools/<slug>.md`
 slug: "meu-planner"
 type: tool
 title: "Meu planner"
+description: "Uma frase curta sobre o que a ferramenta faz no navegador."
 date: 2026-07-13
 target: "MeuPlanner"
 ---
 ```
+
+O campo `description` aparece na listagem (`/`, `/app`, busca). Mantenha alinhado com a `description` do `ToolShell`.
 
 ---
 

@@ -27,3 +27,9 @@ export function excerptFromContent(content: string | undefined): string | null {
 
 	return plain.length > 0 ? plain : null;
 }
+
+export function listingDescription(post: Post): string | null {
+	const fromFrontmatter = post.description?.trim();
+	if (fromFrontmatter) return fromFrontmatter;
+	return excerptFromContent(post.content);
+}

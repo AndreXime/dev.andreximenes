@@ -7,6 +7,7 @@ export interface Post {
 	type: "tool" | "note" | "link";
 	title: string;
 	date: Date;
+	description?: string | undefined;
 	content?: string | undefined;
 	target?: string | undefined;
 }
@@ -18,6 +19,7 @@ const posts = defineCollection({
 		slug: z.string(),
 		type: z.enum(["tool", "note", "link"]),
 		date: z.coerce.date(),
+		description: z.string().optional(),
 		target: z.string().optional(),
 	}),
 });
