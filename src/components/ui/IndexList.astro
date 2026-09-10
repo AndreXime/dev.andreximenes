@@ -4,7 +4,7 @@ import type { Post } from "@/content.config";
 import { listingDescription } from "@/lib/listing";
 import { getPostMeta } from "@/lib/postMeta";
 import { formatDate } from "@/lib/utils";
-import { ExternalLinkIcon } from "lucide-react";
+import { ExternalLinkIcon, FileText, Wrench } from "lucide-react";
 
 interface Props {
 	posts: Post[];
@@ -41,6 +41,20 @@ const items = await Promise.all(
 					>
 						<span class="min-w-0">
 							<span class="flex items-center gap-2xs font-medium text-ink wrap-anywhere group-hover:text-accent">
+								{meta.kind === "tool" ? (
+									<Wrench
+										className="size-4 shrink-0 text-muted"
+										strokeWidth={2}
+										aria-hidden="true"
+									/>
+								) : null}
+								{meta.kind === "note" ? (
+									<FileText
+										className="size-4 shrink-0 text-muted"
+										strokeWidth={2}
+										aria-hidden="true"
+									/>
+								) : null}
 								{meta.linkFavicon ? (
 									<Image
 										src={meta.linkFavicon}
