@@ -1,4 +1,5 @@
 import { CheckSquare, ImagePlus, Square } from "lucide-react";
+import { toolBtnGhostClass, toolBtnPrimaryClass } from "@/lib/toolUi";
 import type { ImageItem } from "../domain";
 import { ACCEPTED_EXTENSIONS } from "../domain";
 import { clearAll, clearSelection, removeItem, selectAll, selectSolo, toggleSelected } from "../store";
@@ -22,32 +23,20 @@ export function ImageQueue({
 	return (
 		<aside className="w-full space-y-3">
 			<div className="flex flex-wrap items-center gap-2">
-				<button
-					type="button"
-					onClick={selectAll}
-					className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-md text-sm text-muted hover:text-ink hover:bg-paper-2 transition-colors cursor-pointer"
-				>
-					<CheckSquare className="w-5 h-5" aria-hidden="true" />
+				<button type="button" onClick={selectAll} className={toolBtnGhostClass}>
+					<CheckSquare className="size-5" aria-hidden="true" />
 					Selecionar todas
 				</button>
-				<button
-					type="button"
-					onClick={clearSelection}
-					className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-md text-sm text-muted hover:text-ink hover:bg-paper-2 transition-colors cursor-pointer"
-				>
-					<Square className="w-5 h-5" aria-hidden="true" />
+				<button type="button" onClick={clearSelection} className={toolBtnGhostClass}>
+					<Square className="size-5" aria-hidden="true" />
 					Limpar selecao
 				</button>
-				<button
-					type="button"
-					onClick={clearAll}
-					className="ml-auto px-2.5 py-1.5 rounded-md text-sm text-muted hover:text-ink hover:bg-paper-2 transition-colors cursor-pointer"
-				>
+				<button type="button" onClick={clearAll} className={`${toolBtnGhostClass} ml-auto`}>
 					Limpar tudo
 				</button>
 			</div>
 
-			<ul className="grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-4 gap-2 max-h-[40vh] overflow-y-auto">
+			<ul className="grid max-h-[40vh] grid-cols-1 gap-2 overflow-y-auto lg:grid-cols-3 xl:grid-cols-4">
 				{items.map((item) => (
 					<ImageListItem
 						key={item.id}
@@ -65,9 +54,9 @@ export function ImageQueue({
 				type="button"
 				onClick={() => addMoreInputRef.current?.click()}
 				disabled={anyProcessing}
-				className="w-full flex items-center justify-center gap-2 text-sm font-medium py-3 rounded-lg bg-accent text-accent-ink hover:brightness-110 transition-all cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
+				className={`${toolBtnPrimaryClass} w-full`}
 			>
-				<ImagePlus className="w-5 h-5" aria-hidden="true" />
+				<ImagePlus className="size-5" aria-hidden="true" />
 				Adicionar imagens
 			</button>
 			<input
