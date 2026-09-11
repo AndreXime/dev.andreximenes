@@ -14,11 +14,12 @@ Três tipos de publicação, acessíveis pela home e pelas seções do nav:
 
 ## Ferramentas
 
-Apps React em `/app`, com dados no navegador:
+Apps React em `/app`. Em geral os dados ficam no navegador; exceções: o leitor RSS usa um proxy no servidor, a calculadora de renda consulta a BrasilAPI, e a remoção de fundo baixa o modelo de IA sob demanda.
 
 - **Bloco de notas**: notas locais com busca, pin e preview em Markdown
+- **Canvas**: editor gráfico 2D com formas, texto, imagem, camadas e exportação PNG
 - **Criador de currículos**: monta CVs em Markdown, prompts para IA e exporta PDF
-- **Ferramentas de imagem**: converte e comprime imagens sem enviar nada a servidor
+- **Ferramentas de imagem**: converte, comprime e remove fundo sem enviar arquivos a servidor
 - **Ferramentas para o dia a dia**: combustível, renda passiva, porcentagem e senhas
 - **Leitor de feeds RSS**: lê vários feeds RSS num só lugar
 - **Livro de receitas**: caderno pessoal de receitas, compartilhável por link
@@ -26,6 +27,7 @@ Apps React em `/app`, com dados no navegador:
 - **Planejador financeiro**: controle de assinaturas e gasto médio diário
 - **Planejador de Independência Financeira**: projeção FIRE com gap do INSS e IR
 - **Temas CSS**: presets, tokens e preview de seções de landing
+- **Transmissão óptica QR**: envia texto ou arquivos entre dispositivos via stream de QR Codes
 
 Para criar uma ferramenta nova, siga o passo a passo em [`tools.md`](./tools.md).
 
@@ -41,4 +43,5 @@ npm run dev       # http://localhost:4321
 npm run build
 npm run preview
 npm run lint      # biome + astro check
+npm test          # vitest
 ```
