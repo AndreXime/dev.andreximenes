@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
+import { toolBtnPrimaryClass, toolCardClass, toolPanelClass } from "@/lib/toolUi";
 import { fieldLabelClass, inputClass, segmentTabClass, tabBarClass } from "../uiClasses";
 
 // --- Utilitários de Lógica ---
@@ -175,7 +176,7 @@ export default function SecurityToolsCard() {
 								max="64"
 								value={pwLength}
 								onInput={(e) => setPwLength(Number(e.currentTarget.value))}
-								className="w-1/2 h-2 bg-rule/50 rounded-lg appearance-none cursor-pointer accent-accent"
+								className="h-2 w-1/2 cursor-pointer appearance-none rounded-input bg-rule accent-accent"
 							/>
 						</div>
 						<div className="grid grid-cols-2 gap-3">
@@ -187,7 +188,7 @@ export default function SecurityToolsCard() {
 							].map((opt) => (
 								<label
 									key={opt.name}
-									className="flex items-center space-x-3 p-3 rounded-lg bg-[color-mix(in_srgb,var(--color-paper-2)_90%,#0000)] border border-transparent hover:border-rule/80 cursor-pointer"
+									className={`${toolCardClass} flex cursor-pointer items-center space-x-3 p-3 hover:border-accent-muted`}
 								>
 									<input
 										type="checkbox"
@@ -200,11 +201,7 @@ export default function SecurityToolsCard() {
 								</label>
 							))}
 						</div>
-						<button
-							type="button"
-							onClick={executeAction}
-							className="w-full py-3 rounded-card font-semibold shadow-sm active:scale-[0.98] transition-transform bg-accent text-accent-ink hover:opacity-90"
-						>
+						<button type="button" onClick={executeAction} className={`${toolBtnPrimaryClass} w-full py-3`}>
 							Gerar Nova Senha
 						</button>
 					</div>
@@ -216,11 +213,7 @@ export default function SecurityToolsCard() {
 						<p className="text-muted text-sm mb-4">
 							Gera um Identificador Único Universal (UUID v4) criptograficamente seguro.
 						</p>
-						<button
-							type="button"
-							onClick={executeAction}
-							className="w-full py-3 rounded-card font-semibold shadow-sm active:scale-[0.98] transition-transform bg-accent text-accent-ink hover:opacity-90"
-						>
+						<button type="button" onClick={executeAction} className={`${toolBtnPrimaryClass} w-full py-3`}>
 							Gerar Novo UUID
 						</button>
 					</div>
@@ -280,9 +273,10 @@ export default function SecurityToolsCard() {
 			</div>
 
 			{/* --- Área de Resultado (Comum a todos) --- */}
-			<div
+			<button
+				type="button"
 				onClick={copyToClipboard}
-				className="group relative mt-6 flex flex-col justify-center p-5 rounded-lg border-l-4 bg-[color-mix(in_srgb,var(--color-paper-2)_88%,#0000)] cursor-pointer hover:bg-[color-mix(in_srgb,var(--color-paper-2)_95%,#0000)] transition-all border-accent/20"
+				className={`${toolPanelClass} group relative mt-6 w-full cursor-pointer border-l-4 border-l-accent text-left transition-colors hover:bg-accent-bg`}
 				title="Clique para Copiar"
 			>
 				<div className="flex justify-between items-start w-full">
@@ -300,7 +294,7 @@ export default function SecurityToolsCard() {
 				{mode === "hash" && output && (
 					<span className="text-xs text-muted/80 mt-2 font-mono uppercase">{hashAlgo}</span>
 				)}
-			</div>
+			</button>
 		</div>
 	);
 }

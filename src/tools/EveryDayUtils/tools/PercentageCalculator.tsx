@@ -1,7 +1,7 @@
 import { useMemo, useState } from "react";
+import { toolPanelClass, toolStatCardClass } from "@/lib/toolUi";
 import { segmentTabClass, tabBarClass } from "../uiClasses";
 
-// --- Funções de Cálculo (Mantidas iguais) ---
 function calculatePercentageOfValue(x: number, y: number): number {
 	return (x / 100) * y;
 }
@@ -34,26 +34,18 @@ function formatResult(value: number | null | undefined, unit: string = "", fallb
 	return `${parseFloat(value.toFixed(4))}${unit}`;
 }
 
-// --- COMPONENTE AUXILIAR (MOVIDO PARA FORA) ---
-// Agora ele é estável e não causa re-renderização desnecessária dos filhos
 const Row = ({ children, result, unit = "" }: { children: React.ReactNode; result: number | null; unit?: string }) => {
-	const resultBox =
-		"flex flex-col justify-center items-end px-4 py-2 rounded-lg bg-[color-mix(in_srgb,var(--color-paper-2)_90%,#0000)] border-l-4 border-accent/20";
-
 	return (
-		<div className="bg-[color-mix(in_srgb,var(--color-paper-2)_88%,#0000)] p-5 rounded-card border border-rule/50 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-4">
-			<div className="text-xl font-light text-ink-2 leading-relaxed w-full text-center sm:text-left">{children}</div>
-			<div className={`shrink-0 w-full sm:w-auto ${resultBox}`}>
-				<span className="text-xs uppercase tracking-wider text-muted/90 font-semibold text-right w-full block">
-					Resultado
-				</span>
-				<span className="text-2xl font-bold leading-none text-accent">{formatResult(result, unit)}</span>
+		<div className={`${toolPanelClass} flex flex-col items-center justify-between gap-4 lg:flex-row`}>
+			<div className="w-full text-center text-xl font-light leading-relaxed text-ink-2 lg:text-left">{children}</div>
+			<div className={`${toolStatCardClass} w-full items-end lg:w-auto`}>
+				<span className="block w-full text-right font-mono text-xs tracking-label text-muted uppercase">Resultado</span>
+				<span className="text-2xl leading-none font-bold text-accent">{formatResult(result, unit)}</span>
 			</div>
 		</div>
 	);
 };
 
-// --- COMPONENTE PRINCIPAL ---
 export default function PercentageCalculatorCard() {
 	const [inputs, setInputs] = useState({
 		percentOfX: "",
@@ -77,7 +69,6 @@ export default function PercentageCalculatorCard() {
 		}
 	};
 
-	// Memos
 	const res1 = useMemo(
 		() => calculatePercentageOfValue(parseFloat(inputs.percentOfX), parseFloat(inputs.totalOfY)),
 		[inputs.percentOfX, inputs.totalOfY],
@@ -99,9 +90,8 @@ export default function PercentageCalculatorCard() {
 		[inputs.knownPart, inputs.knownPercent],
 	);
 
-	// Estilo do Input
 	const inlineInput =
-		"inline-block w-24 sm:w-32 mx-2 p-1 text-center font-bold bg-transparent border-b-2 border-rule text-accent placeholder:text-muted/40 transition-colors focus:outline-none focus:border-accent";
+		"mx-2 inline-block w-24 border-b-2 border-rule bg-transparent p-1 text-center font-bold text-accent transition-colors placeholder:text-muted focus:border-accent focus:outline-none lg:w-32";
 
 	return (
 		<div className="space-y-6">
@@ -193,9 +183,8 @@ export default function PercentageCalculatorCard() {
 				% do total, o total é:
 			</Row>
 
-			{/* O bloco de Desconto/Aumento continua igual pois é HTML direto */}
-			<div className="bg-[color-mix(in_srgb,var(--color-paper-2)_88%,#0000)] p-5 rounded-card border border-rule/50 shadow-sm space-y-5">
-				<div className="flex items-center justify-between border-b border-rule/50 pb-2">
+			<div className={`${toolPanelClass} space-y-5`}>
+				<div className="flex items-center justify-between border-b border-rule pb-2">
 					<h4 className="text-lg font-semibold text-ink-2">Cálculo de Desconto/Aumento</h4>
 					<div className={tabBarClass}>
 						<button type="button" onClick={() => setIsDiscount(true)} className={segmentTabClass(isDiscount)}>
@@ -207,12 +196,12 @@ export default function PercentageCalculatorCard() {
 					</div>
 				</div>
 
-				<div className="text-xl font-light text-ink-2 leading-relaxed text-center sm:text-left">
+				<div className="text-center text-xl font-light leading-relaxed text-ink-2 lg:text-left">
 					Qual o valor final após{" "}
 					{isDiscount ? (
-						<span className="text-accent font-medium">desconto</span>
+						<span className="font-medium text-accent">desconto</span>
 					) : (
-						<span className="text-ink font-medium">aumento</span>
+						<span className="font-medium text-ink">aumento</span>
 					)}{" "}
 					de
 					<input
@@ -235,17 +224,13 @@ export default function PercentageCalculatorCard() {
 					?
 				</div>
 
-				<div className="grid grid-cols-2 gap-4 pt-2">
-					<div
-						className={`p-3 rounded-lg bg-[color-mix(in_srgb,var(--color-paper-2)_90%,#0000)] border border-rule/50`}
-					>
-						<p className="text-muted/80 text-sm mb-1">Valor Final</p>
+				<div className="grid grid-cols-1 gap-4 pt-2 lg:grid-cols-2">
+					<div className={toolStatCardClass}>
+						<p className="mb-1 text-sm text-muted">Valor Final</p>
 						<span className="text-2xl font-bold text-accent">{formatResult(res3?.finalValue)}</span>
 					</div>
-					<div
-						className={`p-3 rounded-lg bg-[color-mix(in_srgb,var(--color-paper-2)_90%,#0000)] border border-rule/50 text-right`}
-					>
-						<p className="text-muted/80 text-sm mb-1">Diferença</p>
+					<div className={`${toolStatCardClass} lg:items-end lg:text-right`}>
+						<p className="mb-1 text-sm text-muted">Diferença</p>
 						<span className="text-xl font-semibold text-ink-2">{formatResult(res3?.changeAmount)}</span>
 					</div>
 				</div>

@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react";
+import { toolResultRowClass } from "@/lib/toolUi";
 import { fieldLabelClass, inputClass } from "../uiClasses";
 
 function calcularCustoCombustivel(distancia: number, kml: number, preco: number, freq: number) {
@@ -107,7 +108,7 @@ export default function FuelCostCard() {
 			<div className="mt-8 border-t border-rule/50 pt-6 space-y-3">
 				<h3 className="text-lg font-bold mb-4 text-accent">Estimativa de Gastos</h3>
 
-				<div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+				<div className="grid grid-cols-1 gap-3 lg:grid-cols-2">
 					{/* Coluna da Esquerda (Curto Prazo) */}
 					<div className="space-y-3">
 						<ResultItem label="Litros/Dia" value={`${res.litros.toFixed(1)} L`} />
@@ -159,8 +160,7 @@ interface ResultItemProps {
 }
 
 const ResultItem: React.FC<ResultItemProps> = ({ label, value }) => (
-	<div className="flex justify-between items-center p-3 rounded-lg bg-[color-mix(in_srgb,var(--color-paper-2)_88%,#0000)] border-l-4 border-accent/20">
-		{/* Removi as condições isTotal ? ... : ... e fixei as cores claras */}
+	<div className={toolResultRowClass}>
 		<span className="font-medium text-ink-2">{label}</span>
 		<span className="text-lg font-bold text-accent">{value}</span>
 	</div>

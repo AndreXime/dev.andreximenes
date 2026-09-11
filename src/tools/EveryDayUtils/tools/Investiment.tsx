@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
+import { toolCardClass, toolPanelClass, toolStatCardClass } from "@/lib/toolUi";
 import { fieldLabelClass, inputClass } from "../uiClasses";
 
 interface TaxaApiItem {
@@ -23,8 +24,8 @@ async function getServerApiData() {
 		if (cdiObj) cdi = cdiObj.valor / 100;
 
 		if (ipcaObj && cdiObj) isFallback = false;
-	} catch (e) {
-		console.warn("Usando taxas de fallback:", e);
+	} catch {
+		// Mantém fallback local quando a BrasilAPI estiver indisponivel.
 	}
 
 	return { inflacao, cdi, isFallback };
@@ -69,20 +70,19 @@ export default function InvestmentCard() {
 	}, [metaRenda, percCDI, dadosMercado]);
 
 	const inputClassName = inputClass;
-	const cardClass = `p-5 rounded-lg border-l-4 bg-[color-mix(in_srgb,var(--color-paper-2)_88%,#0000)] border-rule/50 shadow-sm`;
+	const cardClass = `${toolPanelClass} border-l-4 border-l-accent`;
 
-	// Componente interno para os cards de indicadores
 	const MarketIndicator = ({ label, value, colorClass }: { label: string; value: string; colorClass: string }) => (
 		<div
-			className={`bg-[color-mix(in_srgb,var(--color-paper)_60%,#0000)] p-3 rounded-lg border flex flex-col justify-center relative overflow-hidden ${dadosMercado.isFallback ? "border-accent/35" : "border-rule/50"}`}
+			className={`${toolStatCardClass} relative overflow-hidden ${dadosMercado.isFallback ? "border-accent-muted" : ""}`}
 		>
 			{dadosMercado.isFallback && (
 				<div
-					className="absolute top-0 right-0 w-2 h-2 bg-accent rounded-full m-1"
+					className="absolute top-0 right-0 m-1 size-2 rounded-full bg-accent"
 					title="Valor Estimado (API Offline)"
 				/>
 			)}
-			<span className="text-muted text-xs uppercase font-bold tracking-wider">{label}</span>
+			<span className="font-mono text-xs tracking-label text-muted uppercase">{label}</span>
 			<strong className={`text-xl ${colorClass || "text-accent"}`}>{value}</strong>
 		</div>
 	);
@@ -90,7 +90,7 @@ export default function InvestmentCard() {
 	return (
 		<div className="space-y-6">
 			<div className="space-y-4">
-				<div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+				<div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
 					<div>
 						<label htmlFor="rendamensal" className={fieldLabelClass}>
 							Meta de Renda Mensal
@@ -145,32 +145,31 @@ export default function InvestmentCard() {
 						{/* Capital Principal */}
 						<div>
 							<p className="text-ink-2 mb-1 text-sm">Patrimônio Necessário:</p>
-							<p className="text-3xl sm:text-4xl font-extrabold text-ink tracking-tight">
+							<p className="text-3xl font-extrabold tracking-tight text-ink lg:text-4xl">
 								{formatarMoeda(resultado.capital)}
 							</p>
 						</div>
 
-						{/* Bloco de Reinvestimento */}
-						<div className="bg-[color-mix(in_srgb,var(--color-paper)_50%,#0000)] p-4 rounded-lg border border-rule/50 relative overflow-hidden">
-							<div className="absolute top-0 left-0 h-1 bg-linear-to-r from-accent/50 to-ink-2/35 w-full opacity-50"></div>
+						<div className={`${toolCardClass} relative overflow-hidden p-md`}>
+							<div className="absolute top-0 left-0 h-1 w-full bg-accent/40 opacity-50"></div>
 
-							<h4 className="text-ink-2 font-bold mb-3 flex items-center text-sm">Distribuição da Renda Gerada</h4>
+							<h4 className="mb-3 flex items-center text-sm font-bold text-ink-2">Distribuição da Renda Gerada</h4>
 
-							<div className="grid grid-cols-2 gap-3 text-sm">
-								<div className="p-3 bg-accent/5 rounded border border-accent/15">
-									<span className="block text-accent uppercase font-bold mb-1">Reinvestir (Inflação)</span>
-									<strong className="text-ink-2 text-lg block">{formatarMoeda(resultado.valorReinvestir)}</strong>
-									<span className=" text-muted/90">{resultado.porcentagemReinvestir.toFixed(1)}% do total</span>
+							<div className="grid grid-cols-1 gap-3 text-sm lg:grid-cols-2">
+								<div className="rounded-input border border-accent-muted bg-accent-bg p-3">
+									<span className="mb-1 block font-bold text-accent uppercase">Reinvestir (Inflação)</span>
+									<strong className="block text-lg text-ink-2">{formatarMoeda(resultado.valorReinvestir)}</strong>
+									<span className="text-muted">{resultado.porcentagemReinvestir.toFixed(1)}% do total</span>
 								</div>
-								<div className="p-3 bg-[color-mix(in_srgb,var(--color-ink)_6%,#0000)] rounded border border-ink/10">
-									<span className="block text-ink uppercase font-bold mb-1">Pode Gastar (Livre)</span>
-									<strong className="text-ink-2 text-lg block">{formatarMoeda(resultado.rendaReal)}</strong>
-									<span className=" text-muted/90">{(100 - resultado.porcentagemReinvestir).toFixed(1)}% do total</span>
+								<div className="rounded-input border border-rule bg-paper p-3">
+									<span className="mb-1 block font-bold text-ink uppercase">Pode Gastar (Livre)</span>
+									<strong className="block text-lg text-ink-2">{formatarMoeda(resultado.rendaReal)}</strong>
+									<span className="text-muted">{(100 - resultado.porcentagemReinvestir).toFixed(1)}% do total</span>
 								</div>
 							</div>
 						</div>
 
-						<div className="flex justify-between items-center text-muted/80 border-t border-rule/50 pt-2">
+						<div className="flex justify-between items-center border-t border-rule pt-2 text-muted">
 							<span>
 								Rend. Líquido Real: <strong>~{(resultado.taxaMensalLiq * 100).toFixed(2)}% a.m.</strong>
 							</span>

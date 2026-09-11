@@ -48,7 +48,7 @@ export default function UtilsApp() {
 									className={toolSelectCardClass}
 									onClick={() => setSelectedTool(tool)}
 								>
-									<span className="text-base sm:text-lg font-medium text-ink-2 flex items-center flex-1 pr-2 group-hover:text-ink transition-colors">
+									<span className="flex flex-1 items-center pr-2 text-base font-medium text-ink-2 transition-colors group-hover:text-ink lg:text-lg">
 										<Icon className="w-5 h-5 mr-3 opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all text-accent" />
 										{tool.title}
 									</span>
