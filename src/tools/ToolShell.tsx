@@ -47,14 +47,15 @@ export function ToolShell({ title, description, icon, storage, actions, mainClas
 					<HeaderActions {...(storage ? { storage } : {})} {...(actions ? { actions } : {})} />
 				</div>
 			</header>
-			<main
+			<section
+				aria-label={title}
 				className={[
 					"container-page flex min-h-0 flex-1 flex-col gap-md overflow-y-auto pb-3xl pt-md",
 					mainClassName ?? "",
 				].join(" ")}
 			>
 				{children}
-			</main>
+			</section>
 		</div>
 	);
 }
