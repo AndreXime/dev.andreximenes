@@ -3,8 +3,10 @@ import { ChevronLeft } from "lucide-react";
 import { SITE_NAME } from "@/content/site";
 ---
 
-<div class="flex h-dvh flex-col overflow-hidden bg-paper">
-	<header class="shrink-0 border-b border-rule">
+<div
+	class="flex h-dvh flex-col overflow-hidden bg-paper print:h-auto print:overflow-visible"
+>
+	<header class="shrink-0 border-b border-rule print:hidden">
 		<div
 			class="container-page flex items-center justify-between gap-md py-sm"
 		>
@@ -26,8 +28,10 @@ import { SITE_NAME } from "@/content/site";
 			</a>
 		</div>
 	</header>
-	<main class="flex min-h-0 w-full flex-1 flex-col overflow-hidden">
-		<div class="flex min-h-0 flex-1 flex-col">
+	<main
+		class="flex min-h-0 w-full flex-1 flex-col overflow-hidden print:overflow-visible"
+	>
+		<div class="flex min-h-0 flex-1 flex-col print:min-h-0 print:flex-none">
 			<slot />
 		</div>
 	</main>
