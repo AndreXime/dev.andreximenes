@@ -20,6 +20,12 @@
 	--color-accent-bg: oklch(95% 0.03 42);
 	--color-accent-weak: oklch(52% 0.16 42);
 	--color-accent-muted: oklch(78% 0.1 42);
+	--color-danger: oklch(48% 0.14 28);
+	--color-danger-bg: oklch(95% 0.03 28);
+	--color-success: oklch(42% 0.09 150);
+	--color-success-bg: oklch(95% 0.025 150);
+	--color-warning: oklch(52% 0.1 75);
+	--color-warning-bg: oklch(95% 0.035 75);
 
 	/* Code */
 	--color-code-bg: var(--color-paper-2);

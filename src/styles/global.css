@@ -22,6 +22,12 @@
 	--color-accent-bg: var(--color-accent-bg);
 	--color-accent-muted: var(--color-accent-muted);
 	--color-focus: var(--color-focus);
+	--color-danger: var(--color-danger);
+	--color-danger-bg: var(--color-danger-bg);
+	--color-success: var(--color-success);
+	--color-success-bg: var(--color-success-bg);
+	--color-warning: var(--color-warning);
+	--color-warning-bg: var(--color-warning-bg);
 
 	--radius-input: var(--radius-input);
 	--radius-card: var(--radius-card);

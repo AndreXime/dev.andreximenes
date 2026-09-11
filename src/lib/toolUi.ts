@@ -13,6 +13,18 @@ export const toolPanelClass = "rounded-card border border-rule bg-paper-2 p-md";
 export const toolStatCardClass =
 	"flex min-w-0 flex-1 flex-col justify-center rounded-card border border-rule bg-paper-2 px-md py-sm";
 
+export const toolResultRowClass =
+	"flex items-center justify-between gap-sm rounded-card border border-rule border-l-4 border-l-accent bg-paper-2 p-sm";
+
+export const toolAlertDangerClass =
+	"flex items-center justify-between gap-sm rounded-card border border-danger/25 bg-danger-bg px-sm py-2 text-sm text-danger";
+
+export const toolAlertSuccessClass =
+	"flex flex-col gap-2 rounded-card border border-success/25 bg-success-bg px-sm py-2 text-sm text-success lg:flex-row lg:items-center lg:justify-between";
+
+export const toolAlertWarningClass =
+	"rounded-card border border-warning/25 bg-warning-bg px-sm py-2 text-sm text-warning";
+
 export const toolBtnPrimaryClass =
 	"inline-flex items-center justify-center gap-2xs rounded-input px-sm py-2 text-sm font-semibold bg-accent text-accent-ink transition-opacity hover:opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-50";
 
@@ -51,3 +63,10 @@ export const toolProseClass = "prose prose-sm max-w-none h-full overflow-y-auto 
 
 export const toolSelectCardClass =
 	"group flex w-full cursor-pointer items-center justify-between rounded-card border border-rule bg-paper-2 p-md text-left transition-[border-color,background-color] hover:border-accent-muted hover:bg-accent-bg focus:outline-none focus-visible:ring-2 focus-visible:ring-accent";
+
+export function toolChipClass(active: boolean): string {
+	return [
+		"cursor-pointer rounded-input border px-sm py-1.5 text-sm font-medium transition-colors disabled:cursor-not-allowed disabled:opacity-30",
+		active ? "border-accent-muted bg-accent-bg text-accent" : "border-rule text-ink-2 hover:border-accent-muted",
+	].join(" ");
+}
