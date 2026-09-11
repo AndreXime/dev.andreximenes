@@ -1,5 +1,6 @@
 import type { APIRoute } from "astro";
-import { parseFeedXml } from "./rssFeedParser";
+import { isAllowedFeedUrl } from "@/lib/rss/isAllowedFeedUrl";
+import { parseFeedXml } from "@/lib/rss/rssFeedParser";
 
 export const prerender = false;
 
@@ -24,19 +25,10 @@ function jsonResponse(body: unknown, status: number, cacheSeconds: number): Resp
 	});
 }
 
-function isAllowedUrl(raw: string): boolean {
-	try {
-		const url = new URL(raw);
-		return url.protocol === "http:" || url.protocol === "https:";
-	} catch {
-		return false;
-	}
-}
-
 export const GET: APIRoute = async ({ request }) => {
 	const feedUrl = new URL(request.url).searchParams.get("url")?.trim();
 
-	if (!feedUrl || !isAllowedUrl(feedUrl)) {
+	if (!feedUrl || !(await isAllowedFeedUrl(feedUrl))) {
 		return jsonResponse({ error: "URL de feed invalida." }, 404, CACHE_PERMANENT_ERROR_SECONDS);
 	}
 
@@ -50,7 +42,12 @@ export const GET: APIRoute = async ({ request }) => {
 				Accept: "application/rss+xml, application/atom+xml, application/xml, text/xml, */*",
 				"User-Agent": "dev.andreximenes RSS Reader/1.0",
 			},
+			redirect: "manual",
 		});
+
+		if (response.status >= 300 && response.status < 400) {
+			return jsonResponse({ error: "Redirects de feed nao sao permitidos." }, 404, CACHE_PERMANENT_ERROR_SECONDS);
+		}
 
 		if (!response.ok) {
 			const isPermanent = response.status === 404 || response.status === 410;
