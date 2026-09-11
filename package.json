@@ -6,7 +6,8 @@
 		"dev": "astro dev",
 		"build": "astro build",
 		"preview": "astro preview",
-		"lint": "biome check && astro check"
+		"lint": "biome check && astro check",
+		"test": "vitest run"
 	},
 	"dependencies": {
 		"@astrojs/check": "^0.9.9",
@@ -42,6 +43,10 @@
 	},
 	"devDependencies": {
 		"@biomejs/biome": "^2.5.1",
-		"@types/qrcode": "^1.5.6"
+		"@types/qrcode": "^1.5.6",
+		"vitest": "^3.2.7"
+	},
+	"allowScripts": {
+		"esbuild@0.28.1": true
 	}
 }
