@@ -23,15 +23,16 @@ export async function getStaticPaths() {
 		params: { slug: entry.data.slug },
 		props: {
 			title: entry.data.title,
+			description: entry.data.description,
 			target: entry.data.target,
 		},
 	}));
 }
 
-const { title, target } = Astro.props;
+const { title, description, target } = Astro.props;
 ---
 
-<SEOLayout title={pageTitle(title)}>
+<SEOLayout title={pageTitle(title)} {...(description ? { description } : {})}>
 	<AppLayout>
 		{
 			(() => {

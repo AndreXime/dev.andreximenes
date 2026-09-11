@@ -2,7 +2,8 @@
 import SEOLayout from "../../components/layout/SEOLayout.astro";
 import MainLayout from "@/components/layout/MainLayout.astro";
 import { formatDate } from "@/lib/utils";
-import { pageTitle } from "@/content/site";
+import { SITE_DESCRIPTION, pageTitle } from "@/content/site";
+import { listingDescription } from "@/lib/listing";
 import { getCollection } from "astro:content";
 import { marked, type Tokens } from "marked";
 
@@ -19,6 +20,7 @@ export async function getStaticPaths() {
 }
 
 const { post } = Astro.props;
+const description = listingDescription(post) ?? SITE_DESCRIPTION;
 
 function escapeHtml(text: string): string {
 	return text
@@ -42,7 +44,11 @@ marked.use({ renderer });
 const htmlContent = marked.parse(post.content || "", { async: false });
 ---
 
-<SEOLayout title={pageTitle(post.title)}>
+<SEOLayout
+	title={pageTitle(post.title)}
+	description={description}
+	ogType="article"
+>
 	<MainLayout activeCategory="note">
 		<article class="container-page py-lg pb-3xl">
 			<div class="w-full">

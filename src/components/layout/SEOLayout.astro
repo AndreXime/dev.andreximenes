@@ -5,19 +5,35 @@ import { SITE_DESCRIPTION, SITE_NAME } from "@/content/site";
 interface Props {
 	title: string;
 	description?: string;
+	ogType?: "website" | "article";
 }
 
-const { title, description = SITE_DESCRIPTION } = Astro.props;
-const rssUrl = new URL("rss.xml", Astro.site);
+const { title, description = SITE_DESCRIPTION, ogType = "website" } = Astro.props;
+const site = Astro.site ?? new URL("https://dev.andreximenes.xyz");
+const canonicalUrl = new URL(Astro.url.pathname, site).href;
+const rssUrl = new URL("rss.xml", site);
+const ogImageUrl = new URL("/pwa-512x512.png", site).href;
 ---
 
 <!doctype html>
-<html lang="pt-br">
+<html lang="pt-BR">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="description" content={description} />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="theme-color" content="#c45a1a" />
+		<link rel="canonical" href={canonicalUrl} />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:url" content={canonicalUrl} />
+		<meta property="og:type" content={ogType} />
+		<meta property="og:site_name" content={SITE_NAME} />
+		<meta property="og:locale" content="pt_BR" />
+		<meta property="og:image" content={ogImageUrl} />
+		<meta name="twitter:card" content="summary" />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content={ogImageUrl} />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="apple-touch-icon" href="/pwa-192x192.png" />
 		<link rel="manifest" href="/manifest.webmanifest" />
