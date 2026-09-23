@@ -15,6 +15,7 @@ import RssReader from "../../tools/RssReader/RssReader";
 import CssThemes from "../../tools/CssThemes/CssThemes";
 import Canvas from "../../tools/Canvas/Canvas";
 import QrStream from "../../tools/QrStream/QrStream";
+import GoalQuest from "../../tools/GoalQuest/GoalQuest";
 
 export async function getStaticPaths() {
 	const tools = await getCollection("posts", ({ data }) => data.type === "tool");
@@ -61,6 +62,8 @@ const { title, description, target } = Astro.props;
 						return <Canvas client:load />;
 					case "QrStream":
 						return <QrStream client:load />;
+					case "GoalQuest":
+						return <GoalQuest client:load />;
 					default:
 						return <div>Ferramenta não encontrada.</div>;
 				}
