@@ -85,7 +85,7 @@ export function ListPanel({
 					</div>
 				)
 			) : (
-				<ul className="flex flex-col gap-2 list-none m-0 p-0 lg:overflow-y-auto lg:max-h-[calc(100dvh-16rem)] lg:pr-1">
+				<ul className="flex flex-col gap-2 list-none m-0 p-0">
 					{filtered.map((note) => {
 						const active = selectedId === note.id && screen !== "list";
 						return (
