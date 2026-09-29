@@ -23,8 +23,14 @@ export default defineConfig({
 			// lightningcss ainda nao entende @theme do Tailwind v4 no passo de minify
 			cssMinify: "esbuild",
 		},
+		ssr: {
+			external: ["@sparticuz/chromium", "puppeteer-core"],
+		},
 	},
 
 	integrations: [react(), sitemap()],
-	adapter: vercel(),
+	adapter: vercel({
+		maxDuration: 60,
+		includeFiles: ["node_modules/@sparticuz/chromium/bin/**"],
+	}),
 });

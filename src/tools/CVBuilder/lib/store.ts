@@ -165,14 +165,89 @@ export function resetActiveResume() {
 	}
 }
 
-export function printResume() {
-	const parsed = parsedContent$.get();
-	const nome = parsed?.header?.name?.trim() || "Currículo";
-	const role = parsed?.header?.role?.trim() || "";
-	const printTitle = role ? `${nome} - ${role}` : nome;
+export type PdfDownloadPhase = "sending" | "generating" | "downloading";
 
-	const previousTitle = document.title;
-	document.title = printTitle;
-	window.print();
-	document.title = previousTitle;
+function httpErrorMessage(status: number, serverMessage: string | null): string {
+	if (serverMessage) return serverMessage;
+
+	switch (status) {
+		case 429:
+			return "Limite de geração atingido. Aguarde alguns minutos e tente de novo.";
+		case 503:
+			return "O servidor está ocupado gerando outro PDF. Tente de novo em instantes.";
+		case 413:
+			return "O currículo é grande demais para exportar.";
+		case 400:
+		case 415:
+			return "Não foi possível processar o currículo. Confira o conteúdo e tente de novo.";
+		default:
+			return "Falha ao gerar o PDF. Tente novamente.";
+	}
+}
+
+function mapDownloadFailure(error: unknown): Error {
+	if (error instanceof TypeError) {
+		return new Error("Não foi possível conectar ao servidor. Verifique sua conexão e tente de novo.");
+	}
+	if (error instanceof Error) return error;
+	return new Error("Falha ao gerar o PDF. Tente novamente.");
+}
+
+export async function downloadResumePdf(onPhase?: (phase: PdfDownloadPhase) => void): Promise<void> {
+	const resume = activeResume$.get();
+	if (!resume?.data?.trim()) {
+		throw new Error("Nenhum currículo para exportar. Abra o editor e preencha o conteúdo.");
+	}
+
+	onPhase?.("sending");
+
+	let response: Response;
+	try {
+		onPhase?.("generating");
+		response = await fetch("/api/cv-pdf", {
+			method: "POST",
+			headers: { "Content-Type": "application/json" },
+			body: JSON.stringify({ markdown: resume.data }),
+		});
+	} catch (error) {
+		throw mapDownloadFailure(error);
+	}
+
+	if (!response.ok) {
+		let serverMessage: string | null = null;
+		try {
+			const payload: unknown = await response.json();
+			if (typeof payload === "object" && payload !== null && "error" in payload && typeof payload.error === "string") {
+				serverMessage = payload.error;
+			}
+		} catch {
+			// usa fallback por status
+		}
+		throw new Error(httpErrorMessage(response.status, serverMessage));
+	}
+
+	onPhase?.("downloading");
+
+	const blob = await response.blob();
+	if (blob.size === 0) {
+		throw new Error("O servidor devolveu um PDF vazio. Tente gerar de novo.");
+	}
+
+	const parsed = parsedContent$.get();
+	const nome = parsed?.header?.name?.trim() || "Curriculo";
+	const role = parsed?.header?.role?.trim() || "";
+	const filename = role ? `${nome} - ${role}.pdf` : `${nome}.pdf`;
+
+	const url = URL.createObjectURL(blob);
+	try {
+		const anchor = document.createElement("a");
+		anchor.href = url;
+		anchor.download = filename;
+		anchor.rel = "noopener";
+		document.body.appendChild(anchor);
+		anchor.click();
+		anchor.remove();
+	} finally {
+		URL.revokeObjectURL(url);
+	}
 }
