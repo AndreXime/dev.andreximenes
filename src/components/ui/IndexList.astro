@@ -1,9 +1,8 @@
 ---
 import { Image } from "astro:assets";
 import type { Post } from "@/content.config";
-import { listingDescription } from "@/lib/listing";
+import { formatDate, listingDescription } from "@/lib/listing";
 import { getPostMeta } from "@/lib/postMeta";
-import { formatDate } from "@/lib/utils";
 import { ExternalLinkIcon, FileText, Wrench } from "lucide-react";
 
 interface Props {

@@ -1,9 +1,8 @@
 ---
 import SEOLayout from "../../components/layout/SEOLayout.astro";
 import MainLayout from "@/components/layout/MainLayout.astro";
-import { formatDate } from "@/lib/utils";
 import { SITE_DESCRIPTION, pageTitle } from "@/content/site";
-import { listingDescription } from "@/lib/listing";
+import { formatDate, listingDescription } from "@/lib/listing";
 import { getCollection } from "astro:content";
 import { marked, type Tokens } from "marked";
 

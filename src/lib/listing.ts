@@ -33,3 +33,11 @@ export function listingDescription(post: Post): string | null {
 	if (fromFrontmatter) return fromFrontmatter;
 	return excerptFromContent(post.content);
 }
+
+export function formatDate(date: Date): string {
+	return date.toLocaleDateString("pt-BR", {
+		day: "2-digit",
+		month: "short",
+		year: "numeric",
+	});
+}

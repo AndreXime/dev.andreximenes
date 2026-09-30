@@ -7,7 +7,6 @@ import {
 } from "@/lib/sections";
 import { SITE_TAGLINE } from "@/content/site";
 import IndexList from "../ui/IndexList.astro";
-import SearchEmpty from "../ui/SearchEmpty.astro";
 import MainLayout from "./MainLayout.astro";
 
 interface Props {
@@ -17,10 +16,10 @@ interface Props {
 
 const { recentPosts, activeCategory } = Astro.props;
 
-const showEmpty = recentPosts.length === 0;
 const listingTitle = getListingTitle(activeCategory);
 const isHome = activeCategory === "all";
 const homeFeed = isHome ? recentPosts.slice(0, 12) : [];
+const sectionEmpty = recentPosts.length === 0 && !isHome;
 ---
 
 <MainLayout activeCategory={activeCategory}>
@@ -75,14 +74,32 @@ const homeFeed = isHome ? recentPosts.slice(0, 12) : [];
 			)
 		}
 
-		{
-			showEmpty && !isHome ? (
-				<p class="m-0 text-muted">
-					Nenhum item publicado nesta seção ainda.
-				</p>
-			) : null
-		}
-
-		<SearchEmpty />
+		<div
+			id="search-empty"
+			class:list={["py-md text-muted", !sectionEmpty && "hidden"]}
+		>
+			<p class="m-0">
+				{
+					sectionEmpty ? (
+						"Nenhum item publicado nesta seção ainda."
+					) : (
+						<>
+							Nenhum resultado para <span id="search-empty-term" />.
+						</>
+					)
+				}
+			</p>
+			{
+				sectionEmpty ? null : (
+					<button
+						type="button"
+						id="search-clear"
+						class="mt-sm inline-flex min-h-11 items-center border-0 bg-transparent p-0 text-sm text-accent hover:underline"
+					>
+						Limpar busca
+					</button>
+				)
+			}
+		</div>
 	</div>
 </MainLayout>
