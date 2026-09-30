@@ -1,4 +1,4 @@
-import type { UserData } from "@/tools/CVBuilder/lib/types";
+import type { UserData } from "../lib/types";
 import { escapeHtml, removeHttps, richTextToHtml } from "./escapeHtml";
 
 const PAGE_CSS = `

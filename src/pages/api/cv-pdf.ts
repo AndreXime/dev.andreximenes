@@ -1,9 +1,9 @@
 import type { APIRoute } from "astro";
-import { safePdfFilename } from "@/lib/cvPdf/escapeHtml";
-import { generatePdfFromHtml, isPdfGenerationBusy } from "@/lib/cvPdf/generatePdf";
-import { clientIpFromRequest, consumePdfGenerationSlots } from "@/lib/cvPdf/rateLimit";
-import { renderResumeHtml } from "@/lib/cvPdf/renderHtml";
 import { parseResumeMarkdown } from "@/tools/CVBuilder/lib/parserMd";
+import { safePdfFilename } from "@/tools/CVBuilder/server/escapeHtml";
+import { generatePdfFromHtml, isPdfGenerationBusy } from "@/tools/CVBuilder/server/generatePdf";
+import { clientIpFromRequest, consumePdfGenerationSlots } from "@/tools/CVBuilder/server/rateLimit";
+import { renderResumeHtml } from "@/tools/CVBuilder/server/renderHtml";
 
 export const prerender = false;
 

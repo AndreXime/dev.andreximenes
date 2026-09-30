@@ -1,6 +1,6 @@
 import type { APIRoute } from "astro";
-import { isAllowedFeedUrl } from "@/lib/rss/isAllowedFeedUrl";
-import { parseFeedXml } from "@/lib/rss/rssFeedParser";
+import { isAllowedFeedUrl } from "@/tools/RssReader/server/isAllowedFeedUrl";
+import { parseFeedXml } from "@/tools/RssReader/server/rssFeedParser";
 
 export const prerender = false;
 
