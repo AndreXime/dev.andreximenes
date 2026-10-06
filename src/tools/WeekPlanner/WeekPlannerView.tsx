@@ -24,6 +24,7 @@ import {
 } from "./plannerDomain";
 import {
 	addWeekBlockToAllDays,
+	addWeekBlockToDay,
 	moveWeekBlock,
 	removeWeekBlock,
 	saveWeekBlock,
@@ -333,7 +334,7 @@ function DaySection({
 							<p className="text-xs text-muted">
 								{hasBlocks
 									? `${blocks.length} ${blocks.length === 1 ? "bloco" : "blocos"} planejado${blocks.length === 1 ? "" : "s"}`
-									: "Use o botão no topo da página para adicionar blocos a todos os dias de uma vez."}
+									: "Adicione um bloco só neste dia, ou use o botão no topo para espelhar na semana toda."}
 							</p>
 						</div>
 					</div>
@@ -342,97 +343,107 @@ function DaySection({
 						{!hasBlocks ? (
 							<button
 								type="button"
-								onClick={() => addWeekBlockToAllDays()}
+								onClick={() => addWeekBlockToDay(day)}
 								className="flex flex-col items-center justify-center gap-2 rounded-card border border-dashed border-rule/90 bg-paper-2/80 py-7 px-4 text-center transition-all hover:border-accent/35 hover:bg-accent-bg group/empty"
 							>
 								<div className="flex size-11 items-center justify-center rounded-card bg-paper-2 text-muted ring-1 ring-rule group-hover/empty:ring-accent/30 group-hover/empty:text-accent/95 transition-all">
-									<CalendarRange className="size-5" />
+									<Plus className="size-5" />
 								</div>
 								<div>
 									<p className="text-sm font-medium text-ink-2">Nada neste dia ainda</p>
 									<p className="text-xs text-muted/90 mt-0.5 max-w-64 mx-auto leading-relaxed">
-										Blocos são adicionados à semana inteira. Toque abaixo ou use o botão no topo.
+										Toque para criar um bloco só em {WEEK_DAY_LABEL[day].toLowerCase()}.
 									</p>
 								</div>
 								<span className="mt-0.5 inline-flex items-center gap-1.5 text-xs font-medium text-accent/85 group-hover/empty:text-accent">
 									<Plus className="size-3.5" />
-									Adicionar bloco à semana
+									Adicionar bloco neste dia
 								</span>
 							</button>
 						) : (
-							<ul className="flex flex-col gap-2.5 list-none p-0 m-0">
-								{blocks.map((block, index) => {
-									const timeRangeOk = isTimeRangeOk(block.start, block.end);
-									const span = blockSpanMinutes(block.start, block.end);
-									const canSave = canSaveBlockFields(block.start, block.end, block.title);
-									const timeRangeBad =
-										hasTime(block.start) && hasTime(block.end) && !isTimeRangeOk(block.start, block.end);
-									const isHovered = hovered === block.id;
-									const canReorder = blocks.length > 1;
-									return (
-										<li
-											key={block.id}
-											onMouseEnter={() => setHovered(block.id)}
-											onMouseLeave={() => setHovered(null)}
-											className="relative"
-										>
-											<div
-												className={[
-													"relative flex gap-0 overflow-hidden rounded-card border border-rule/80 bg-paper-2/90",
-													" transition-[box-shadow,transform] duration-200",
-													"motion-reduce:transition-none",
-													isHovered ? "ring-1 ring-inset ring-ink/5" : "",
-													!block.saved ? "border-accent/20" : "",
-												].join(" ")}
+							<>
+								<ul className="flex flex-col gap-2.5 list-none p-0 m-0">
+									{blocks.map((block, index) => {
+										const timeRangeOk = isTimeRangeOk(block.start, block.end);
+										const span = blockSpanMinutes(block.start, block.end);
+										const canSave = canSaveBlockFields(block.start, block.end, block.title);
+										const timeRangeBad =
+											hasTime(block.start) && hasTime(block.end) && !isTimeRangeOk(block.start, block.end);
+										const isHovered = hovered === block.id;
+										const canReorder = blocks.length > 1;
+										return (
+											<li
+												key={block.id}
+												onMouseEnter={() => setHovered(block.id)}
+												onMouseLeave={() => setHovered(null)}
+												className="relative"
 											>
-												<div aria-hidden className={`w-1 shrink-0 bg-linear-to-b ${theme.bar}`} />
-												{canReorder && (
-													<div className="flex flex-col border-r border-rule/60 bg-paper-2/60 shrink-0">
-														<button
-															type="button"
-															disabled={index === 0}
-															onClick={() => moveWeekBlock(day, block.id, -1)}
-															className="flex-1 p-1.5 text-muted enabled:hover:text-ink enabled:hover:bg-accent-bg disabled:opacity-25 disabled:cursor-not-allowed transition-colors"
-															aria-label="Mover para cima"
-														>
-															<ChevronUp className="size-4" />
-														</button>
-														<div className="h-px bg-rule/80 shrink-0" aria-hidden />
-														<button
-															type="button"
-															disabled={index === blocks.length - 1}
-															onClick={() => moveWeekBlock(day, block.id, 1)}
-															className="flex-1 p-1.5 text-muted enabled:hover:text-ink enabled:hover:bg-accent-bg disabled:opacity-25 disabled:cursor-not-allowed transition-colors"
-															aria-label="Mover para baixo"
-														>
-															<ChevronDown className="size-4" />
-														</button>
-													</div>
-												)}
-												<div className="min-w-0 flex-1 p-3.5 pl-3 flex flex-col gap-3">
-													{block.saved ? (
-														<SavedBlockBody
-															block={block}
-															day={day}
-															theme={theme}
-															span={span}
-															timeRangeOk={timeRangeOk}
-														/>
-													) : (
-														<DraftBlockBody
-															block={block}
-															day={day}
-															canSave={canSave}
-															timeRangeBad={timeRangeBad}
-															span={span}
-														/>
+												<div
+													className={[
+														"relative flex gap-0 overflow-hidden rounded-card border border-rule/80 bg-paper-2/90",
+														" transition-[box-shadow,transform] duration-200",
+														"motion-reduce:transition-none",
+														isHovered ? "ring-1 ring-inset ring-ink/5" : "",
+														!block.saved ? "border-accent/20" : "",
+													].join(" ")}
+												>
+													<div aria-hidden className={`w-1 shrink-0 bg-linear-to-b ${theme.bar}`} />
+													{canReorder && (
+														<div className="flex flex-col border-r border-rule/60 bg-paper-2/60 shrink-0">
+															<button
+																type="button"
+																disabled={index === 0}
+																onClick={() => moveWeekBlock(day, block.id, -1)}
+																className="flex-1 p-1.5 text-muted enabled:hover:text-ink enabled:hover:bg-accent-bg disabled:opacity-25 disabled:cursor-not-allowed transition-colors"
+																aria-label="Mover para cima"
+															>
+																<ChevronUp className="size-4" />
+															</button>
+															<div className="h-px bg-rule/80 shrink-0" aria-hidden />
+															<button
+																type="button"
+																disabled={index === blocks.length - 1}
+																onClick={() => moveWeekBlock(day, block.id, 1)}
+																className="flex-1 p-1.5 text-muted enabled:hover:text-ink enabled:hover:bg-accent-bg disabled:opacity-25 disabled:cursor-not-allowed transition-colors"
+																aria-label="Mover para baixo"
+															>
+																<ChevronDown className="size-4" />
+															</button>
+														</div>
 													)}
+													<div className="min-w-0 flex-1 p-3.5 pl-3 flex flex-col gap-3">
+														{block.saved ? (
+															<SavedBlockBody
+																block={block}
+																day={day}
+																theme={theme}
+																span={span}
+																timeRangeOk={timeRangeOk}
+															/>
+														) : (
+															<DraftBlockBody
+																block={block}
+																day={day}
+																canSave={canSave}
+																timeRangeBad={timeRangeBad}
+																span={span}
+															/>
+														)}
+													</div>
 												</div>
-											</div>
-										</li>
-									);
-								})}
-							</ul>
+											</li>
+										);
+									})}
+								</ul>
+								<button
+									type="button"
+									onClick={() => addWeekBlockToDay(day)}
+									className="inline-flex w-full items-center justify-center gap-1.5 rounded-card border border-dashed border-rule/80 bg-paper-2/60 px-3 py-2 text-xs font-medium text-muted hover:border-accent/35 hover:bg-accent-bg hover:text-accent transition-[border,background,color]"
+								>
+									<Plus className="size-3.5" />
+									Adicionar bloco neste dia
+								</button>
+							</>
 						)}
 					</div>
 				</div>
@@ -453,7 +464,7 @@ export function WeekPlannerView({
 	return (
 		<ToolShell
 			title="Planejador de semana"
-			description="Adicione um bloco uma vez: o mesmo rascunho aparece em todos os dias. Editar ou guardar noutro dia mantém tudo alinhado. Dados só no seu dispositivo."
+			description="Adicione um bloco em um dia, ou espelhe na semana toda pelo botão do topo. Dados só no seu dispositivo."
 			icon={<CalendarRange className="size-6" strokeWidth={2} />}
 			storage={weekPlannerStorage}
 		>

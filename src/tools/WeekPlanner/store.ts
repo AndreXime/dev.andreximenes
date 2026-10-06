@@ -113,6 +113,13 @@ export function addWeekBlockToAllDays(): void {
 	weekPlan$.set(next);
 }
 
+/** Cria um rascunho só neste dia (`groupId` null: edição/guardar/apagar não espelha). */
+export function addWeekBlockToDay(day: WeekDayId): void {
+	const plan = weekPlan$.get();
+	const block = newBlockInGroup(null);
+	weekPlan$.set(replaceDay(plan, day, [...plan[day], block]));
+}
+
 export function updateWeekBlock(
 	day: WeekDayId,
 	id: string,
