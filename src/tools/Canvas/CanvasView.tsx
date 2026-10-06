@@ -72,12 +72,8 @@ export function CanvasView() {
 				</output>
 			)}
 
-			<div className="flex min-h-0 flex-1 flex-col gap-md lg:flex-row lg:items-stretch">
-				<div className="flex min-h-96 min-w-0 flex-1 flex-col lg:min-h-0">
-					<CanvasStage stageRef={stageHandleRef} />
-				</div>
-
-				<aside className="flex w-full shrink-0 flex-col gap-sm lg:max-h-full lg:w-[min(100%,22rem)] lg:overflow-y-auto">
+			<div className="flex min-h-0 flex-1 flex-col gap-md">
+				<aside className="flex w-full shrink-0 flex-col gap-sm">
 					<div className={toolTabBarClass} role="tablist" aria-label="Painel do editor">
 						{SIDE_TABS.map((tab) => (
 							<button
@@ -106,6 +102,10 @@ export function CanvasView() {
 						{sideTab === "layers" && <LayersPanel />}
 					</div>
 				</aside>
+
+				<div className="flex min-h-96 min-w-0 flex-1 flex-col">
+					<CanvasStage stageRef={stageHandleRef} />
+				</div>
 			</div>
 		</div>
 	);
