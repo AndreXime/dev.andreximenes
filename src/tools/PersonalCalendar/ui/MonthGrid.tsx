@@ -97,7 +97,7 @@ export function MonthGrid({
 							aria-label={cell.dateKey}
 							onClick={() => onSelectDay(cell.dateKey)}
 							className={[
-								"flex min-h-[5.5rem] flex-col gap-3xs rounded-input border p-2xs text-left transition-colors",
+								"flex min-h-22 flex-col gap-3xs rounded-input border p-2xs text-left transition-colors",
 								"focus:outline-none focus-visible:ring-2 focus-visible:ring-accent",
 								surfaceClass,
 							].join(" ")}

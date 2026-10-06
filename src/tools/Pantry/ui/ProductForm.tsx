@@ -113,7 +113,7 @@ export function ProductForm({ initial = null, onSave, onCancel }: ProductFormPro
 					type="checkbox"
 					checked={essential}
 					onChange={(e) => setEssential(e.target.checked)}
-					className="size-4 accent-[var(--color-accent)]"
+					className="size-4 accent-accent"
 				/>
 				Essencial (entra na lista se ficar abaixo do mínimo)
 			</label>

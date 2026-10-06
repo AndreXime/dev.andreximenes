@@ -27,9 +27,9 @@ export function formatDayHeading(dateKey: string, todayKey: string): string {
 	if (dateKey === todayKey) return "Hoje";
 	if (dateKey === addDays(todayKey, -1)) return "Ontem";
 	const parts = dateKey.split("-");
-	const ys = parts[0];
-	const ms = parts[1];
-	const ds = parts[2];
-	if (!ys || !ms || !ds) return dateKey;
-	return `${ds}/${ms}/${ys}`;
+	const year = parts[0];
+	const month = parts[1];
+	const day = parts[2];
+	if (!year || !month || !day) return dateKey;
+	return `${day}/${month}/${year}`;
 }
