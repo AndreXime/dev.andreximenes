@@ -15,6 +15,7 @@ import Canvas from "../../tools/Canvas/Canvas";
 import QrStream from "../../tools/QrStream/QrStream";
 import GoalQuest from "../../tools/GoalQuest/GoalQuest";
 import Pantry from "../../tools/Pantry/Pantry";
+import PersonalCalendar from "../../tools/PersonalCalendar/PersonalCalendar";
 
 export async function getStaticPaths() {
 	const tools = await getCollection("posts", ({ data }) => data.type === "tool");
@@ -61,6 +62,8 @@ const { title, description, target } = Astro.props;
 						return <GoalQuest client:load />;
 					case "Pantry":
 						return <Pantry client:load />;
+					case "PersonalCalendar":
+						return <PersonalCalendar client:load />;
 					default:
 						return <div>Ferramenta não encontrada.</div>;
 				}
