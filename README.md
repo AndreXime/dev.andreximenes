@@ -21,7 +21,6 @@ Apps React em `/app`. Em geral os dados ficam no navegador; exceções: a calcul
 - **Criador de currículos**: monta CVs em Markdown, prompts para IA e exporta PDF
 - **Ferramentas de imagem**: converte, comprime e remove fundo sem enviar arquivos a servidor
 - **Ferramentas para o dia a dia**: combustível, renda passiva, porcentagem e senhas
-- **Livro de receitas**: caderno pessoal de receitas, compartilhável por link
 - **Planejador semanal**: blocos de horário alinhados entre os dias da semana
 - **Planejador financeiro**: controle de assinaturas e gasto médio diário
 - **Planejador de Independência Financeira**: projeção FIRE com gap do INSS e IR

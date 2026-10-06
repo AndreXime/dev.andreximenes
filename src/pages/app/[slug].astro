@@ -10,7 +10,6 @@ import WeekPlanner from "../../tools/WeekPlanner/WeekPlanner";
 import FinancePlanner from "../../tools/FinancePlanner/FinancePlanner";
 import FirePlanner from "../../tools/FirePlanner/FirePlanner";
 import ImageTools from "../../tools/ImageTools/ImageTools";
-import CookingBook from "../../tools/CookingBook/CookingBook";
 import CssThemes from "../../tools/CssThemes/CssThemes";
 import Canvas from "../../tools/Canvas/Canvas";
 import QrStream from "../../tools/QrStream/QrStream";
@@ -52,8 +51,6 @@ const { title, description, target } = Astro.props;
 						return <FirePlanner client:load />;
 					case "ImageTools":
 						return <ImageTools client:load />;
-					case "CookingBook":
-						return <CookingBook client:load />;
 					case "CssThemes":
 						return <CssThemes client:load />;
 					case "Canvas":
