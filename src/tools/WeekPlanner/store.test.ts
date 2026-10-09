@@ -1,10 +1,5 @@
 import { beforeEach, describe, expect, it } from "vitest";
-import {
-	addWeekBlockToAllDays,
-	addWeekBlockToDay,
-	WEEK_DAY_ORDER,
-	weekPlan$,
-} from "./store";
+import { addWeekBlockToAllDays, addWeekBlockToDay, WEEK_DAY_ORDER, weekPlan$ } from "./store";
 
 describe("WeekPlanner store", () => {
 	beforeEach(() => {
