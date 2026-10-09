@@ -36,7 +36,7 @@ Atualiza `design.md`:
 
 ### Home (`/`)
 
-- Tagline + seção “Recente” (até 12 itens, como hoje).
+- Tagline + seção “Recente” (todos os posts misturados por data).
 - Cada item: thumbnail (~64–80px, `object-cover`, radius alinhado ao sistema) + título + excerpt + meta (`tipo · data`).
 - Hover: título → acento (comportamento atual). Sem card empilhado na home.
 - Layout: coluna até `md`; em `lg` a linha pode alinhar meta à direita (padrão atual da lista).

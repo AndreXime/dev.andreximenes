@@ -18,7 +18,7 @@ const { recentPosts, activeCategory } = Astro.props;
 
 const listingTitle = getListingTitle(activeCategory);
 const isHome = activeCategory === "all";
-const homeFeed = isHome ? recentPosts.slice(0, 12) : [];
+const homeFeed = isHome ? recentPosts : [];
 const sectionEmpty = recentPosts.length === 0 && !isHome;
 ---
 
