@@ -2,6 +2,13 @@ import { defineCollection } from "astro:content";
 import { glob } from "astro/loaders";
 import { z } from "astro/zod";
 
+export interface PostCover {
+	src: string;
+	width: number;
+	height: number;
+	format: string;
+}
+
 export interface Post {
 	slug: string;
 	type: "tool" | "note" | "link";
@@ -10,18 +17,21 @@ export interface Post {
 	description?: string | undefined;
 	content?: string | undefined;
 	target?: string | undefined;
+	cover?: PostCover | undefined;
 }
 
 const posts = defineCollection({
 	loader: glob({ pattern: "**/*.md", base: "./src/content/posts" }),
-	schema: z.object({
-		title: z.string(),
-		slug: z.string(),
-		type: z.enum(["tool", "note", "link"]),
-		date: z.coerce.date(),
-		description: z.string().optional(),
-		target: z.string().optional(),
-	}),
+	schema: ({ image }) =>
+		z.object({
+			title: z.string(),
+			slug: z.string(),
+			type: z.enum(["tool", "note", "link"]),
+			date: z.coerce.date(),
+			description: z.string().optional(),
+			target: z.string().optional(),
+			cover: image().optional(),
+		}),
 });
 
 export const collections = { posts };
