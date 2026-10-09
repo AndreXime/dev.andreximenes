@@ -3,6 +3,7 @@ slug: "dev-junior-remoto-10-plataformas-brasil"
 type: note
 title: "Dev júnior remoto no Brasil: 10 plataformas e o atrito real de cada uma"
 date: 2026-06-18
+cover: "../../../assets/covers/notes/dev-junior-remoto-10-plataformas-brasil.webp"
 ---
 
 Cliquei em Candidatura Simplificada numa vaga júnior remota no LinkedIn às 9h. Às 9h04 o recrutador postou que já tinha mais de 800 inscritos. Coaches de recolocação estimam que o recrutador abre dezenas de perfis nos primeiros dias e deixa o resto na fila até a vaga fechar. Easy Apply, segundo quem mede funil de candidatura, responde pouco; mensagem direta pro gestor costuma performar melhor, mas não existe estudo público com percentual fechado. Ninguém contrata só pelo botão.

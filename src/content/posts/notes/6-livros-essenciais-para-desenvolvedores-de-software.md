@@ -3,6 +3,7 @@ slug: "6-livros-essenciais-para-desenvolvedores-de-software"
 type: note
 title: "6 livros essenciais para desenvolvedores de software"
 date: 2026-06-02
+cover: "../../../assets/covers/notes/6-livros-essenciais-para-desenvolvedores-de-software.webp"
 ---
 
 Tutorial resolve o ticket de hoje; livro resolve o padrão que você repete em dezenas de tickets. Quem escreveu pagou o custo de errar e deixou decisão de engenharia condensada. Estes seis cobrem lacunas que curso ignora: complexidade algorítmica, acoplamento de módulos, validação de hipótese, hierarquia visual e carreira além do commit.

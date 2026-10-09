@@ -3,6 +3,7 @@ slug: "ssr-completo-ou-skeleton-decida-pelo-dado"
 type: note
 title: "SSR completo ou skeleton na tela: decida pelo dado, não pelo framework"
 date: 2026-06-16
+cover: "../../../assets/covers/notes/ssr-completo-ou-skeleton-decida-pelo-dado.webp"
 ---
 
 Você monta um dashboard com quatro widgets. Três queries respondem em 80 ms; a quarta bate numa API de terceiros que às vezes leva dois segundos. Com **SSR bloqueante**, o usuário fica olhando tela branca até a mais lenta terminar. Não sabe se travou, se caiu a rede ou se o deploy quebrou. A pergunta "espero tudo no servidor ou mando skeleton e busco depois?" aparece em toda stack com App Router, RSC ou equivalente. A resposta errada é escolher um lado e aplicar em tudo.

@@ -3,6 +3,7 @@ slug: "ssr-cacheavel-na-borda-viral-sem-deploy"
 type: note
 title: "SSR cacheável na borda: aguenta viral e edição do cliente sem deploy"
 date: 2026-06-23
+cover: "../../../assets/covers/notes/ssr-cacheavel-na-borda-viral-sem-deploy.webp"
 ---
 
 Cliente pede painel pra trocar hero, depoimentos e preços sem abrir PR. Você não quer voltar pro WordPress, mas também não quer herdar conta de compute porque a landing viralizou num tweet errado. O padrão de acesso é leitura pura: mil visitantes por dia, um editor entrando duas vezes na semana. Montar app server com Postgres e fila de deploy pra isso é overkill; gerar HTML estático no CI e mandar o cliente editar Markdown no Git é underkill. O meio-termo que fecha a conta é **SSR cacheável na Cloudflare**: render no Worker, conteúdo mutável no banco, HTML público servido da borda como se fosse SSG.

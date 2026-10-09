@@ -3,6 +3,7 @@ slug: "nestjs-a-melhor-framework-para-apis-convencionais-em-typescript"
 type: note
 title: "NestJS: o melhor framework para APIs convencionais em TypeScript"
 date: 2026-05-29
+cover: "../../../assets/covers/notes/nestjs-a-melhor-framework-para-apis-convencionais-em-typescript.webp"
 ---
 
 Rota que retorna JSON não basta. API convencional carrega transporte, regras de negócio, auth, validação, observabilidade e contrato estável entre times. Express e Fastify resolvem HTTP; o resto vira biblioteca solta e convenção oral. NestJS impõe estrutura desde o primeiro módulo, e isso aparece quando o side project vira produto.

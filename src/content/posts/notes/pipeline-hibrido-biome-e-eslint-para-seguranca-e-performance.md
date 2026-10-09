@@ -3,6 +3,7 @@ slug: "pipeline-hibrido-biome-e-eslint-para-seguranca-e-performance"
 type: note
 title: "Pipeline híbrido: Biome e ESLint para segurança e performance"
 date: 2026-05-29
+cover: "../../../assets/covers/notes/pipeline-hibrido-biome-e-eslint-para-seguranca-e-performance.webp"
 ---
 
 Time rodava ESLint completo no pre-commit. Commit de três linhas esperava 25 segundos. Dev desligava hook com `--no-verify`; regra de segurança virou sugestão. Rodar só Biome local e ESLint pesado no CI quebra o outro extremo: PR verde com `any` escapando porque subset do CI não espelhava o que importava.

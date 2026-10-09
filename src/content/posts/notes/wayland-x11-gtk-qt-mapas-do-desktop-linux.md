@@ -3,6 +3,7 @@ slug: "wayland-x11-gtk-qt-mapas-do-desktop-linux"
 type: note
 title: "Wayland, X11, GTK e Qt: mapa das camadas do desktop Linux"
 date: 2026-06-12
+cover: "../../../assets/covers/notes/wayland-x11-gtk-qt-mapas-do-desktop-linux.webp"
 ---
 
 Escolher GNOME, KDE Plasma ou XFCE parece decisão de tema e atalhos. Você está empilhando três camadas: **display server** (quem fala com GPU e input), toolkit (como apps desenham widgets) e desktop environment (shell, settings, apps padrão). Confundir isso gera expectativa errada sobre compatibilidade, RAM e por que um app Qt "estranho" no GNOME não é bug isolado.

@@ -3,6 +3,7 @@ slug: "astro-vs-nextjs-o-custo-da-preguica-no-vibe-coding"
 type: note
 title: "Astro vs Next.js: o custo da preguiça no vibe coding"
 date: 2026-03-01
+cover: "../../../assets/covers/notes/astro-vs-nextjs-o-custo-da-preguica-no-vibe-coding.webp"
 ---
 
 Pedi para a IA gerar landing page de produto SaaS. Veio Next.js com App Router, cinco dependências de UI e hidratação em página que só tinha hero, três cards e formulário de waitlist. Funcionava no preview. No 4G, First Contentful Paint passava de três segundos porque o bundle React precisava baixar antes de mostrar texto estático. O modelo aprendeu com milhões de repos React; `npx create-next-app` virou default para qualquer coisa com HTML.

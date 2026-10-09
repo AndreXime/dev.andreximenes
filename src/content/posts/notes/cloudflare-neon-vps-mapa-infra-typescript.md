@@ -3,6 +3,7 @@ slug: "cloudflare-neon-vps-mapa-infra-typescript"
 type: note
 title: "Cloudflare, Neon e VPS: mapa de infra TypeScript para fechar orçamento"
 date: 2026-07-01
+cover: "../../../assets/covers/notes/cloudflare-neon-vps-mapa-infra-typescript.webp"
 ---
 
 Cliente pergunta quanto custa hospedar o sistema. Você olha o escopo, pensa em Workers, Postgres, fila, PDF em lote... e responde "depende". Não é evasiva: orçamento de infra em TypeScript hoje cai em três caminhos que se repetem em quase todo briefing. Ter o mapa na cabeça corta a reunião técnica para cinco minutos e evita vender VPS de R$ 150 para CRUD que cabe no free tier da Cloudflare.

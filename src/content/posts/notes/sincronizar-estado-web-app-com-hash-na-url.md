@@ -3,6 +3,7 @@ slug: "sincronizar-estado-web-app-com-hash-na-url"
 type: note
 title: "Sincronizar estado entre dispositivos sem backend: hash na URL"
 date: 2026-06-05
+cover: "../../../assets/covers/notes/sincronizar-estado-web-app-com-hash-na-url.webp"
 ---
 
 localStorage resolve persistência no mesmo navegador, mas não sincroniza celular com notebook. Para ferramentas client-only (planejadores, editores, cadernos), subir backend só para copiar JSON entre dispositivos é custo desproporcional. Serializar estado, comprimir, colocar no **hash** da URL e restaurar na abertura do link.

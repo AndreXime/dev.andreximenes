@@ -3,6 +3,7 @@ slug: "a-falacia-da-api-fullstack-use-hono-e-nestjs"
 type: note
 title: "A falácia da API fullstack: use Hono e NestJS"
 date: 2026-03-01
+cover: "../../../assets/covers/notes/a-falacia-da-api-fullstack-use-hono-e-nestjs.webp"
 ---
 
 Route Handler no Next.js parece backend de verdade até você precisar da mesma regra de negócio no app Flutter. Aí descobre que validação de pedido vive ao lado de layout JSX, teste de integração mocka `next/headers` e deploy de API amarra na mesma pipeline de preview do front. Extrair depois custa sprint inteiro: mover DTO, desfazer import circular com componente de UI, recriar auth que dependia de cookie do domínio do site.

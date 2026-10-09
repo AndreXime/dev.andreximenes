@@ -3,6 +3,7 @@ slug: "go-vs-typescript-otimizando-a-runtime-da-api"
 type: note
 title: "Go vs TypeScript: otimizando a runtime da API"
 date: 2026-02-04
+cover: "../../../assets/covers/notes/go-vs-typescript-otimizando-a-runtime-da-api.webp"
 ---
 
 Migrei serviço de thumbnail de Node para Go no mesmo hardware. CPU caiu de 80% para 25% sob carga igual. Não era código ruim em TypeScript: decode PNG, resize, encode WebP bloqueia event loop. Uma requisição pesada atrasa todas as outras no processo single-threaded. Go distribuiu trabalho em goroutines e usou núcleos que Node deixava ociosos.

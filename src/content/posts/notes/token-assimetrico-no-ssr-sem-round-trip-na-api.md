@@ -3,6 +3,7 @@ slug: "token-assimetrico-no-ssr-sem-round-trip-na-api"
 type: note
 title: "Token assimétrico no SSR: role no HTML sem bater na API"
 date: 2026-06-16
+cover: "../../../assets/covers/notes/token-assimetrico-no-ssr-sem-round-trip-na-api.webp"
 ---
 
 O padrão que mais vejo em app com SSR autenticado: o servidor recebe o cookie, chama `GET /me` na API, espera 120 ms (ou 800 ms num dia ruim), lê `role` e `permissions`, e só então monta o layout. Cada navegação, cada refresh, cada prefetch do framework repete a viagem. A API vira gargalo de TTFB para algo que o HTML já deveria saber responder: "esse usuário é admin ou visitante?".
