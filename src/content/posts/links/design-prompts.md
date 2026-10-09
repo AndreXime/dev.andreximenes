@@ -5,4 +5,5 @@ title: "Design Prompts"
 description: "Coleção de prompts para gerar e iterar layouts e interfaces com IA."
 date: 2026-05-24
 target: "https://www.designprompts.dev/"
+cover: "../../../assets/covers/links/design-prompts.webp"
 ---
