@@ -8,7 +8,7 @@ modern-minimal (índice com mídia; não landing Stripe, não editorial puro)
 
 ## Macrostructure family
 
-- **Hub e listagens** (`/`, `/post`, `/app`, `/link`): Media Index. Capas commitadas no repo. Home em linhas com thumbnail. Seções em grade de cards. Sem hero de marketing.
+- **Hub e listagens** (`/`, `/post`, `/app`, `/link`): Media Index. Capas commitadas no repo. Home e seções em grade de cards com capa 16:10. Sem hero de marketing.
 - **Content pages** (`/post/[slug]`, `/autor`): Long Document. Notas usam `--page-max`; tipografia contínua.
 - **App pages** (`/app/[slug]`): Workbench. Chrome mínimo, a ferramenta carrega a página.
 
@@ -50,11 +50,11 @@ Escala 4pt nomeada em `src/styles/tokens.css`. Usar `var(--space-*)`, nunca valo
 
 - Silent success
 - Hover delay 800ms em tooltips · focus delay 0ms
-- Título da listagem muda para acento no hover. Home sem card empilhado. Seções: card = link inteiro, sem sombra pesada.
+- Título da listagem muda para acento no hover. Card = link inteiro, sem sombra pesada.
 
 ## CTA voice
 
-- Primary no hub: a própria linha / card da listagem
+- Primary no hub: o próprio card da listagem
 - Apps: botão filled acento, cantos `--radius-input`
 - Secondary: link tipográfico
 
@@ -76,7 +76,7 @@ Escala 4pt nomeada em `src/styles/tokens.css`. Usar `var(--space-*)`, nunca valo
 
 ## What pages MAY differ on
 
-- Home: Recente em linhas com thumbnail (~80px)
+- Home: Recente em grade (mesma `CoverGrid` das seções)
 - `/post` `/app` `/link`: grade 1 coluna / 2 colunas em `lg`, capa 16:10
 - Chrome de ferramenta (back link + slot da app)
 

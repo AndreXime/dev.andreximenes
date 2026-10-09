@@ -7,7 +7,6 @@ import {
 } from "@/lib/sections";
 import { SITE_TAGLINE } from "@/content/site";
 import CoverGrid from "../ui/CoverGrid.astro";
-import IndexList from "../ui/IndexList.astro";
 import MainLayout from "./MainLayout.astro";
 
 interface Props {
@@ -44,7 +43,7 @@ const sectionEmpty = recentPosts.length === 0 && !isHome;
 							>
 								Recente
 							</h2>
-							<IndexList posts={homeFeed} />
+							<CoverGrid posts={homeFeed} />
 						</section>
 					) : (
 						<p class="m-0 text-muted">Por enquanto não há publicações.</p>
