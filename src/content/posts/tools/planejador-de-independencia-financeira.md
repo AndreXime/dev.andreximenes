@@ -5,4 +5,5 @@ title: "Planejador de Independência Financeira"
 description: "Projeção FIRE com gap do INSS e tributação na retirada, usando a regra dos 0,5% ao mês."
 date: 2026-06-22
 target: "FirePlanner"
+cover: "../../../assets/covers/tools/planejador-de-independencia-financeira.webp"
 ---
