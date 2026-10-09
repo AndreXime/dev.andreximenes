@@ -50,7 +50,7 @@ Escala 4pt nomeada em `src/styles/tokens.css`. Usar `var(--space-*)`, nunca valo
 
 - Silent success
 - Hover delay 800ms em tooltips · focus delay 0ms
-- Título da listagem muda para acento no hover. Card = link inteiro, sem sombra pesada.
+- Título da listagem muda para acento no hover. Card = link inteiro com borda `--color-rule`, sem sombra pesada.
 
 ## CTA voice
 

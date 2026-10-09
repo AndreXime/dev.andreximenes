@@ -3,7 +3,7 @@ import { Image } from "astro:assets";
 import type { Post } from "@/content.config";
 import { formatDate, listingDescription } from "@/lib/listing";
 import { getPostMeta } from "@/lib/postMeta";
-import { ExternalLinkIcon } from "lucide-react";
+import { ExternalLinkIcon, FileText, Link2, Wrench } from "lucide-react";
 
 interface Props {
 	posts: Post[];
@@ -29,7 +29,7 @@ const items = await Promise.all(
 				>
 					<a
 						href={meta.href}
-						class="focus-ring group flex flex-col gap-2xs no-underline"
+						class="focus-ring group flex h-full flex-col overflow-hidden rounded-[var(--radius-card)] border border-rule no-underline"
 						title={post.title}
 						{...(meta.external
 							? {
@@ -43,27 +43,52 @@ const items = await Promise.all(
 							alt=""
 							width={640}
 							height={400}
-							class="aspect-16/10 w-full rounded-[var(--radius-card)] object-cover"
+							class="aspect-16/10 w-full object-cover"
 							loading="lazy"
 							decoding="async"
 						/>
-						<span class="flex items-center gap-2xs font-medium text-ink wrap-anywhere group-hover:text-accent">
-							<span>{post.title}</span>
-							{meta.external ? (
-								<ExternalLinkIcon className="size-3.5 shrink-0 text-muted" />
-							) : null}
-						</span>
-						{excerpt ? (
-							<span class="line-clamp-2 text-sm leading-normal text-muted wrap-anywhere">
-								{excerpt}
+						<span class="flex flex-1 flex-col gap-2xs border-t border-rule p-sm">
+							<span class="flex items-center gap-2xs font-medium text-ink wrap-anywhere group-hover:text-accent">
+								<span>{post.title}</span>
+								{meta.external ? (
+									<ExternalLinkIcon className="size-3.5 shrink-0 text-muted" />
+								) : null}
 							</span>
-						) : null}
-						<span class="text-sm text-muted">
-							{meta.typeLabel}
-							{" · "}
-							<time datetime={post.date.toISOString()}>
-								{formatDate(post.date)}
-							</time>
+							{excerpt ? (
+								<span class="line-clamp-2 text-sm leading-normal text-muted wrap-anywhere">
+									{excerpt}
+								</span>
+							) : null}
+							<span class="mt-auto flex items-center gap-2xs text-sm text-muted">
+								{meta.kind === "tool" ? (
+									<Wrench
+										className="size-3.5 shrink-0"
+										strokeWidth={2}
+										aria-hidden="true"
+									/>
+								) : null}
+								{meta.kind === "note" ? (
+									<FileText
+										className="size-3.5 shrink-0"
+										strokeWidth={2}
+										aria-hidden="true"
+									/>
+								) : null}
+								{meta.kind === "link" ? (
+									<Link2
+										className="size-3.5 shrink-0"
+										strokeWidth={2}
+										aria-hidden="true"
+									/>
+								) : null}
+								<span>
+									{meta.typeLabel}
+									{" · "}
+									<time datetime={post.date.toISOString()}>
+										{formatDate(post.date)}
+									</time>
+								</span>
+							</span>
 						</span>
 					</a>
 				</li>
