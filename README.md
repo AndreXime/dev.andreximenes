@@ -1,6 +1,6 @@
 # dev.andreximenes
 
-Hub de André Ximenes: notas longas, ferramentas web e links curados. Visual índice utilitário (papel quente, acento laranja, tipografia Hanken Grotesk). O site roda em Astro e TypeScript, com React nas ferramentas em `/app/*`, Tailwind CSS v4 com tokens OKLCH, Content Collections em Markdown.
+Hub de André Ximenes: notas longas, ferramentas web e links curados. Visual Media Index (papel quente, acento laranja, tipografia Hanken Grotesk, capas nas listagens). O site roda em Astro e TypeScript, com React nas ferramentas em `/app/*`, Tailwind CSS v4 com tokens OKLCH, Content Collections em Markdown.
 
 **Site:** [https://dev.andreximenes.xyz](https://dev.andreximenes.xyz)
 
@@ -10,7 +10,9 @@ Três tipos de publicação, acessíveis pela home e pelas seções do nav:
 
 - **Notas** (`/post`): artigos técnicos em Markdown
 - **Ferramentas** (`/app`): apps React no navegador (planejador, CV, etc.)
-- **Links** (`/link`): curadoria com favicon e link externo
+- **Links** (`/link`): curadoria com capa do destino e link externo
+
+Cada post leva uma capa em `src/assets/covers/` (screenshot nas tools, editorial nas notas, OG/screenshot nos links).
 
 ## Ferramentas
 

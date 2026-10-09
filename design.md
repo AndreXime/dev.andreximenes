@@ -4,11 +4,11 @@ Sistema visual locked para o hub. Páginas leem este arquivo antes de emitir có
 
 ## Genre
 
-modern-minimal (índice utilitário; não landing Stripe, não editorial)
+modern-minimal (índice com mídia; não landing Stripe, não editorial puro)
 
 ## Macrostructure family
 
-- **Hub e listagens** (`/`, `/post`, `/app`, `/link`): Index-First. A lista é a página. Sem hero, sem cards de seção, sem tabela de jornal.
+- **Hub e listagens** (`/`, `/post`, `/app`, `/link`): Media Index. Capas commitadas no repo. Home em linhas com thumbnail. Seções em grade de cards. Sem hero de marketing.
 - **Content pages** (`/post/[slug]`, `/autor`): Long Document. Notas usam `--page-max`; tipografia contínua.
 - **App pages** (`/app/[slug]`): Workbench. Chrome mínimo, a ferramenta carrega a página.
 
@@ -50,17 +50,17 @@ Escala 4pt nomeada em `src/styles/tokens.css`. Usar `var(--space-*)`, nunca valo
 
 - Silent success
 - Hover delay 800ms em tooltips · focus delay 0ms
-- Linha do índice: o título muda para acento no hover. Sem card empilhado.
+- Título da listagem muda para acento no hover. Home sem card empilhado. Seções: card = link inteiro, sem sombra pesada.
 
 ## CTA voice
 
-- Primary no hub: a própria linha da lista
+- Primary no hub: a própria linha / card da listagem
 - Apps: botão filled acento, cantos `--radius-input`
 - Secondary: link tipográfico
 
 ## Per-page allowances
 
-- Hub e listagens: tipografia + lista. Sem enrichment.
+- Hub e listagens: tipografia + capa (Media Index)
 - Content pages: tipografia only
 - App pages: sem enrichment
 
@@ -71,12 +71,13 @@ Escala 4pt nomeada em `src/styles/tokens.css`. Usar `var(--space-*)`, nunca valo
 - Hanken Grotesk + IBM Plex Mono
 - Nav compacta (wordmark · seções · busca)
 - Sem footer de site (RSS fica no `<link rel="alternate">` do head)
-- Layout em coluna até `md`; `flex-row` só a partir de `lg`
+- Layout em coluna até `md`; `flex-row` / multi-coluna só a partir de `lg`
+- Todo post publicado tem `cover` (WebP em `src/assets/covers/<type>/<slug>.webp`)
 
 ## What pages MAY differ on
 
-- Home é só Recente (mistura ferramentas, notas e links por data)
-- `/post` `/app` `/link` são o mesmo índice, filtrado
+- Home: Recente em linhas com thumbnail (~80px)
+- `/post` `/app` `/link`: grade 1 coluna / 2 colunas em `lg`, capa 16:10
 - Chrome de ferramenta (back link + slot da app)
 
 ## Nav

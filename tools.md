@@ -149,10 +149,13 @@ title: "Meu planner"
 description: "Uma frase curta sobre o que a ferramenta faz no navegador."
 date: 2026-07-13
 target: "MeuPlanner"
+cover: "../../../assets/covers/tools/meu-planner.webp"
 ---
 ```
 
 O campo `description` aparece na listagem (`/`, `/app`, busca). Mantenha alinhado com a `description` do `ToolShell`.
+
+O campo `cover` é obrigatório. Salve um screenshot da UI (WebP ~16:10, ~1200px de largura) em `src/assets/covers/tools/<slug>.webp`.
 
 ---
 

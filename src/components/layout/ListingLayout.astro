@@ -6,6 +6,7 @@ import {
 	type SectionCategory,
 } from "@/lib/sections";
 import { SITE_TAGLINE } from "@/content/site";
+import CoverGrid from "../ui/CoverGrid.astro";
 import IndexList from "../ui/IndexList.astro";
 import MainLayout from "./MainLayout.astro";
 
@@ -67,7 +68,7 @@ const sectionEmpty = recentPosts.length === 0 && !isHome;
 
 					{recentPosts.length ? (
 						<div class="mt-md">
-							<IndexList posts={recentPosts} />
+							<CoverGrid posts={recentPosts} />
 						</div>
 					) : null}
 				</section>

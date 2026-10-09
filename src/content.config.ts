@@ -1,13 +1,7 @@
 import { defineCollection } from "astro:content";
+import type { ImageMetadata } from "astro";
 import { glob } from "astro/loaders";
 import { z } from "astro/zod";
-
-export interface PostCover {
-	src: string;
-	width: number;
-	height: number;
-	format: string;
-}
 
 export interface Post {
 	slug: string;
@@ -17,7 +11,7 @@ export interface Post {
 	description?: string | undefined;
 	content?: string | undefined;
 	target?: string | undefined;
-	cover: PostCover;
+	cover: ImageMetadata;
 }
 
 const posts = defineCollection({

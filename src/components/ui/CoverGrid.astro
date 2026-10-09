@@ -22,14 +22,14 @@ const items = await Promise.all(
 
 {
 	items.length > 0 ? (
-		<ul class="m-0 list-none divide-y divide-rule p-0">
+		<ul class="m-0 grid list-none grid-cols-1 gap-md p-0 lg:grid-cols-2">
 			{items.map(({ post, meta, excerpt }) => (
 				<li
 					data-search-text={`${post.title} ${excerpt ?? ""} ${meta.typeLabel}`.toLowerCase()}
 				>
 					<a
 						href={meta.href}
-						class="focus-ring group flex min-h-11 flex-col gap-3xs py-sm no-underline lg:flex-row lg:items-center lg:justify-between lg:gap-md"
+						class="focus-ring group flex flex-col gap-2xs no-underline"
 						title={post.title}
 						{...(meta.external
 							? {
@@ -38,31 +38,27 @@ const items = await Promise.all(
 								}
 							: {})}
 					>
-						<span class="flex min-w-0 items-start gap-sm">
-							<Image
-								src={post.cover}
-								alt=""
-								width={80}
-								height={50}
-								class="size-20 shrink-0 rounded-[var(--radius-sm)] object-cover"
-								loading="lazy"
-								decoding="async"
-							/>
-							<span class="min-w-0">
-								<span class="flex items-center gap-2xs font-medium text-ink wrap-anywhere group-hover:text-accent">
-									<span>{post.title}</span>
-									{meta.external ? (
-										<ExternalLinkIcon className="size-3.5 shrink-0 text-muted" />
-									) : null}
-								</span>
-								{excerpt ? (
-									<span class="mt-3xs line-clamp-2 text-sm leading-normal text-muted wrap-anywhere">
-										{excerpt}
-									</span>
-								) : null}
-							</span>
+						<Image
+							src={post.cover}
+							alt=""
+							width={640}
+							height={400}
+							class="aspect-16/10 w-full rounded-[var(--radius-card)] object-cover"
+							loading="lazy"
+							decoding="async"
+						/>
+						<span class="flex items-center gap-2xs font-medium text-ink wrap-anywhere group-hover:text-accent">
+							<span>{post.title}</span>
+							{meta.external ? (
+								<ExternalLinkIcon className="size-3.5 shrink-0 text-muted" />
+							) : null}
 						</span>
-						<span class="shrink-0 text-sm text-muted lg:pl-md">
+						{excerpt ? (
+							<span class="line-clamp-2 text-sm leading-normal text-muted wrap-anywhere">
+								{excerpt}
+							</span>
+						) : null}
+						<span class="text-sm text-muted">
 							{meta.typeLabel}
 							{" · "}
 							<time datetime={post.date.toISOString()}>
