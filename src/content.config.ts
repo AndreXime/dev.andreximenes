@@ -17,7 +17,7 @@ export interface Post {
 	description?: string | undefined;
 	content?: string | undefined;
 	target?: string | undefined;
-	cover?: PostCover | undefined;
+	cover: PostCover;
 }
 
 const posts = defineCollection({
@@ -30,7 +30,7 @@ const posts = defineCollection({
 			date: z.coerce.date(),
 			description: z.string().optional(),
 			target: z.string().optional(),
-			cover: image().optional(),
+			cover: image(),
 		}),
 });
 

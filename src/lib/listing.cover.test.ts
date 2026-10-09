@@ -16,6 +16,6 @@ describe("Post cover typing", () => {
 			date: new Date("2026-09-23"),
 			cover,
 		};
-		expect(post.cover?.width).toBe(1200);
+		expect(post.cover.width).toBe(1200);
 	});
 });
