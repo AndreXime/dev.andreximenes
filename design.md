@@ -73,6 +73,7 @@ Escala 4pt nomeada em `src/styles/tokens.css`. Usar `var(--space-*)`, nunca valo
 - Sem footer de site (RSS fica no `<link rel="alternate">` do head)
 - Layout em coluna até `md`; `flex-row` / multi-coluna só a partir de `lg`
 - Todo post publicado tem `cover` (WebP em `src/assets/covers/<type>/<slug>.webp`)
+- Capas de tools: editorial plana (metáfora literal), não screenshot; notes: editorial; links: OG/screenshot do destino
 
 ## What pages MAY differ on
 

@@ -155,7 +155,7 @@ cover: "../../../assets/covers/tools/meu-planner.webp"
 
 O campo `description` aparece na listagem (`/`, `/app`, busca). Mantenha alinhado com a `description` do `ToolShell`.
 
-O campo `cover` é obrigatório. Salve um screenshot da UI (WebP ~16:10, ~1200px de largura) em `src/assets/covers/tools/<slug>.webp`.
+O campo `cover` é obrigatório. Salve uma capa editorial plana (metáfora literal do tema, WebP ~16:10, ~1200px de largura) em `src/assets/covers/tools/<slug>.webp`. Não use screenshot da UI. Brief e regras em `docs/superpowers/specs/2026-11-04-tool-covers-editorial-design.md`.
 
 ---
 

@@ -12,7 +12,7 @@ Três tipos de publicação, acessíveis pela home e pelas seções do nav:
 - **Ferramentas** (`/app`): apps React no navegador (planejador, CV, etc.)
 - **Links** (`/link`): curadoria com capa do destino e link externo
 
-Cada post leva uma capa em `src/assets/covers/` (screenshot nas tools, editorial nas notas, OG/screenshot nos links).
+Cada post leva uma capa em `src/assets/covers/` (editorial plana nas tools, editorial nas notas, OG/screenshot nos links).
 
 ## Ferramentas
 
