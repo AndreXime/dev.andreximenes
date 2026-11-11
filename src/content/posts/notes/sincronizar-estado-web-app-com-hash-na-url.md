@@ -25,17 +25,16 @@ Para transferir estado entre dispositivos, o hash é o canal certo.
 estado da app → JSON → deflate → base64url → #state=<token>
 ```
 
-Envolva o payload com metadados mínimos. Campo `v` evolui o formato; `app` impede abrir link de planejador no editor errado:
+Envolva o payload com metadados mínimos. Campo `v` evolui o formato; `app` impede abrir link de uma ferramenta na app errada:
 
 ```json
 {
   "v": 1,
-  "app": "planejador-semanal",
+  "app": "calendario-pessoal",
   "data": {
-    "plan": {
-      "mon": [{ "id": "1", "title": "Reunião", "start": "09:00", "end": "10:00" }],
-      "tue": []
-    }
+    "events": [
+      { "id": "1", "title": "Reunião", "startDate": "2026-06-10", "endDate": "2026-06-10" }
+    ]
   }
 }
 ```
@@ -75,8 +74,8 @@ Estado vindo de link é entrada externa. O mesmo código que valida localStorage
 
 ```typescript
 function applyImportedState(raw: unknown) {
-  const safe = normalizePlan(raw);
-  savePlan(safe);
+  const safe = normalizeState(raw);
+  saveState(safe);
 }
 ```
 

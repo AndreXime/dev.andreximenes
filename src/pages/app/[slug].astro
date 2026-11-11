@@ -6,7 +6,6 @@ import { getCollection } from "astro:content";
 import ScratchPad from "../../tools/ScratchPad/ScratchPad";
 import EveryDayUtils from "../../tools/EveryDayUtils/UtilsApp";
 import CVBuilder from "../../tools/CVBuilder/CVBuilder";
-import WeekPlanner from "../../tools/WeekPlanner/WeekPlanner";
 import FinancePlanner from "../../tools/FinancePlanner/FinancePlanner";
 import FirePlanner from "../../tools/FirePlanner/FirePlanner";
 import ImageTools from "../../tools/ImageTools/ImageTools";
@@ -42,8 +41,6 @@ const { title, description, target } = Astro.props;
 						return <EveryDayUtils client:load />;
 					case "CVBuilder":
 						return <CVBuilder client:load />;
-					case "WeekPlanner":
-						return <WeekPlanner client:load />;
 					case "FinancePlanner":
 						return <FinancePlanner client:load />;
 					case "FirePlanner":
