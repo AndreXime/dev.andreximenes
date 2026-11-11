@@ -25,7 +25,6 @@ Apps React em `/app`. Em geral os dados ficam no navegador; exceções: a calcul
 - **Planejador semanal**: blocos de horário alinhados entre os dias da semana
 - **Planejador financeiro**: controle de assinaturas e gasto médio diário
 - **Planejador de Independência Financeira**: projeção FIRE com gap do INSS e IR
-- **Temas CSS**: presets, tokens e preview de seções de landing
 - **Transmissão óptica QR**: envia texto ou arquivos entre dispositivos via stream de QR Codes
 
 Para criar uma ferramenta nova, siga o passo a passo em [`tools.md`](./tools.md).
