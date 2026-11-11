@@ -19,7 +19,6 @@ Cada post leva uma capa em `src/assets/covers/` (editorial plana nas tools, edit
 Apps React em `/app`. Em geral os dados ficam no navegador; exceções: a calculadora de renda consulta a BrasilAPI, e a remoção de fundo baixa o modelo de IA sob demanda.
 
 - **Bloco de notas**: notas locais com busca, pin e preview em Markdown
-- **Canvas**: editor gráfico 2D com formas, texto, imagem, camadas e exportação PNG
 - **Criador de currículos**: monta CVs em Markdown, prompts para IA e exporta PDF
 - **Ferramentas de imagem**: converte, comprime e remove fundo sem enviar arquivos a servidor
 - **Ferramentas para o dia a dia**: combustível, renda passiva, porcentagem e senhas
