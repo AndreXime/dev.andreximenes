@@ -64,7 +64,8 @@ Escala 4pt nomeada em `src/styles/tokens.css`. Usar `var(--space-*)`, nunca valo
 
 - Home: tipografia + capa + hero full-bleed + metáforas estáticas em `src/assets/home/`
 - Listagens `/post` `/app` `/link`: tipografia + capa (Media Index)
-- Content pages: tipografia only
+- Content pages (`/post/[slug]`): tipografia only
+- `/autor`: tipografia + bandas paper/paper-2 + cards de atalho/links (sem hero fotográfico)
 - App pages: sem enrichment
 
 ## What pages MUST share
@@ -80,7 +81,8 @@ Escala 4pt nomeada em `src/styles/tokens.css`. Usar `var(--space-*)`, nunca valo
 
 ## What pages MAY differ on
 
-- Home: Hero → Rails (Ferramentas / Notas / Links) → Recente (`CoverGrid`) → Destaque (slug em `HOME_FEATURED_TOOL_SLUG`) → Teaser Notas → CTA autor. Sem footer.
+- Home: Hero → Rails (Apps / Notas / Links) → Destaque (slug em `HOME_FEATURED_TOOL_SLUG`) → CTA autor. Sem grade Recente. Sem footer.
+- `/autor`: abertura tipográfica forte → sobre o trabalho → links externos em cards accent
 - `/post` `/app` `/link`: grade 1 coluna / 2 colunas em `lg`, capa 16:10
 - Chrome de ferramenta (back link + slot da app)
 
