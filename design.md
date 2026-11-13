@@ -8,7 +8,7 @@ modern-minimal (índice com mídia; não landing Stripe, não editorial puro)
 
 ## Macrostructure family
 
-- **Hub e listagens** (`/`, `/post`, `/app`, `/link`): Media Index. Capas commitadas no repo. Home e seções em grade de cards com capa 16:10. Sem hero de marketing.
+- **Hub e listagens** (`/`, `/post`, `/app`, `/link`): Media Index. Capas commitadas no repo. Seções em grade de cards com capa 16:10. Home (`/`): Hero full-bleed + rails editoriais + Recente (`CoverGrid`) + destaque de tool + teaser de notas + CTA autor. Listagens sem hero.
 - **Content pages** (`/post/[slug]`, `/autor`): Long Document. Notas usam `--page-max`; tipografia contínua.
 - **App pages** (`/app/[slug]`): Workbench. Chrome mínimo, a ferramenta carrega a página.
 
@@ -33,7 +33,7 @@ Index: papel quente quase branco · acento teal · display geométrico
 - Mono: IBM Plex Mono, weight 400 (código, não chrome)
 - Display tracking: -0.014em
 - Type scale anchor: `--text-display` = clamp(2.25rem, 3.5vw + 1rem, 3.75rem)
-- Hub e listagens não usam display size. Wordmark em `text-lg`. Títulos de seção em `text-xl` no máximo.
+- Wordmark em `text-lg`. Títulos de seção em `text-xl` no máximo. Home hero pode usar `--text-display`. Demais listagens não usam display size.
 
 ## Spacing
 
@@ -44,7 +44,8 @@ Escala 4pt nomeada em `src/styles/tokens.css`. Usar `var(--space-*)`, nunca valo
 
 - Easings: `--ease-out`, `--ease-in`, `--ease-in-out`
 - Reveal: none
-- Reduced-motion: opacity-only, ≤ 150ms
+- Home: `scroll-behavior: smooth` no `html`. Com `prefers-reduced-motion`: `auto`
+- Reduced-motion: opacity-only, ≤ 150ms. Zerar `--dur-*`
 
 ## Microinteractions stance
 
@@ -54,13 +55,15 @@ Escala 4pt nomeada em `src/styles/tokens.css`. Usar `var(--space-*)`, nunca valo
 
 ## CTA voice
 
-- Primary no hub: o próprio card da listagem
+- Primary no hub (listagens): o próprio card da listagem
+- Home: link tipográfico com seta (`Ver recente`) + ghost/outline (`Abrir ferramentas`). Destaque usa botão filled acento
 - Apps: botão filled acento, cantos `--radius-input`
 - Secondary: link tipográfico
 
 ## Per-page allowances
 
-- Hub e listagens: tipografia + capa (Media Index)
+- Home: tipografia + capa + hero full-bleed + metáforas estáticas em `src/assets/home/`
+- Listagens `/post` `/app` `/link`: tipografia + capa (Media Index)
 - Content pages: tipografia only
 - App pages: sem enrichment
 
@@ -77,7 +80,7 @@ Escala 4pt nomeada em `src/styles/tokens.css`. Usar `var(--space-*)`, nunca valo
 
 ## What pages MAY differ on
 
-- Home: Recente em grade (mesma `CoverGrid` das seções)
+- Home: Hero → Rails (Ferramentas / Notas / Links) → Recente (`CoverGrid`) → Destaque (slug em `HOME_FEATURED_TOOL_SLUG`) → Teaser Notas → CTA autor. Sem footer.
 - `/post` `/app` `/link`: grade 1 coluna / 2 colunas em `lg`, capa 16:10
 - Chrome de ferramenta (back link + slot da app)
 
