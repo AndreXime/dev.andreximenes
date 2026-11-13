@@ -4,65 +4,113 @@ import MainLayout from "@/components/layout/MainLayout.astro";
 import { AUTHOR } from "@/content/author";
 import { pageTitle as buildPageTitle, SITE_NAME } from "@/content/site";
 import { ExternalLinkIcon } from "lucide-react";
+
+const portfolio = AUTHOR.links.find((link) => link.label === "Portfólio");
+const github = AUTHOR.links.find((link) => link.label === "GitHub");
 ---
 
 <SEOLayout
 	title={buildPageTitle("Sobre mim")}
 	description={`Quem escreve o ${SITE_NAME}: André Ximenes, desenvolvedor backend TypeScript. Portfólio, LinkedIn e GitHub.`}
 >
-	<MainLayout activeCategory="author">
-		<article class="container-page py-lg pb-3xl">
-			<header class="max-w-measure border-b border-rule pb-md">
-				<p class="mb-2xs text-sm text-muted">
-					{AUTHOR.role}
-				</p>
-				<h1
-					class="m-0 font-display text-xl leading-snug font-semibold tracking-display text-ink"
-				>
-					{AUTHOR.name}
-				</h1>
-				<p class="mt-sm text-md leading-(--lh-prose) text-muted">
-					{AUTHOR.lede}
-				</p>
+	<MainLayout activeCategory="author" brandMark>
+		<article>
+			<header
+				class="border-b border-rule bg-paper-2 py-2xl"
+				aria-labelledby="author-heading"
+			>
+				<div class="container-page flex max-w-measure flex-col gap-sm">
+					<p
+						class="m-0 text-xs font-medium tracking-label text-accent uppercase"
+					>
+						Autor
+					</p>
+					<h1
+						id="author-heading"
+						class="m-0 font-display text-display-s font-semibold leading-tight tracking-display text-ink lg:text-display"
+					>
+						{AUTHOR.name}
+					</h1>
+					<p class="m-0 text-md text-muted">{AUTHOR.role}</p>
+					<p class="m-0 text-md leading-(--lh-prose) text-ink-2">
+						{AUTHOR.lede}
+					</p>
+					<div class="mt-sm flex flex-wrap items-center gap-md">
+						{
+							portfolio ? (
+								<a
+									href={portfolio.href}
+									class="focus-ring inline-flex min-h-11 items-center rounded-input bg-accent px-sm text-sm font-medium text-accent-ink no-underline"
+									target="_blank"
+									rel="noopener noreferrer"
+								>
+									Ver portfólio
+								</a>
+							) : null
+						}
+						{
+							github ? (
+								<a
+									href={github.href}
+									class="focus-ring inline-flex min-h-11 items-center rounded-input border border-rule bg-paper px-sm text-sm text-ink no-underline hover:border-accent"
+									target="_blank"
+									rel="noopener noreferrer"
+								>
+									GitHub
+								</a>
+							) : null
+						}
+					</div>
+				</div>
 			</header>
 
-			<div class="flex max-w-measure flex-col gap-lg pt-lg">
-				{
-					AUTHOR.body.map((paragraph) => (
-						<p class="m-0 text-md leading-(--lh-prose) text-ink-2">
-							{paragraph}
-						</p>
-					))
-				}
+			<section
+				class="border-b border-rule bg-paper py-2xl"
+				aria-labelledby="author-about"
+			>
+				<div class="container-page flex max-w-measure flex-col gap-lg">
+					<h2
+						id="author-about"
+						class="m-0 font-display text-xl font-semibold tracking-display text-ink"
+					>
+						Sobre o trabalho
+					</h2>
+					{
+						AUTHOR.body.map((paragraph) => (
+							<p class="m-0 text-md leading-(--lh-prose) text-ink-2">
+								{paragraph}
+							</p>
+						))
+					}
+				</div>
+			</section>
 
-				<section
-					class="flex flex-col gap-sm border-t border-rule pt-md"
-					aria-labelledby="author-links"
-				>
+			<section class="bg-paper-2 py-2xl" aria-labelledby="author-links">
+				<div class="container-page flex flex-col gap-md">
 					<h2
 						id="author-links"
-						class="m-0 text-sm font-medium text-muted"
+						class="m-0 font-display text-xl font-semibold tracking-display text-ink"
 					>
 						Onde me encontrar
 					</h2>
-					<ul class="m-0 list-none divide-y divide-rule p-0">
+					<ul class="m-0 grid list-none grid-cols-1 gap-md p-0 lg:grid-cols-3">
 						{
 							AUTHOR.links.map((link) => (
 								<li>
 									<a
 										href={link.href}
-										class="focus-ring group flex min-h-11 flex-col gap-3xs py-sm no-underline"
+										class="focus-ring group flex h-full flex-col gap-2xs rounded-card bg-accent p-md no-underline transition-opacity duration-150 ease-out hover:opacity-95"
 										target="_blank"
 										rel="noopener noreferrer"
 									>
-										<span class="flex items-center gap-2xs font-medium text-ink group-hover:text-accent">
+										<span class="flex items-center gap-2xs font-medium text-accent-ink">
 											{link.label}
-											<ExternalLinkIcon className="size-3.5 shrink-0 text-muted" />
+											<ExternalLinkIcon className="size-3.5 shrink-0 opacity-70" />
 										</span>
-										<span class="text-sm leading-normal text-muted">
+										<span class="text-sm leading-normal text-accent-ink/80">
 											{link.description}
 										</span>
-										<span class="text-sm text-muted">
+										<span class="mt-auto pt-2xs text-sm text-accent-ink/60">
 											{link.host}
 										</span>
 									</a>
@@ -70,8 +118,8 @@ import { ExternalLinkIcon } from "lucide-react";
 							))
 						}
 					</ul>
-				</section>
-			</div>
+				</div>
+			</section>
 		</article>
 	</MainLayout>
 </SEOLayout>
