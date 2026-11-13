@@ -4,9 +4,10 @@ import { SITE_NAME } from "@/content/site";
 
 interface Props {
 	activeCategory: string;
+	brandMark?: boolean;
 }
 
-const { activeCategory } = Astro.props;
+const { activeCategory, brandMark = false } = Astro.props;
 
 const navLinkClass =
 	"inline-flex min-h-11 items-center px-2xs text-sm text-muted no-underline transition-colors duration-150 ease-out hover:text-ink";
@@ -15,16 +16,24 @@ const drawerLinkClass =
 	"flex min-h-11 items-center border-b border-rule px-md text-base text-ink no-underline transition-colors duration-150 ease-out hover:text-accent";
 ---
 
-<header class="border-b border-rule">
+<header class="border-b border-rule bg-paper">
 	<div
 		class="container-page flex flex-col gap-sm py-md lg:flex-row lg:items-center lg:gap-md"
 	>
 		<div class="flex items-center gap-sm">
 			<a
 				href="/"
-				class="min-w-0 shrink font-display text-lg font-semibold tracking-display text-ink no-underline wrap-anywhere hover:text-accent"
+				class="relative min-w-0 shrink font-display text-lg font-semibold tracking-display text-ink no-underline wrap-anywhere hover:text-accent"
 			>
 				{SITE_NAME}
+				{
+					brandMark ? (
+						<span
+							class="absolute top-full left-0 mt-3xs block h-px w-8 bg-accent"
+							aria-hidden="true"
+						/>
+					) : null
+				}
 			</a>
 
 			<button

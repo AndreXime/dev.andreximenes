@@ -4,13 +4,13 @@ import heroImage from "@/assets/home/hero.webp";
 ---
 
 <section
-	class="relative isolate flex min-h-[70vh] max-h-[90vh] items-end overflow-hidden"
+	class="relative isolate flex min-h-[28rem] items-end overflow-hidden border-b border-rule lg:min-h-[36rem]"
 	aria-labelledby="home-hero-heading"
 >
 	<Image
 		src={heroImage}
 		alt=""
-		class="absolute inset-0 -z-20 size-full object-cover"
+		class="absolute inset-0 -z-20 size-full object-cover object-[72%_center]"
 		widths={[960, 1440, 1920]}
 		sizes="100vw"
 		loading="eager"
@@ -18,33 +18,37 @@ import heroImage from "@/assets/home/hero.webp";
 		decoding="async"
 	/>
 	<div
-		class="absolute inset-0 -z-10 bg-linear-to-t from-paper via-paper/80 to-paper/35"
+		class="absolute inset-0 -z-10 bg-linear-to-r from-paper/75 via-paper/25 to-transparent"
+		aria-hidden="true"
+	></div>
+	<div
+		class="absolute inset-x-0 bottom-0 -z-10 h-2/5 bg-linear-to-t from-paper/70 to-transparent"
 		aria-hidden="true"
 	></div>
 
-	<div class="container-page flex w-full flex-col gap-sm pb-xl pt-3xl">
-		<p class="m-0 text-xs font-medium tracking-label text-muted uppercase">
+	<div class="container-page flex w-full flex-col gap-sm pb-2xl pt-xl lg:pb-3xl lg:pt-2xl">
+		<p class="m-0 text-xs font-medium tracking-label text-accent uppercase">
 			Hub técnico
 		</p>
 		<h1
 			id="home-hero-heading"
-			class="m-0 max-w-measure font-display text-display font-semibold leading-tight tracking-display text-ink"
+			class="m-0 max-w-[18ch] font-display text-display font-semibold leading-tight tracking-display text-ink"
 		>
-			Arquitetura web e ferramentas
+			Código, escrita e ferramentas
 		</h1>
 		<p class="m-0 max-w-measure text-md text-muted">
-			Notas de um desenvolvedor
+			Conteúdo e apps que mantenho no dia a dia
 		</p>
-		<div class="mt-xs flex flex-wrap items-center gap-md">
+		<div class="mt-sm flex flex-wrap items-center gap-md">
 			<a
-				href="#recente"
-				class="focus-ring text-sm font-medium text-accent no-underline hover:underline"
+				href="#secoes"
+				class="focus-ring border-b border-accent pb-3xs text-sm font-medium text-ink no-underline"
 			>
-				Ver recente →
+				Explorar seções ↗
 			</a>
 			<a
 				href="/app"
-				class="focus-ring inline-flex min-h-11 items-center rounded-input border border-rule px-sm text-sm text-ink no-underline hover:border-accent"
+				class="focus-ring inline-flex min-h-11 items-center rounded-input border border-rule bg-paper/70 px-sm text-sm text-ink no-underline backdrop-blur-sm hover:border-accent"
 			>
 				Abrir ferramentas
 			</a>

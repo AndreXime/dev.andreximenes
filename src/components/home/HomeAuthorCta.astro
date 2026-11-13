@@ -5,39 +5,43 @@ const github = AUTHOR.links.find((link) => link.label === "GitHub");
 ---
 
 <section
-	class="container-page flex flex-col items-center gap-sm py-3xl text-center"
+	class="bg-paper-2 py-3xl"
 	aria-labelledby="home-author-heading"
 >
-	<p class="m-0 text-xs font-medium tracking-label text-muted uppercase">
-		Autor
-	</p>
-	<h2
-		id="home-author-heading"
-		class="m-0 font-display text-display-s font-semibold tracking-display text-ink"
+	<div
+		class="container-page flex flex-col items-center gap-sm text-center"
 	>
-		{AUTHOR.name}
-	</h2>
-	<p class="m-0 max-w-measure text-md text-muted">
-		{AUTHOR.role}
-	</p>
-	<div class="mt-sm flex flex-wrap items-center justify-center gap-md">
-		<a
-			href="/autor"
-			class="focus-ring inline-flex min-h-11 items-center rounded-input border border-rule px-sm text-sm text-ink no-underline hover:border-accent"
+		<p class="m-0 text-xs font-medium tracking-label text-muted uppercase">
+			Autor
+		</p>
+		<h2
+			id="home-author-heading"
+			class="m-0 font-display text-display-s font-semibold tracking-display text-ink"
 		>
-			Conhecer o autor
-		</a>
-		{
-			github ? (
-				<a
-					href={github.href}
-					class="focus-ring text-sm text-accent no-underline hover:underline"
-					target="_blank"
-					rel="noopener noreferrer"
-				>
-					GitHub
-				</a>
-			) : null
-		}
+			{AUTHOR.name}
+		</h2>
+		<p class="m-0 max-w-measure text-md text-muted">
+			{AUTHOR.role}
+		</p>
+		<div class="mt-sm flex flex-wrap items-center justify-center gap-md">
+			<a
+				href="/autor"
+				class="focus-ring inline-flex min-h-11 items-center rounded-input border border-rule px-sm text-sm text-ink no-underline hover:border-accent"
+			>
+				Conhecer o autor
+			</a>
+			{
+				github ? (
+					<a
+						href={github.href}
+						class="focus-ring text-sm text-accent no-underline hover:underline"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						GitHub
+					</a>
+				) : null
+			}
+		</div>
 	</div>
 </section>

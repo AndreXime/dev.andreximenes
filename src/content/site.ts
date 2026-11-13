@@ -4,7 +4,7 @@ export const SITE_TAGLINE = "Notas de um desenvolvedor · arquitetura web e ferr
 
 export const SITE_DESCRIPTION = "Notas técnicas, ferramentas web e links curados por André Ximenes.";
 
-export const HOME_FEATURED_TOOL_SLUG = "criador-de-curriculos";
+export const HOME_FEATURED_TOOL_SLUG = "ferramentas-de-imagem";
 
 export function pageTitle(segment: string): string {
 	return `${segment} · ${SITE_NAME}`;

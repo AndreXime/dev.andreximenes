@@ -13,43 +13,47 @@ const excerpt = listingDescription(post);
 ---
 
 <section
-	class="container-page grid grid-cols-1 items-center gap-lg py-2xl lg:grid-cols-2"
+	class="border-b border-rule bg-paper py-2xl"
 	aria-labelledby="home-featured-heading"
 >
-	<a
-		href={href}
-		class="focus-ring overflow-hidden rounded-card border border-rule no-underline"
+	<div
+		class="container-page grid grid-cols-1 items-center gap-lg lg:grid-cols-2"
 	>
-		<Image
-			src={post.cover}
-			alt=""
-			class="aspect-16/10 w-full object-cover"
-			widths={[640, 960]}
-			sizes="(min-width: 1024px) 45vw, 100vw"
-			loading="lazy"
-			decoding="async"
-		/>
-	</a>
-	<div class="flex flex-col gap-sm">
-		<p class="m-0 text-xs font-medium tracking-label text-accent uppercase">
-			Em destaque
-		</p>
-		<h2
-			id="home-featured-heading"
-			class="m-0 font-display text-xl font-semibold tracking-display text-ink"
-		>
-			{post.title}
-		</h2>
-		{
-			excerpt ? (
-				<p class="m-0 max-w-measure text-md text-muted">{excerpt}</p>
-			) : null
-		}
 		<a
 			href={href}
-			class="focus-ring inline-flex min-h-11 w-fit items-center rounded-input bg-accent px-sm text-sm font-medium text-accent-ink no-underline"
+			class="focus-ring overflow-hidden rounded-card border border-rule no-underline"
 		>
-			Abrir ferramenta
+			<Image
+				src={post.cover}
+				alt=""
+				class="aspect-16/10 w-full object-cover"
+				widths={[640, 960]}
+				sizes="(min-width: 1024px) 45vw, 100vw"
+				loading="lazy"
+				decoding="async"
+			/>
 		</a>
+		<div class="flex flex-col gap-sm">
+			<p class="m-0 text-xs font-medium tracking-label text-accent uppercase">
+				Em destaque
+			</p>
+			<h2
+				id="home-featured-heading"
+				class="m-0 font-display text-xl font-semibold tracking-display text-ink"
+			>
+				{post.title}
+			</h2>
+			{
+				excerpt ? (
+					<p class="m-0 max-w-measure text-md text-muted">{excerpt}</p>
+				) : null
+			}
+			<a
+				href={href}
+				class="focus-ring inline-flex min-h-11 w-fit items-center rounded-input bg-accent px-sm text-sm font-medium text-accent-ink no-underline"
+			>
+				Abrir ferramenta
+			</a>
+		</div>
 	</div>
 </section>
