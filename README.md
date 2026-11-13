@@ -1,6 +1,6 @@
 # dev.andreximenes
 
-Hub de André Ximenes: notas longas, ferramentas web e links curados. Visual Media Index (papel quente, acento laranja, tipografia Hanken Grotesk, capas nas listagens). O site roda em Astro e TypeScript, com React nas ferramentas em `/app/*`, Tailwind CSS v4 com tokens OKLCH, Content Collections em Markdown.
+Hub de André Ximenes: notas longas, ferramentas web e links curados. Visual Media Index (papel quente, acento teal, tipografia Hanken Grotesk, capas nas listagens). O site roda em Astro e TypeScript, com React nas ferramentas em `/app/*`, Tailwind CSS v4 com tokens OKLCH, Content Collections em Markdown.
 
 **Site:** [https://dev.andreximenes.xyz](https://dev.andreximenes.xyz)
 

@@ -11,7 +11,7 @@
 ## Global Constraints
 
 - Spec: `docs/superpowers/specs/2026-10-09-media-index-listings-design.md`
-- Identidade: papel quente, laranja, Hanken (não rebrandar)
+- Identidade: papel quente, teal, Hanken (não rebrandar)
 - Layout: coluna até `md`; multi-coluna só a partir de `lg`
 - `cover` obrigatório ao final da migração (build quebra sem arquivo)
 - Capas: tools = screenshot UI; notes = IA editorial; links = OG/screenshot commitado
@@ -332,7 +332,7 @@ EOF
 Todas as capas de nota:
 - Aspect 16:10, composição editorial limpa
 - Sem texto ilegível, sem logo genérico de IA
-- Harmonizar com hub (papel quente / tinta / acento laranja permitido com parcimônia)
+- Harmonizar com hub (papel quente / tinta / acento teal permitido com parcimônia)
 - Sem colagem de UI de produto
 
 - [ ] **Step 2: Gerar uma capa por nota**

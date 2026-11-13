@@ -15,7 +15,7 @@ Fazer o hub parecer compartilhavel com pessoas leigas: a lista mostra o que cada
 | Links | OG image ou screenshot do destino, baixada e commitada |
 | Home | Linha compacta com thumbnail à esquerda |
 | `/post`, `/app`, `/link` | Grade de cards |
-| Identidade | Mantém papel quente, laranja, Hanken, nav atual |
+| Identidade | Mantém papel quente, teal, Hanken, nav atual |
 | Pipeline de imagem | Manual: tudo no repo, sem fetch de OG no build |
 | Campo | `cover` obrigatório no frontmatter |
 

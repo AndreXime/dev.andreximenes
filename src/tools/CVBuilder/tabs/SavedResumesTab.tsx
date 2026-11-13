@@ -25,14 +25,14 @@ export function SavedResumesTab() {
 						onClick={() => setActiveResume(resume.id)}
 						className={`flex items-center justify-between p-4 rounded-lg border cursor-pointer transition-all ${
 							resume.selected
-								? "bg-orange-50 border-orange-400/70 shadow-md ring-1 ring-orange-400/30"
+								? "bg-accent-bg border-accent/70 shadow-md ring-1 ring-accent/30"
 								: "bg-white border-slate-200 hover:border-slate-300 hover:shadow-sm"
 						}`}
 					>
 						<div className="flex items-center gap-3 overflow-hidden">
 							<div
 								className={`p-2 rounded-full ${
-									resume.selected ? "bg-orange-100 text-orange-700" : "bg-slate-100 text-slate-500"
+									resume.selected ? "bg-accent-bg text-accent" : "bg-slate-100 text-slate-500"
 								}`}
 							>
 								<FileText size={18} />

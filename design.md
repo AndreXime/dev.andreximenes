@@ -14,7 +14,7 @@ modern-minimal (índice com mídia; não landing Stripe, não editorial puro)
 
 ## Theme
 
-Index: papel quente quase branco · acento laranja · display geométrico
+Index: papel quente quase branco · acento teal · display geométrico
 
 - `--color-paper`   oklch(97% 0.008 50)
 - `--color-paper-2` oklch(94.5% 0.01 50)
@@ -23,8 +23,8 @@ Index: papel quente quase branco · acento laranja · display geométrico
 - `--color-ink-2`   oklch(24% 0.018 42)
 - `--color-muted`   oklch(46% 0.014 42)
 - `--color-rule`    oklch(88% 0.012 50)
-- `--color-accent`  oklch(58% 0.20 42)
-- `--color-focus`   oklch(58% 0.20 42)
+- `--color-accent`  oklch(48% 0.09 180)
+- `--color-focus`   oklch(48% 0.09 180)
 
 ## Typography
 
@@ -67,7 +67,7 @@ Escala 4pt nomeada em `src/styles/tokens.css`. Usar `var(--space-*)`, nunca valo
 ## What pages MUST share
 
 - Wordmark `dev.andreximenes` alinhado à esquerda, tamanho de texto
-- Acento laranja ≤ 5% por viewport (foco, link ativo, hover de título)
+- Acento teal ≤ 5% por viewport (foco, link ativo, hover de título)
 - Hanken Grotesk + IBM Plex Mono
 - Nav compacta (wordmark · seções · busca)
 - Sem footer de site (RSS fica no `<link rel="alternate">` do head)

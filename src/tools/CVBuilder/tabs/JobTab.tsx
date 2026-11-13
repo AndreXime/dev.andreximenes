@@ -17,7 +17,7 @@ export function JobTab() {
 				com seu contexto.
 			</p>
 			<textarea
-				className="flex-1 w-full p-4 border border-slate-300 rounded-md text-sm font-mono focus:ring-2 focus:ring-orange-400/40 focus:border-orange-400 focus:outline-none resize-none leading-relaxed bg-white"
+				className="flex-1 w-full p-4 border border-slate-300 rounded-md text-sm font-mono focus:ring-2 focus:ring-accent/40 focus:border-accent focus:outline-none resize-none leading-relaxed bg-white"
 				placeholder="Cole aqui o texto da vaga..."
 				value={jobDescription}
 				onInput={(e) => updateJobDescription(e.currentTarget.value)}
