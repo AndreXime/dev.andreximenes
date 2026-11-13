@@ -1,12 +1,60 @@
 ---
-import ListingLayout from "@/components/layout/ListingLayout.astro";
+import HomeAuthorCta from "@/components/home/HomeAuthorCta.astro";
+import HomeFeatured from "@/components/home/HomeFeatured.astro";
+import HomeHero from "@/components/home/HomeHero.astro";
+import HomeNotesTeaser from "@/components/home/HomeNotesTeaser.astro";
+import HomeRails from "@/components/home/HomeRails.astro";
+import MainLayout from "@/components/layout/MainLayout.astro";
 import SEOLayout from "@/components/layout/SEOLayout.astro";
-import { SITE_NAME } from "@/content/site";
+import CoverGrid from "@/components/ui/CoverGrid.astro";
+import { HOME_FEATURED_TOOL_SLUG, SITE_NAME } from "@/content/site";
+import { resolveFeaturedTool } from "@/lib/homeFeatured";
 import { loadPosts } from "@/lib/listing";
 
 const recentPosts = await loadPosts();
+const featured = resolveFeaturedTool(recentPosts, HOME_FEATURED_TOOL_SLUG);
 ---
 
 <SEOLayout title={SITE_NAME}>
-	<ListingLayout recentPosts={recentPosts} activeCategory="all" />
+	<MainLayout activeCategory="all">
+		<HomeHero />
+		<HomeRails />
+
+		<div class="container-page flex flex-col gap-xl py-lg">
+			<section
+				id="recente"
+				class="flex scroll-mt-lg flex-col gap-sm"
+				data-index-section
+				aria-labelledby="rail-recente"
+			>
+				<h2 id="rail-recente" class="m-0 text-sm font-medium text-muted">
+					Recente
+				</h2>
+				{
+					recentPosts.length ? (
+						<CoverGrid posts={recentPosts} />
+					) : (
+						<p class="m-0 text-muted">Por enquanto não há publicações.</p>
+					)
+				}
+			</section>
+
+			<div id="search-empty" class="hidden py-md text-muted">
+				<p class="m-0">
+					Nenhum resultado para <span id="search-empty-term" />.
+				</p>
+				<button
+					type="button"
+					id="search-clear"
+					class="mt-sm inline-flex min-h-11 items-center border-0 bg-transparent p-0 text-sm text-accent hover:underline"
+				>
+					Limpar busca
+				</button>
+			</div>
+		</div>
+
+		{featured ? <HomeFeatured post={featured} /> : null}
+		<HomeNotesTeaser />
+		<HomeAuthorCta />
+	</MainLayout>
 </SEOLayout>

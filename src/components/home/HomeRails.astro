@@ -1,0 +1,42 @@
+---
+import { Image } from "astro:assets";
+import railLinks from "@/assets/home/rail-links.webp";
+import railNotes from "@/assets/home/rail-notes.webp";
+import railTools from "@/assets/home/rail-tools.webp";
+
+const rails = [
+	{ href: "/app", label: "Ferramentas", image: railTools },
+	{ href: "/post", label: "Notas", image: railNotes },
+	{ href: "/link", label: "Links", image: railLinks },
+] as const;
+---
+
+<section class="container-page py-2xl" aria-label="Seções do hub">
+	<ul class="m-0 grid list-none grid-cols-1 gap-md p-0 lg:grid-cols-3 lg:gap-lg">
+		{
+			rails.map((rail, index) => (
+				<li class:list={[index === 1 && "lg:mt-lg", index === 2 && "lg:mt-sm"]}>
+					<a
+						href={rail.href}
+						class="focus-ring group flex flex-col gap-sm no-underline"
+					>
+						<span class="overflow-hidden rounded-card border border-rule">
+							<Image
+								src={rail.image}
+								alt=""
+								class="aspect-square w-full object-cover transition-opacity duration-150 ease-out group-hover:opacity-90"
+								widths={[400, 800]}
+								sizes="(min-width: 1024px) 30vw, 100vw"
+								loading="lazy"
+								decoding="async"
+							/>
+						</span>
+						<span class="text-md font-medium text-ink group-hover:text-accent">
+							{rail.label} →
+						</span>
+					</a>
+				</li>
+			))
+		}
+	</ul>
+</section>

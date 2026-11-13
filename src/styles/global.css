@@ -76,6 +76,7 @@
 @layer base {
 	html {
 		scrollbar-gutter: stable;
+		scroll-behavior: smooth;
 	}
 
 	html,
@@ -93,5 +94,9 @@
 	:root {
 		--dur-short: 0ms;
 		--dur-med: 0ms;
+	}
+
+	html {
+		scroll-behavior: auto;
 	}
 }

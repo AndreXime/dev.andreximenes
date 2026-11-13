@@ -5,7 +5,6 @@ import {
 	getSectionDescription,
 	type SectionCategory,
 } from "@/lib/sections";
-import { SITE_TAGLINE } from "@/content/site";
 import CoverGrid from "../ui/CoverGrid.astro";
 import MainLayout from "./MainLayout.astro";
 
@@ -17,62 +16,32 @@ interface Props {
 const { recentPosts, activeCategory } = Astro.props;
 
 const listingTitle = getListingTitle(activeCategory);
-const isHome = activeCategory === "all";
-const homeFeed = isHome ? recentPosts : [];
-const sectionEmpty = recentPosts.length === 0 && !isHome;
+const sectionEmpty = recentPosts.length === 0;
 ---
 
 <MainLayout activeCategory={activeCategory}>
 	<div class="container-page flex flex-col gap-xl py-lg pb-3xl">
-		{
-			isHome ? (
-				<>
-					<p class="m-0 max-w-measure text-md leading-normal text-muted">
-						{SITE_TAGLINE}
-					</p>
+		<section data-index-section aria-labelledby="listing">
+			<header class="flex max-w-measure flex-col gap-2xs">
+				<h1
+					id="listing"
+					class="m-0 font-display text-xl font-semibold leading-snug tracking-display text-ink"
+				>
+					{listingTitle}
+				</h1>
+				<p class="m-0 text-md leading-normal text-muted">
+					{getSectionDescription(activeCategory as SectionCategory)}
+				</p>
+			</header>
 
-					{homeFeed.length ? (
-						<section
-							class="flex flex-col gap-sm"
-							data-index-section
-							aria-labelledby="rail-recente"
-						>
-							<h2
-								id="rail-recente"
-								class="m-0 text-sm font-medium text-muted"
-							>
-								Recente
-							</h2>
-							<CoverGrid posts={homeFeed} />
-						</section>
-					) : (
-						<p class="m-0 text-muted">Por enquanto não há publicações.</p>
-					)}
-				</>
-			) : (
-				<section data-index-section aria-labelledby="listing">
-					<header class="flex max-w-measure flex-col gap-2xs">
-						<h1
-							id="listing"
-							class="m-0 font-display text-xl font-semibold leading-snug tracking-display text-ink"
-						>
-							{listingTitle}
-						</h1>
-						<p class="m-0 text-md leading-normal text-muted">
-							{getSectionDescription(
-								activeCategory as SectionCategory,
-							)}
-						</p>
-					</header>
-
-					{recentPosts.length ? (
-						<div class="mt-md">
-							<CoverGrid posts={recentPosts} />
-						</div>
-					) : null}
-				</section>
-			)
-		}
+			{
+				recentPosts.length ? (
+					<div class="mt-md">
+						<CoverGrid posts={recentPosts} />
+					</div>
+				) : null
+			}
+		</section>
 
 		<div
 			id="search-empty"

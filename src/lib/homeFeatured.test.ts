@@ -22,10 +22,7 @@ function tool(slug: string, title = slug): Post {
 
 describe("resolveFeaturedTool", () => {
 	it("retorna o tool cujo slug bate", () => {
-		const posts = [
-			tool("goal-quest"),
-			tool("criador-de-curriculos", "Criador de currículos"),
-		];
+		const posts = [tool("goal-quest"), tool("criador-de-curriculos", "Criador de currículos")];
 		const found = resolveFeaturedTool(posts, "criador-de-curriculos");
 		expect(found?.title).toBe("Criador de currículos");
 	});
