@@ -3,6 +3,7 @@ import type { Post } from "@/content.config";
 import {
 	getListingTitle,
 	getSectionDescription,
+	SECTIONS,
 	type SectionCategory,
 } from "@/lib/sections";
 import CoverGrid from "../ui/CoverGrid.astro";
@@ -17,58 +18,76 @@ const { recentPosts, activeCategory } = Astro.props;
 
 const listingTitle = getListingTitle(activeCategory);
 const sectionEmpty = recentPosts.length === 0;
+const section = SECTIONS.find((item) => item.category === activeCategory);
+const eyebrow = section?.navLabel ?? listingTitle;
 ---
 
 <MainLayout activeCategory={activeCategory}>
-	<div class="container-page flex flex-col gap-xl py-lg pb-3xl">
-		<section data-index-section aria-labelledby="listing">
-			<header class="flex max-w-measure flex-col gap-2xs">
-				<h1
-					id="listing"
-					class="m-0 font-display text-xl font-semibold leading-snug tracking-display text-ink"
+	<header
+		class="border-b border-rule bg-paper-2 py-2xl"
+		aria-labelledby="listing"
+	>
+		<div class="container-page flex max-w-measure flex-col gap-sm">
+			<p class="m-0 text-xs font-medium tracking-label text-accent uppercase">
+				{eyebrow}
+			</p>
+			<h1
+				id="listing"
+				class="m-0 font-display text-display-s font-semibold leading-tight tracking-display text-ink"
+			>
+				{listingTitle}
+			</h1>
+			<p class="m-0 text-md leading-normal text-muted">
+				{getSectionDescription(activeCategory as SectionCategory)}
+			</p>
+			<div class="mt-sm flex flex-wrap items-center gap-md">
+				<a
+					href="/"
+					class="focus-ring inline-flex min-h-11 items-center rounded-input border border-rule bg-paper px-sm text-sm text-ink no-underline hover:border-accent"
 				>
-					{listingTitle}
-				</h1>
-				<p class="m-0 text-md leading-normal text-muted">
-					{getSectionDescription(activeCategory as SectionCategory)}
-				</p>
-			</header>
+					Início
+				</a>
+				<a
+					href="/autor"
+					class="focus-ring inline-flex min-h-11 items-center rounded-input bg-accent px-sm text-sm font-medium text-accent-ink no-underline"
+				>
+					Sobre o autor
+				</a>
+			</div>
+		</div>
+	</header>
 
+	<section
+		class="border-b border-rule bg-paper py-2xl"
+		data-index-section
+		aria-label={listingTitle}
+	>
+		<div class="container-page flex flex-col gap-md">
 			{
 				recentPosts.length ? (
-					<div class="mt-md">
-						<CoverGrid posts={recentPosts} />
-					</div>
+					<CoverGrid posts={recentPosts} />
+				) : sectionEmpty ? (
+					<p class="m-0 text-muted">
+						Nenhum item publicado nesta seção ainda.
+					</p>
 				) : null
 			}
-		</section>
 
-		<div
-			id="search-empty"
-			class:list={["py-md text-muted", !sectionEmpty && "hidden"]}
-		>
-			<p class="m-0">
-				{
-					sectionEmpty ? (
-						"Nenhum item publicado nesta seção ainda."
-					) : (
-						<>
-							Nenhum resultado para <span id="search-empty-term" />.
-						</>
-					)
-				}
-			</p>
-			{
-				sectionEmpty ? null : (
-					<button
-						type="button"
-						id="search-clear"
-						class="mt-sm inline-flex min-h-11 items-center border-0 bg-transparent p-0 text-sm text-accent hover:underline"
-					>
-						Limpar busca
-					</button>
-				)
-			}
+			<div
+				id="search-empty"
+				class:list={["py-md text-muted", "hidden"]}
+			>
+				<p class="m-0">
+					Nenhum resultado para <span id="search-empty-term" />.
+				</p>
+				<button
+					type="button"
+					id="search-clear"
+					class="focus-ring mt-sm inline-flex min-h-11 items-center rounded-input border border-rule bg-paper px-sm text-sm text-ink hover:border-accent"
+				>
+					Limpar busca
+				</button>
+			</div>
 		</div>
-	</div>
+	</section>
 </MainLayout>
