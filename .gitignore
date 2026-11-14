@@ -23,5 +23,6 @@ pnpm-debug.log*
 # jetbrains setting folder
 .idea/
 
-data
+/data
 .vercel
+!src/tools/Mocke/data/
