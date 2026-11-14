@@ -15,14 +15,3 @@ export function richTextToHtml(content: string): string {
 export function removeHttps(url: string): string {
 	return url.replace(/^https?:\/\//, "");
 }
-
-export function safePdfFilename(name: string): string {
-	const cleaned = name
-		.normalize("NFD")
-		.replace(/[\u0300-\u036f]/g, "")
-		.replace(/[^\w\s.-]/g, "")
-		.trim()
-		.replace(/\s+/g, "-")
-		.slice(0, 80);
-	return cleaned || "curriculo";
-}

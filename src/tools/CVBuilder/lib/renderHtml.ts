@@ -201,12 +201,18 @@ function renderEducation(educations: UserData["education"]): string {
   `;
 }
 
+function documentTitle(data: UserData): string {
+	const nome = data.header.name.trim() || "Curriculo";
+	const role = data.header.role.trim();
+	return role ? `${nome} - ${role}` : nome;
+}
+
 export function renderResumeHtml(data: UserData): string {
 	return `<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="utf-8" />
-  <title>${escapeHtml(data.header.name || "Currículo")}</title>
+  <title>${escapeHtml(documentTitle(data))}</title>
   <style>${PAGE_CSS}</style>
 </head>
 <body>

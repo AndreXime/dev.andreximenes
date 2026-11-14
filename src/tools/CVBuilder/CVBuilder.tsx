@@ -1,10 +1,12 @@
 import "./styles.css";
-import { BookOpen, Briefcase, Database, Download, Eye, FileSearch, FileText, Loader2, User } from "lucide-react";
+import { useStore } from "@nanostores/react";
+import { BookOpen, Briefcase, Database, Eye, FileSearch, FileText, Printer, User } from "lucide-react";
 import type React from "react";
 import { useCallback, useEffect, useState } from "react";
 
 import { ToolShell } from "../ToolShell";
-import { cvBuilderStorage, downloadResumePdf, type PdfDownloadPhase } from "./lib/store";
+import { printActiveResume } from "./lib/printResume";
+import { activeResume$, cvBuilderStorage } from "./lib/store";
 import ResumeContent from "./Page";
 import { ContextTab } from "./tabs/ContextTab";
 import { EditorTab } from "./tabs/EditorTab";
@@ -30,15 +32,10 @@ const TABS: { id: TabId; label: string; icon: React.ReactNode }[] = [
 	{ id: 5, label: "Salvos", icon: <Database size={16} /> },
 ];
 
-const PHASE_LABEL: Record<PdfDownloadPhase, string> = {
-	sending: "Enviando currículo…",
-	generating: "Gerando PDF…",
-	downloading: "Preparando download…",
-};
-
 export default function CVBuilderApp() {
+	const activeResume = useStore(activeResume$);
+	const canPrint = (activeResume?.data ?? "").trim() !== "";
 	const [activeTab, setActiveTab] = useState<TabId>(1);
-	const [pdfPhase, setPdfPhase] = useState<PdfDownloadPhase | null>(null);
 	const [pdfError, setPdfError] = useState<string | null>(null);
 	const [toast, setToast] = useState<ToastState | null>(null);
 
@@ -52,24 +49,16 @@ export default function CVBuilderApp() {
 		setToast({ message, tone });
 	}, []);
 
-	async function handleDownloadPdf() {
-		if (pdfPhase) return;
+	async function handlePrintResume() {
 		setPdfError(null);
-		setPdfPhase("sending");
 		try {
-			await downloadResumePdf((phase) => setPdfPhase(phase));
-			notify("PDF baixado com sucesso.", "ok");
+			await printActiveResume();
 		} catch (error) {
-			const message = error instanceof Error ? error.message : "Falha ao gerar o PDF. Tente novamente.";
+			const message = error instanceof Error ? error.message : "Falha ao abrir a impressão. Tente novamente.";
 			setPdfError(message);
 			notify(message, "error");
-		} finally {
-			setPdfPhase(null);
 		}
 	}
-
-	const busy = pdfPhase !== null;
-	const statusLabel = pdfPhase ? PHASE_LABEL[pdfPhase] : null;
 
 	return (
 		<div className="cv-builder min-h-full w-full">
@@ -96,22 +85,14 @@ export default function CVBuilderApp() {
 					<div className="flex flex-wrap items-center gap-2">
 						<button
 							type="button"
-							onClick={handleDownloadPdf}
-							disabled={busy}
-							aria-busy={busy}
-							className="inline-flex items-center justify-center gap-2 rounded-card px-4 py-2.5 text-sm font-semibold bg-accent text-accent-ink hover:opacity-90 active:scale-[0.99] transition-[opacity,transform] focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-paper shrink-0 disabled:opacity-60 disabled:pointer-events-none"
-							title="Gerar PDF no servidor"
+							onClick={handlePrintResume}
+							disabled={!canPrint}
+							className="inline-flex items-center justify-center gap-2 rounded-card px-4 py-2.5 text-sm font-semibold bg-accent text-accent-ink hover:opacity-90 active:scale-[0.99] transition-[opacity,transform] focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-paper shrink-0 disabled:cursor-not-allowed disabled:opacity-40"
+							title="Abre a impressão. Escolha Salvar como PDF e desmarque cabeçalhos e rodapés."
 						>
-							{busy && pdfPhase ? (
-								<Loader2 size={16} className="animate-spin" aria-hidden="true" />
-							) : (
-								<Download size={16} aria-hidden="true" />
-							)}
-							<span>{busy && pdfPhase ? PHASE_LABEL[pdfPhase] : "Baixar PDF"}</span>
+							<Printer size={16} aria-hidden="true" />
+							<span>Salvar PDF</span>
 						</button>
-						<div className="sr-only" aria-live="polite" aria-atomic="true">
-							{statusLabel}
-						</div>
 						{pdfError && (
 							<p className="m-0 max-w-80 text-xs leading-snug text-accent" role="alert" aria-live="assertive">
 								{pdfError}
