@@ -7,7 +7,7 @@
 	},
 	"files": {
 		"ignoreUnknown": true,
-		"includes": ["**", "!**/*.astro"]
+		"includes": ["**", "!**/*.astro", "!src/tools/Mocke/data"]
 	},
 	"formatter": {
 		"enabled": true,

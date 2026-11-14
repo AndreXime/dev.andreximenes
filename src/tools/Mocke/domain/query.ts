@@ -51,7 +51,8 @@ function projectRecord(
 	knownFields: ReadonlySet<string>,
 	fields: readonly string[] | undefined,
 ): DataRecord {
-	if (!fields || fields.length === 0) return { ...record };
+	if (fields === undefined) return { ...record };
+	if (fields.length === 0) return {};
 	const requested = fields.filter((name) => knownFields.has(name));
 	if (requested.length === 0) return { ...record };
 	const projected: DataRecord = {};

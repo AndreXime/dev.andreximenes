@@ -66,6 +66,11 @@ describe("queryDataset", () => {
 		expect(rows[0]).toEqual(sample[0]);
 	});
 
+	it("fields vazio devolve objetos vazios", () => {
+		const rows = queryDataset(sample, fields, { fields: [], limit: 1 });
+		expect(rows).toEqual([{}]);
+	});
+
 	it("aplica limit com default 20 e clamp", () => {
 		const many = Array.from({ length: 25 }, (_, i) => ({
 			id: String(i),

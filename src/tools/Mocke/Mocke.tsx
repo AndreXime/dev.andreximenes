@@ -5,8 +5,8 @@ import { MockeView } from "./MockeView";
 export default function Mocke() {
 	return (
 		<ToolShell
-			title="Mockê"
-			description="Gera e copia JSON de datasets mock (produtos, usuários, CEPs…) no navegador."
+			title="Gerador de mocks"
+			description="Filtra datasets fictícios e copia JSON ou CSV no navegador para prototipar frontends."
 			icon={<Database className="size-6" strokeWidth={2} />}
 		>
 			<MockeView />

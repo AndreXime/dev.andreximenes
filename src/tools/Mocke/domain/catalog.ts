@@ -1,9 +1,3 @@
-import cep from "../data/cep.json";
-import companies from "../data/companies.json";
-import movies from "../data/movies.json";
-import news from "../data/news.json";
-import products from "../data/products.json";
-import users from "../data/users.json";
 import type { DataRecord, DatasetId, DatasetMeta } from "./types";
 
 export const DATASETS: readonly DatasetMeta[] = [
@@ -128,26 +122,36 @@ export const DATASETS: readonly DatasetMeta[] = [
 			"total_employee_estimate",
 		],
 	},
-] as const;
+];
 
 const BY_ID: Record<DatasetId, DatasetMeta> = Object.fromEntries(DATASETS.map((meta) => [meta.id, meta])) as Record<
 	DatasetId,
 	DatasetMeta
 >;
 
-const RECORDS: Record<DatasetId, readonly DataRecord[]> = {
-	products: products as DataRecord[],
-	cep: cep as DataRecord[],
-	news: news as DataRecord[],
-	movies: movies as DataRecord[],
-	users: users as DataRecord[],
-	companies: companies as DataRecord[],
+type DatasetModule = { readonly default: readonly DataRecord[] };
+
+const loaders: Record<DatasetId, () => Promise<DatasetModule>> = {
+	products: () => import("../data/products.json"),
+	cep: () => import("../data/cep.json"),
+	news: () => import("../data/news.json"),
+	movies: () => import("../data/movies.json"),
+	users: () => import("../data/users.json"),
+	companies: () => import("../data/companies.json"),
 };
+
+const cache = new Map<DatasetId, readonly DataRecord[]>();
 
 export function getDatasetMeta(id: DatasetId): DatasetMeta {
 	return BY_ID[id];
 }
 
-export function loadDatasetRecords(id: DatasetId): readonly DataRecord[] {
-	return RECORDS[id];
+export async function loadDatasetRecords(id: DatasetId): Promise<readonly DataRecord[]> {
+	const hit = cache.get(id);
+	if (hit) return hit;
+
+	const mod = await loaders[id]();
+	const rows = mod.default;
+	cache.set(id, rows);
+	return rows;
 }
