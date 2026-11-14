@@ -4,13 +4,17 @@ import type { Post } from "@/content.config";
 export async function loadPosts(type?: Post["type"]): Promise<Post[]> {
 	const entries = await getCollection("posts");
 
-	return entries
-		.map((entry) => ({
-			...entry.data,
-			content: entry.body,
-		}))
-		.filter((post) => (type ? post.type === type : true))
-		.sort((a, b) => b.date.getTime() - a.date.getTime());
+	const posts = entries.map((entry) => ({
+		...entry.data,
+		content: entry.body,
+	}));
+
+	const featured = posts.filter((post) => post.featured);
+	if (featured.length > 1) {
+		throw new Error(`Mais de um post em destaque: ${featured.map((post) => post.slug).join(", ")}`);
+	}
+
+	return posts.filter((post) => (type ? post.type === type : true)).sort((a, b) => b.date.getTime() - a.date.getTime());
 }
 
 export function excerptFromContent(content: string | undefined): string | null {

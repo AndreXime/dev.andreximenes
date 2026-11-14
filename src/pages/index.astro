@@ -5,12 +5,11 @@ import HomeHero from "@/components/home/HomeHero.astro";
 import HomeRails from "@/components/home/HomeRails.astro";
 import MainLayout from "@/components/layout/MainLayout.astro";
 import SEOLayout from "@/components/layout/SEOLayout.astro";
-import { HOME_FEATURED_TOOL_SLUG, SITE_NAME } from "@/content/site";
-import { resolveFeaturedTool } from "@/lib/homeFeatured";
+import { SITE_NAME } from "@/content/site";
 import { loadPosts } from "@/lib/listing";
 
 const recentPosts = await loadPosts();
-const featured = resolveFeaturedTool(recentPosts, HOME_FEATURED_TOOL_SLUG);
+const featured = recentPosts.find((post) => post.featured) ?? null;
 ---
 
 <SEOLayout title={SITE_NAME}>

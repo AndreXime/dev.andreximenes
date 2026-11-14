@@ -12,6 +12,7 @@ export interface Post {
 	content?: string | undefined;
 	target?: string | undefined;
 	cover: ImageMetadata;
+	featured: boolean;
 }
 
 const posts = defineCollection({
@@ -25,7 +26,7 @@ const posts = defineCollection({
 			description: z.string().optional(),
 			target: z.string().optional(),
 			cover: image(),
+			featured: z.boolean().optional().default(false),
 		}),
 });
-
 export const collections = { posts };

@@ -6,4 +6,5 @@ description: "Converta, comprima ou remova o fundo de imagens direto no navegado
 date: 2026-05-27
 target: "ImageTools"
 cover: "../../../assets/covers/tools/ferramentas-de-imagem.webp"
+featured: true
 ---
