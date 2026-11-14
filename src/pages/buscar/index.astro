@@ -1,0 +1,70 @@
+---
+import CoverGrid from "@/components/ui/CoverGrid.astro";
+import MainLayout from "@/components/layout/MainLayout.astro";
+import SEOLayout from "@/components/layout/SEOLayout.astro";
+import { pageTitle } from "@/content/site";
+import { loadPosts } from "@/lib/listing";
+
+const posts = await loadPosts();
+---
+
+<SEOLayout title={pageTitle("Busca")}>
+	<MainLayout activeCategory="all">
+		<header
+			class="border-b border-rule bg-paper-2 py-2xl"
+			aria-labelledby="search-heading"
+		>
+			<div class="container-page flex max-w-measure flex-col gap-sm">
+				<p class="m-0 text-xs font-medium tracking-label text-accent uppercase">
+					Busca
+				</p>
+				<h1
+					id="search-heading"
+					class="m-0 font-display text-display-s font-semibold leading-tight tracking-display text-ink"
+				>
+					Busca
+				</h1>
+				<p class="m-0 text-md leading-normal text-muted">
+					Resultados em notas, ferramentas e links
+				</p>
+				<div class="mt-sm flex flex-wrap items-center gap-md">
+					<a
+						href="/"
+						class="focus-ring inline-flex min-h-11 items-center rounded-input border border-rule bg-paper px-sm text-sm text-ink no-underline hover:border-accent"
+					>
+						Início
+					</a>
+				</div>
+			</div>
+		</header>
+
+		<section
+			class="border-b border-rule bg-paper py-2xl"
+			data-index-section
+			aria-label="Resultados da busca"
+		>
+			<div class="container-page flex flex-col gap-md">
+				{
+					posts.length ? (
+						<CoverGrid posts={posts} />
+					) : (
+						<p class="m-0 text-muted">Nenhum item publicado ainda.</p>
+					)
+				}
+
+				<div id="search-empty" class:list={["py-md text-muted", "hidden"]}>
+					<p class="m-0">
+						Nenhum resultado para <span id="search-empty-term" />.
+					</p>
+					<button
+						type="button"
+						id="search-clear"
+						class="focus-ring mt-sm inline-flex min-h-11 items-center rounded-input border border-rule bg-paper px-sm text-sm text-ink hover:border-accent"
+					>
+						Limpar busca
+					</button>
+				</div>
+			</div>
+		</section>
+	</MainLayout>
+</SEOLayout>

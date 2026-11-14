@@ -40,10 +40,16 @@ function clearQueryFromUrl(): void {
 	window.history.replaceState({}, "", next);
 }
 
-function goToHomeWithQuery(query: string): void {
-	const url = new URL("/", window.location.origin);
-	if (query) url.searchParams.set(SEARCH_PARAM, query);
-	window.location.assign(url.toString());
+export function buildSearchHref(query: string): string {
+	const trimmed = query.trim();
+	if (!trimmed) return "/buscar";
+	const params = new URLSearchParams();
+	params.set(SEARCH_PARAM, trimmed);
+	return `/buscar?${params.toString()}`;
+}
+
+function goToSearchWithQuery(query: string): void {
+	window.location.assign(buildSearchHref(query));
 }
 
 export function initListingSearch(): void {
@@ -93,7 +99,7 @@ export function initListingSearch(): void {
 		if (hasFilterableItems()) return;
 
 		event.preventDefault();
-		goToHomeWithQuery(searchInput.value.trim());
+		goToSearchWithQuery(searchInput.value);
 	});
 
 	if (clearBtn) {
