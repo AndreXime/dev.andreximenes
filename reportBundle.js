@@ -1,7 +1,7 @@
 import { promises as fs } from "node:fs";
 import path from "node:path";
 
-const distDir = new URL("./.vercel/output/static", import.meta.url).pathname;
+const distDir = new URL("./dist", import.meta.url).pathname;
 
 async function collectHtmlFiles(dir, baseDir) {
 	const entries = await fs.readdir(dir, { withFileTypes: true });
