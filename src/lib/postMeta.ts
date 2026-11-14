@@ -1,15 +1,13 @@
 import type { Post } from "@/content.config";
-import { getLinkInfo } from "@/lib/getLinkInfo";
 
 export interface PostMeta {
 	kind: "tool" | "note" | "link";
 	typeLabel: string;
 	href: string;
-	linkFavicon: string | null;
 	external: boolean;
 }
 
-function getPostUrl(post: Post): string {
+export function getPostUrl(post: Post): string {
 	switch (post.type) {
 		case "note":
 			return `/post/${post.slug}`;
@@ -20,7 +18,7 @@ function getPostUrl(post: Post): string {
 	}
 }
 
-export async function getPostMeta(post: Post): Promise<PostMeta> {
+export function getPostMeta(post: Post): PostMeta {
 	const href = getPostUrl(post);
 
 	switch (post.type) {
@@ -29,7 +27,6 @@ export async function getPostMeta(post: Post): Promise<PostMeta> {
 				kind: "tool",
 				typeLabel: "Ferramenta",
 				href,
-				linkFavicon: null,
 				external: false,
 			};
 		case "note":
@@ -37,18 +34,14 @@ export async function getPostMeta(post: Post): Promise<PostMeta> {
 				kind: "note",
 				typeLabel: "Nota",
 				href,
-				linkFavicon: null,
 				external: false,
 			};
-		case "link": {
-			const info = await getLinkInfo(post.target || "");
+		case "link":
 			return {
 				kind: "link",
 				typeLabel: "Link",
 				href,
-				linkFavicon: info.favicon,
 				external: true,
 			};
-		}
 	}
 }

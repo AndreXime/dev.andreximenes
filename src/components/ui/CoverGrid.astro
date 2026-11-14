@@ -11,13 +11,11 @@ interface Props {
 
 const { posts } = Astro.props;
 
-const items = await Promise.all(
-	posts.map(async (post) => ({
-		post,
-		meta: await getPostMeta(post),
-		excerpt: listingDescription(post),
-	})),
-);
+const items = posts.map((post) => ({
+	post,
+	meta: getPostMeta(post),
+	excerpt: listingDescription(post),
+}));
 ---
 
 {

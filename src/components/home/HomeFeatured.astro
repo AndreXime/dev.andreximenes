@@ -9,7 +9,7 @@ interface Props {
 }
 
 const { post } = Astro.props;
-const meta = await getPostMeta(post);
+const meta = getPostMeta(post);
 const excerpt = listingDescription(post);
 const ctaLabel =
 	post.type === "tool" ? "Abrir ferramenta" : post.type === "note" ? "Ler nota" : "Abrir link";
