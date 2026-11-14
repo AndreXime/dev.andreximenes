@@ -4,7 +4,7 @@ import heroImage from "@/assets/home/hero.webp";
 ---
 
 <section
-	class="relative isolate flex min-h-[28rem] items-end overflow-hidden border-b border-rule lg:min-h-[36rem]"
+	class="relative isolate flex min-h-112 items-center overflow-hidden border-b border-rule lg:min-h-144"
 	aria-labelledby="home-hero-heading"
 >
 	<Image
@@ -18,7 +18,7 @@ import heroImage from "@/assets/home/hero.webp";
 		decoding="async"
 	/>
 	<div
-		class="absolute inset-0 -z-10 bg-linear-to-r from-paper/75 via-paper/25 to-transparent"
+		class="absolute inset-0 -z-10 bg-linear-to-r from-paper from-0% via-paper/85 via-55% to-transparent to-70%"
 		aria-hidden="true"
 	></div>
 	<div
@@ -26,7 +26,7 @@ import heroImage from "@/assets/home/hero.webp";
 		aria-hidden="true"
 	></div>
 
-	<div class="container-page flex w-full flex-col gap-sm pb-2xl pt-xl lg:pb-3xl lg:pt-2xl">
+	<div class="container-page flex w-full flex-col gap-sm py-xl">
 		<p class="m-0 text-xs font-medium tracking-label text-accent uppercase">
 			Hub técnico
 		</p>
@@ -39,19 +39,5 @@ import heroImage from "@/assets/home/hero.webp";
 		<p class="m-0 max-w-measure text-md text-muted">
 			Conteúdo e apps que mantenho no dia a dia
 		</p>
-		<div class="mt-sm flex flex-wrap items-center gap-md">
-			<a
-				href="#secoes"
-				class="focus-ring border-b border-accent pb-3xs text-sm font-medium text-ink no-underline"
-			>
-				Explorar seções ↗
-			</a>
-			<a
-				href="/app"
-				class="focus-ring inline-flex min-h-11 items-center rounded-input border border-rule bg-paper/70 px-sm text-sm text-ink no-underline backdrop-blur-sm hover:border-accent"
-			>
-				Abrir ferramentas
-			</a>
-		</div>
 	</div>
 </section>
