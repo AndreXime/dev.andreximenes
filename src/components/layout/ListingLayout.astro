@@ -72,22 +72,6 @@ const eyebrow = section?.navLabel ?? listingTitle;
 					</p>
 				) : null
 			}
-
-			<div
-				id="search-empty"
-				class:list={["py-md text-muted", "hidden"]}
-			>
-				<p class="m-0">
-					Nenhum resultado para <span id="search-empty-term" />.
-				</p>
-				<button
-					type="button"
-					id="search-clear"
-					class="focus-ring mt-sm inline-flex min-h-11 items-center rounded-input border border-rule bg-paper px-sm text-sm text-ink hover:border-accent"
-				>
-					Limpar busca
-				</button>
-			</div>
 		</div>
 	</section>
 </MainLayout>
