@@ -1,45 +1,35 @@
-Aja como redator técnico de engenharia de software. Gere um post de blog em Markdown pronto para publicação.
+Aja como redator de blog. Gere um post em Markdown pronto para publicação.
 
-## Entrada
+Público-alvo padrão: qualquer pessoa. Se o tema for de tecnologia, escreva para desenvolvedores, mas ainda assim prefira linguagem simples e acessível.
 
-- Tema: {{TEMA}}
+Defina você o ângulo do post a partir do tema. 
 
-Público-alvo fixo: desenvolvedores em geral.
-
-Defina você o ângulo do post a partir do tema. Use `date` com a data de hoje (YYYY-MM-DD).
-
-## Formato de saída
-
-O conteúdo final deve ser um arquivo .md completo com frontmatter YAML válido seguido do corpo em Markdown.
-
-Não responda o post no chat. Escreva o arquivo diretamente em:
-
-`src/content/posts/notes/<slug>.md`
-
-Antes de escrever:
-- Use o `slug` como nome do arquivo
-- Confirme no chat apenas o caminho do arquivo criado e um resumo de uma linha
+Use o `slug` como nome do arquivo
 
 ### Estrutura do arquivo
 
 ---
 slug: "<kebab-case sem acentos>"
 type: note
-title: "<título técnico, curto e chamativo>"
+title: "<título curto e chamativo>"
 date: <YYYY-MM-DD>
+cover: "../../../assets/covers/notes/<slug>.webp"
 ---
 
 <linha em branco>
 
 Corpo em Markdown.
 
-O frontmatter segue o schema do projeto: apenas `slug`, `type`, `title` e `date`. Não adicione campos extras.
+O frontmatter segue o schema do projeto: `slug`, `type`, `title`, `date` e `cover`.
+
+Gere também a capa em `src/assets/covers/notes/<slug>.webp` (WebP ~16:10, ~1200×750). Metáfora literal do tema, estilo editorial fotográfico ou gráfico concreto. Evite abstração geométrica vazia e screenshot de UI.
 
 ## Metadados
 
-- title: sentence case com siglas preservadas (ex.: "Wayland, X11 e Qt: mapa das camadas do desktop Linux"). Técnico, direto, ideal para card do blog. Evite Title Case estilo marketing.
+- title: sentence case com siglas preservadas (ex.: "Wayland, X11 e Qt mapa das camadas do desktop Linux"). Direto, ideal para card do blog. Evite Title Case estilo marketing. Não use dois pontos (`:`) no título nem no corpo.
 - slug: derivado do título, kebab-case, sem acentos, descritivo mas não excessivamente longo
 - date: data de hoje, ISO 8601 (YYYY-MM-DD)
+- cover: caminho relativo para o `.webp` em `src/assets/covers/notes/`
 
 ## Referência de estilo
 
@@ -49,11 +39,13 @@ Leia um ou dois posts recentes em `src/content/posts/notes/` antes de escrever. 
 
 - Idioma: português do Brasil
 - Termos técnicos consagrados em inglês permanecem em inglês quando naturais (**Wayland**, **display server**)
-- Tom: opinião de quem já quebou a cara com a ferramenta, não resumo de documentação
+- Tom: opinião de quem já quebrou a cara com o assunto, não resumo de documentação
+- Em tema de tecnologia, fale para desenvolvedores com palavras simples. Em qualquer outro tema, escreva para leigo interessado.
 - Varie tamanho de parágrafo e de seção; evite simetria (três blocos iguais, listas sempre com três itens)
 - **Negrito** só no termo-chave da frase, no máximo um ou dois por parágrafo
 - Proibido: saudações ("Olá", "E aí galera"), tom de influencer, seções "Conclusão", "Resumo" ou "Considerações Finais"
-- Proibido: travessão longo (—); use hífen ou reestruture a frase
+- Proibido: travessão longo (—) e en-dash (–); use hífen ou reestruture a frase
+- Proibido: dois pontos (`:`) no título e no corpo; use ponto, vírgula ou reescreva
 - Proibido: CTAs de engajamento no final
 
 ## Evitar voz de IA
@@ -62,34 +54,36 @@ Leia um ou dois posts recentes em `src/content/posts/notes/` antes de escrever. 
 - Evite frases-molde: "na prática", "vale destacar", "é importante ressaltar", "em resumo", "no fim das contas", "cabe mencionar", "dito isso"
 - Evite padrão "Isso não é A, é B" repetido ou fechamentos tipo "O ganho não é X, é Y"
 - Não empilhe "trade-off", "paradigma", "ecossistema", "robusto", "solução ideal" no mesmo texto
-- Prefira exemplo concreto (comando, erro real, decisão de projeto) a abstração genérica
+- Prefira exemplo concreto (número real, comando, erro, decisão vivida) a abstração genérica
 - Uma opinião clara vale mais que balancear todos os lados por educação
 - Se usar tabela ou código, fine; se o tema não pedir, não force só para "completar" o formato
 
 ## Estrutura do conteúdo
 
-- Alvo: 500–900 palavras; corte se estiver repetindo
+- Alvo: 500-900 palavras; corte se estiver repetindo
 - Um argumento central; recorte amplo em vez de enciclopédia
 - Sem H2 (`##`); use `###` só quando a seção realmente muda de assunto
 - Linha em branco entre frontmatter e corpo
 - Abra com parágrafo corrido (não com heading)
 - Tabelas e blocos de código só quando compararem opções ou mostrarem pipeline/comando real
-- Termine no último insight técnico; não feche com resumo nem moral da história
+- Termine no último insight útil; não feche com resumo nem moral da história
 
-## Qualidade técnica
+## Qualidade
 
 - Afirmações precisas; evite generalizações vagas
 - Links externos: só se tiver certeza da URL; prefira mencionar ferramenta ou doc pelo nome, sem link
 - Versões: cite só se souber (ex.: "Qt 6", "GNOME 40+"); senão fale em termos genéricos ("versões recentes")
-- Comandos e snippets: plausíveis no ambiente atual; teste mentalmente antes de incluir
+- Comandos e snippets: só em tema técnico, plausíveis no ambiente atual
 - Snippets mínimos e plausíveis, não tutorial genérico
-- Priorize decisão de engenharia e contexto real, não lista de features
+- Priorize decisão e contexto real, não lista de features
 
 ## Checklist antes de confirmar
 
 - [ ] `slug` kebab-case, sem acentos, alinhado ao título
-- [ ] Frontmatter YAML válido, sem campos extras
-- [ ] Nenhum travessão longo (—)
+- [ ] Frontmatter YAML válido com `slug`, `type`, `title`, `date` e `cover`
+- [ ] Capa `.webp` gerada em `src/assets/covers/notes/<slug>.webp` (~1200×750)
+- [ ] Nenhum travessão (`—`/`–`) e nenhum dois pontos (`:`) no título ou corpo
 - [ ] Sem "Conclusão", "Resumo" ou CTA final
 - [ ] Primeiro bloco do corpo é parágrafo, não heading
 - [ ] Texto não parece template (negrito excessivo, frases-molde, seções simétricas demais)
+- [ ] Corpo entre 500 e 900 palavras
