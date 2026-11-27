@@ -1,0 +1,230 @@
+---
+import SEOLayout from "@/components/layout/SEOLayout.astro";
+import MainLayout from "@/components/layout/MainLayout.astro";
+import {
+	APLICATIVOS,
+	EMULADOR_ICONE,
+	FILTROS_ROM,
+	ROMS,
+	assetUrl,
+	iconeAplicativo,
+	metaRom,
+} from "@/content/referencia/aplicativos";
+import type { Rom } from "@/content/referencia/aplicativos";
+import { pageTitle } from "@/content/site";
+
+interface GrupoRom {
+	emulador: string;
+	icone: string | undefined;
+	roms: Rom[];
+}
+
+const grupos: GrupoRom[] = [];
+for (const rom of ROMS) {
+	const ultimo = grupos.at(-1);
+	if (ultimo && ultimo.emulador === rom.emulador) {
+		ultimo.roms.push(rom);
+		continue;
+	}
+	grupos.push({
+		emulador: rom.emulador,
+		icone: EMULADOR_ICONE[rom.emulador],
+		roms: [rom],
+	});
+}
+
+const totalAplicativos = String(APLICATIVOS.length).padStart(2, "0");
+const totalRoms = String(ROMS.length).padStart(2, "0");
+---
+
+<SEOLayout
+	title={pageTitle("Aplicativos")}
+	description="Lista pessoal de sistemas, aplicativos e ROMs usados no computador."
+>
+	<MainLayout activeCategory="author">
+		<article>
+			<header class="border-b border-rule bg-paper-2 py-2xl">
+				<div class="container-page flex flex-col gap-sm">
+					<p class="m-0 text-xs font-medium tracking-label text-accent uppercase">Referência</p>
+					<h1 class="m-0 font-display text-display-s font-semibold leading-tight tracking-display text-ink lg:text-display">
+						Sistemas, aplicativos e ROMs
+					</h1>
+					<p class="m-0 text-md leading-(--lh-prose) text-ink-2">
+						O que está instalado no computador. Fica aqui só como referência, fora do menu principal.
+					</p>
+				</div>
+			</header>
+
+			<section class="border-b border-rule bg-paper py-2xl" aria-labelledby="sistemas-heading">
+				<div class="container-page flex flex-col gap-md">
+					<h2 id="sistemas-heading" class="m-0 font-display text-xl font-semibold tracking-display text-ink">
+						Sistemas
+					</h2>
+					<ul class="m-0 list-none divide-y divide-rule border-y border-rule p-0">
+						<li class="flex items-center gap-sm py-sm">
+							<span class="flex shrink-0 items-center gap-2xs">
+								<img src={assetUrl("icones/debian-logo.png")} alt="" width="28" height="28" class="h-7 w-7 object-contain" />
+								<img src={assetUrl("icones/kde.svg")} alt="" width="28" height="28" class="h-7 w-7 object-contain" />
+							</span>
+							<div class="min-w-0 flex-1">
+								<p class="m-0 text-lg leading-tight text-ink">Debian + KDE</p>
+								<p class="m-0 mt-3xs text-sm leading-snug text-ink-2">Debian GNU/Linux 13 com a área de trabalho KDE Plasma.</p>
+							</div>
+							<span class="shrink-0 border border-ink px-2xs py-3xs font-mono text-xs tracking-label text-ink uppercase">
+								Atual
+							</span>
+						</li>
+						<li class="flex items-center gap-sm py-sm">
+							<img src={assetUrl("icones/kubuntu.svg")} alt="" width="28" height="28" class="h-7 w-7 shrink-0 object-contain" />
+							<div class="min-w-0 flex-1">
+								<p class="m-0 text-lg leading-tight text-ink">Kubuntu</p>
+								<p class="m-0 mt-3xs text-sm leading-snug text-ink-2">Ubuntu com a área de trabalho KDE Plasma.</p>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</section>
+
+			<section class="border-b border-rule bg-paper py-2xl" aria-labelledby="aplicativos-heading">
+				<div class="container-page flex flex-col gap-md">
+					<div class="flex items-end justify-between gap-md">
+						<h2 id="aplicativos-heading" class="m-0 font-display text-xl font-semibold tracking-display text-ink">
+							Aplicativos
+						</h2>
+						<p id="aplicativos-contador" class="m-0 font-mono text-sm text-muted">{totalAplicativos}</p>
+					</div>
+
+					<label class="flex min-h-11 items-center rounded-input border border-rule bg-paper px-sm focus-within:border-accent">
+						<span class="sr-only">Buscar aplicativo ou ROM</span>
+						<input
+							id="aplicativos-busca"
+							type="search"
+							placeholder="Buscar aplicativo ou ROM"
+							autocomplete="off"
+							spellcheck="false"
+							class="min-h-11 w-full border-0 bg-transparent p-0 font-mono text-sm text-ink outline-none placeholder:text-muted"
+						/>
+					</label>
+
+					<ul id="aplicativos-lista" class="m-0 list-none divide-y divide-rule border-y border-rule p-0">
+						{
+							APLICATIVOS.map((app, indice) => (
+								<li data-app class="flex items-start gap-sm py-sm">
+									<span data-ordem class="mt-1 w-7 shrink-0 font-mono text-xs text-muted">
+										{String(indice + 1).padStart(2, "0")}
+									</span>
+									<img
+										src={iconeAplicativo(app.id)}
+										alt=""
+										width="44"
+										height="44"
+										class="h-11 w-11 shrink-0 object-contain"
+									/>
+									<div data-busca class="min-w-0 flex-1">
+										<p class="m-0 truncate text-lg leading-tight text-ink">{app.nome}</p>
+										<p class="m-0 mt-3xs text-sm leading-snug text-ink-2">{app.descricao}</p>
+									</div>
+								</li>
+							))
+						}
+					</ul>
+					<p id="aplicativos-vazio" hidden class="m-0 py-lg text-center font-mono text-sm text-muted">
+						Nenhum aplicativo encontrado.
+					</p>
+				</div>
+			</section>
+
+			<section class="bg-paper-2 py-2xl" aria-labelledby="roms-heading">
+				<div class="container-page flex flex-col gap-md">
+					<div class="flex items-end justify-between gap-md">
+						<h2 id="roms-heading" class="m-0 font-display text-xl font-semibold tracking-display text-ink">ROMs</h2>
+						<p id="roms-contador" class="m-0 font-mono text-sm text-muted">{totalRoms}</p>
+					</div>
+
+					<div class="flex flex-wrap gap-2xs" role="group" aria-label="Filtrar por sistema">
+						{
+							FILTROS_ROM.map((filtro) => (
+								<button
+									type="button"
+									data-sistema={filtro.id}
+									aria-pressed={filtro.id === "todas" ? "true" : "false"}
+									class:list={[
+										"focus-ring inline-flex min-h-11 items-center border border-ink px-sm font-mono text-xs tracking-label uppercase",
+										filtro.id === "todas" ? "bg-ink text-paper" : "bg-transparent text-ink",
+									]}
+								>
+									{filtro.nome}
+								</button>
+							))
+						}
+					</div>
+
+					<ul id="roms-lista" class="m-0 list-none divide-y divide-rule border-y border-rule p-0">
+						{
+							grupos.flatMap((grupo, grupoIndice) => {
+								const cabecalho = (
+									<li data-rom-cabecalho data-grupo={String(grupoIndice)} class="flex items-center gap-2xs py-2xs">
+										{grupo.icone ? (
+											<img
+												src={assetUrl(grupo.icone)}
+												alt=""
+												width="20"
+												height="20"
+												class="h-5 w-5 shrink-0 object-contain"
+											/>
+										) : null}
+										<span class="font-mono text-xs tracking-label text-muted uppercase">{grupo.emulador}</span>
+									</li>
+								);
+								const itens = grupo.roms.map((rom) => (
+									<li data-rom data-sistema={rom.sistema} data-grupo={String(grupoIndice)} class="flex items-start gap-sm py-sm">
+										<img
+											src={assetUrl(rom.capa)}
+											alt=""
+											width="80"
+											height="112"
+											class="h-28 w-20 shrink-0 bg-paper object-contain"
+										/>
+										<div class="min-w-0 flex-1">
+											<div data-busca>
+												<p class="m-0 text-lg leading-tight text-ink">{rom.nome}</p>
+												<p class="m-0 mt-3xs font-mono text-xs tracking-label text-muted uppercase">{metaRom(rom)}</p>
+												<p
+													data-descricao
+													class:list={[
+														"m-0 mt-2xs text-sm leading-snug text-ink-2",
+														rom.descricao.length > 220 && "line-clamp-3",
+													]}
+												>
+													{rom.descricao}
+												</p>
+												<p class="m-0 mt-2xs font-mono text-sm break-all text-muted">{rom.arquivo}</p>
+											</div>
+											{rom.descricao.length > 220 ? (
+												<button
+													type="button"
+													data-mais
+													class="focus-ring mt-3xs inline-flex min-h-11 items-center font-mono text-xs tracking-label text-muted uppercase hover:text-ink"
+												>
+													Ver mais
+												</button>
+											) : null}
+										</div>
+									</li>
+								));
+								return [cabecalho, ...itens];
+							})
+						}
+					</ul>
+					<p id="roms-vazio" hidden class="m-0 py-lg text-center font-mono text-sm text-muted">Nenhuma ROM encontrada.</p>
+				</div>
+			</section>
+		</article>
+	</MainLayout>
+</SEOLayout>
+
+<script>
+	import { initAplicativosFiltro } from "@/lib/client/aplicativosFiltro";
+
+	initAplicativosFiltro();
+</script>
